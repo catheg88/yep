@@ -2,15 +2,15 @@ import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 
 var React = require('react'),
     ReactDOM = require('react-dom');
-    // PostIndex = require('./components/postIndex.jsx'),
-    // PostShow = require('./components/postShow.jsx'),
-    // PostEdit = require('./components/postEdit.jsx');
+
+
 
 var App = React.createClass({
   render: function () {
     return (
       <div>
-        <h1>YEP</h1>
+        <h1>Yep!</h1>
+        <
         {this.props.children}
       </div>
     );
