@@ -23,7 +23,7 @@ class Api::SessionsController < ApplicationController
 	end
 
 	def show
-		if current_user
+    if current_user
 			@user = current_user
 			render "api/users/show"
 		else
