@@ -1,18 +1,22 @@
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
+var hashHistory = ReactRouter.hashHistory;
 
 var React = require('react'),
     ReactDOM = require('react-dom');
 
 var LoginForm = require('./components/LoginForm');
 
-var CurrentUserState = require('.mixins/current_user_state');
+var CurrentUserState = require('./mixins/current_user_state');
 
 var App = React.createClass({
   mixins: [CurrentUserState],
   render: function () {
     return (
       <div>
-        <h1>Yep!</h1>
+        <h1>Yep from app component!</h1>
         <LoginForm />
         {this.props.children}
       </div>
@@ -29,6 +33,6 @@ var routes = (
 );
 
 document.addEventListener("DOMContentLoaded", function () {
-  var root = document.getElementById("content");
-  ReactDOM.render(<Router history={hashHistory} routes={routes}/>, root);
+  var root = document.getElementById('content');
+  ReactDOM.render(routes, root);
 });
