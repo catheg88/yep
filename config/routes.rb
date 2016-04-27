@@ -5,8 +5,6 @@ Rails.application.routes.draw do
     resource :user, only: [:create, :show]
     resource :session, only: [:create, :destroy, :show]
 
-    # resources :benches, only: [:index, :create]
-    # resources :reviews, only: [:create]
   end
 
 end
