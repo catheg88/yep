@@ -33,7 +33,7 @@
     "webpack": "^1.13.0"
   },
   "engines": {
-    "node": "5.7.3",
+    "node": "5.7.1",
     "npm": "3.6.0"
   },
   "scripts": {
