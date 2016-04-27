@@ -31,5 +31,12 @@
     "react-dom": "^15.0.1",
     "react-router": "^2.3.0",
     "webpack": "^1.13.0"
+  },
+  "engines": {
+    "node": "5.7.3",
+    "npm": "3.6.0"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/webpack"
   }
 }

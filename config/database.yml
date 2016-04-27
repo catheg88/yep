@@ -78,8 +78,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: yep_rails_production
-  username: yep_rails
-  password: <%= ENV['YEP_RAILS_DATABASE_PASSWORD'] %>

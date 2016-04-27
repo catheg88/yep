@@ -20056,11 +20056,20 @@
 	
 		mixins: [LinkedStateMixin, CurrentUserState],
 		getInitialState: function () {
-			return { form: "login" };
+			return { form: "login", username: "", password: "" };
 		},
 		setForm: function (e) {
 			this.setState({ form: e.currentTarget.value });
 		},
+	
+		usernameChange: function (e) {
+			this.setState({ username: e.currentTarget.value });
+		},
+	
+		passwordChange: function (e) {
+			this.setState({ password: e.currentTarget.value });
+		},
+	
 		handleSubmit: function (e) {
 			e.preventDefault();
 			UserActions[this.state.form]({
@@ -20120,13 +20129,13 @@
 						"label",
 						null,
 						" Username:",
-						React.createElement("input", { type: "text", valueLink: this.linkState("username") })
+						React.createElement("input", { type: "text", value: this.state.username, onChange: this.usernameChange })
 					),
 					React.createElement(
 						"label",
 						null,
 						" Password:",
-						React.createElement("input", { type: "password", valueLink: this.linkState("password") })
+						React.createElement("input", { type: "password", value: this.state.password, onChange: this.passwordChange })
 					)
 				),
 				React.createElement(
@@ -20254,7 +20263,7 @@
 		post: function (options) {
 			$.ajax({
 				url: options.url,
-				type: "post",
+				type: "POST",
 				data: { user: options.user },
 				success: options.success,
 				error: options.error
@@ -20264,7 +20273,7 @@
 		logout: function (success, error) {
 			$.ajax({
 				url: '/api/session',
-				method: 'delete',
+				method: 'DELETE',
 				success: success,
 				error: error
 			});
@@ -20273,7 +20282,7 @@
 		fetchCurrentUser: function (success, error) {
 			$.ajax({
 				url: '/api/session',
-				method: 'get',
+				method: 'GET',
 				success: success,
 				error: error
 			});

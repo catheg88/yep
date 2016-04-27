@@ -2,7 +2,7 @@
 
 [Heroku link][heroku] **NB:** This should be a link to your production site
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://yepp.herokuapp.com
 
 ## Minimum Viable Product
 
@@ -49,12 +49,12 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 **Objective:** Functioning rails project with Authentication, and live on Heroku
 
-- [ ] create new project
-- [ ] create `User` model
+- [x] create new project
+- [x] create `User` model
 - [ ] authentication
 - [ ] user signup/signin pages
 - [ ] blank landing page after signin
-- [ ] running on Heroku
+- [x] running on Heroku
 
 ### Phase 2: Create Restaurant and Review models, API, and basic APIUtil (2 days) Wed-Thurs
 

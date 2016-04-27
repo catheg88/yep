@@ -7,7 +7,7 @@ var hashHistory = ReactRouter.hashHistory;
 var React = require('react'),
     ReactDOM = require('react-dom');
 
-var LoginForm = require('./components/LoginForm');
+var LoginForm = require('./components/LoginForm.jsx');
 
 var CurrentUserState = require('./mixins/current_user_state');
 

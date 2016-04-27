@@ -4,7 +4,7 @@ var UserApiUtil = {
   post: function(options){
 		$.ajax({
 			url: options.url,
-			type: "post",
+			type: "POST",
 			data: {user: options.user},
 			success: options.success,
 			error: options.error
@@ -14,7 +14,7 @@ var UserApiUtil = {
 	logout: function(success, error){
 		$.ajax({
 			url: '/api/session',
-			method: 'delete',
+			method: 'DELETE',
 			success: success,
 			error: error
 		});
@@ -23,7 +23,7 @@ var UserApiUtil = {
 	fetchCurrentUser: function(success, error){
 		$.ajax({
 			url: '/api/session',
-			method: 'get',
+			method: 'GET',
 			success: success,
 			error: error
 		});

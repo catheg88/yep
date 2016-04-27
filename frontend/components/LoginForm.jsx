@@ -6,11 +6,20 @@ var CurrentUserState = require("../mixins/current_user_state");
 var LoginForm = React.createClass({
 	mixins: [LinkedStateMixin, CurrentUserState],
 	getInitialState: function(){
-		return {form: "login"};
+		return {form: "login", username: "", password: ""};
 	},
 	setForm: function(e){
 		this.setState({form: e.currentTarget.value});
 	},
+
+	usernameChange: function(e) {
+		this.setState({ username: e.currentTarget.value });
+	},
+
+	passwordChange: function(e) {
+		this.setState({ password: e.currentTarget.value });
+	},
+
 	handleSubmit: function(e){
 		e.preventDefault();
 		UserActions[this.state.form]({
@@ -54,11 +63,11 @@ var LoginForm = React.createClass({
 				<form onSubmit={this.handleSubmit}>
 					<section>
 						<label> Username:
-							<input type="text" valueLink={this.linkState("username")}/>
+							<input type="text" value={this.state.username} onChange={this.usernameChange}/>
 						</label>
 
 						<label> Password:
-							<input type="password" valueLink={this.linkState("password")}/>
+							<input type="password" value={this.state.password} onChange={this.passwordChange}/>
 						</label>
 					</section>
 
