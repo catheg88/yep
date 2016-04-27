@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      puts "inside users_controller/create"
       render "api/users/show"
     else
       @errors = @user.errors.full_messages

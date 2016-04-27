@@ -81,7 +81,7 @@ var LoginForm = React.createClass({
 						</label>
 					</section>
 
-					<input type="Submit" value="Submit"/>
+					<button>Submit</button>
 				</form>
 		);
 	},

@@ -20154,7 +20154,11 @@
 						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm })
 					)
 				),
-				React.createElement("input", { type: "Submit", value: "Submit" })
+				React.createElement(
+					"button",
+					null,
+					"Submit"
+				)
 			);
 		},
 		render: function () {
