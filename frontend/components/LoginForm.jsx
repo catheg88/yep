@@ -2,6 +2,7 @@ var React = require("react");
 var UserActions = require("../actions/user_actions");
 var CurrentUserState = require("../mixins/current_user_state");
 
+
 var LoginForm = React.createClass({
 	mixins: [CurrentUserState],
 	getInitialState: function(){
@@ -26,6 +27,7 @@ var LoginForm = React.createClass({
 			password: this.state.password
 		});
 	},
+
 	logout: function(e){
 		e.preventDefault();
 		UserActions.logout();
@@ -36,7 +38,6 @@ var LoginForm = React.createClass({
 		}
 		return (
 			<div>
-				<h2>Hi, {this.state.currentUser.username}!</h2>
 				<input type="submit" value="logout" onClick={this.logout}/>
 			</div>
 		);

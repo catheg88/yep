@@ -34,8 +34,6 @@ UserStore.setErrors= function(errors) {
   _errors = errors;
 };
 
-
-
 UserStore.currentUser =function() {
   if (_currentUser) {
     return $.extend({}, _currentUser);

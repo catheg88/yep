@@ -56,6 +56,7 @@
 	
 	var LoginForm = __webpack_require__(245);
 	var NavBar = __webpack_require__(272);
+	var RestaurantResults = __webpack_require__(274);
 	
 	var CurrentUserState = __webpack_require__(271);
 	
@@ -68,7 +69,7 @@
 	      'div',
 	      null,
 	      React.createElement(NavBar, null),
-	      React.createElement(LoginForm, null),
+	      React.createElement(RestaurantResults, null),
 	      this.props.children
 	    );
 	  }
@@ -27434,6 +27435,7 @@
 				password: this.state.password
 			});
 		},
+	
 		logout: function (e) {
 			e.preventDefault();
 			UserActions.logout();
@@ -27445,13 +27447,6 @@
 			return React.createElement(
 				"div",
 				null,
-				React.createElement(
-					"h2",
-					null,
-					"Hi, ",
-					this.state.currentUser.username,
-					"!"
-				),
 				React.createElement("input", { type: "submit", value: "logout", onClick: this.logout })
 			);
 		},
@@ -34510,11 +34505,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var UserActions = __webpack_require__(246); // why am i including these?
+	var UserActions = __webpack_require__(246); // why am i including these? bc I'm utilizing logout
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
 	var ModalStyle = __webpack_require__(273);
 	var LoginForm = __webpack_require__(245);
+	var UserStore = __webpack_require__(253);
 	
 	var NavBar = React.createClass({
 	  displayName: "NavBar",
@@ -34523,6 +34519,16 @@
 	
 	  getInitialState: function () {
 	    return { modalOpen: false };
+	  },
+	
+	  componentDidMount: function () {
+	    this.listenerForModal = UserStore.addListener(this.closeModal);
+	  },
+	
+	  closeModal: function () {
+	    if (this.state.currentUser) {
+	      this.setState({ modalOpen: false });
+	    }
 	  },
 	
 	  _handleClick: function () {
@@ -34538,6 +34544,11 @@
 	    this.setState({ modalOpen: false });
 	  },
 	
+	  logout: function (e) {
+	    e.preventDefault();
+	    UserActions.logout();
+	  },
+	
 	  render: function () {
 	
 	    if (this.state.currentUser === undefined) {
@@ -34549,11 +34560,11 @@
 	        "sign in / sign up"
 	      );
 	    } else {
-	      // after username state is set up
+	      // after username state is set
 	      var username = "Hello, " + this.state.currentUser.username + "!";
 	      var authLink = React.createElement(
 	        "a",
-	        { href: "#", id: "sign-out" },
+	        { href: "#", id: "sign-out", onClick: this.logout },
 	        "sign out"
 	      );
 	    }
@@ -34567,7 +34578,7 @@
 	        React.createElement(
 	          "a",
 	          { href: "#" },
-	          "sick logo here"
+	          "YEPP logo here"
 	        )
 	      ),
 	      React.createElement(
@@ -34630,6 +34641,77 @@
 	};
 	
 	module.exports = style;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	var RestuarantResultsStore = __webpack_require__(275);
+	var ClientRestActions = __webpack_require__(276);
+	// var ClientRestApiUtil = require("ClientRestApiUtil.js");
+	
+	var RestaurantResults = React.createClass({
+	  displayName: "RestaurantResults",
+	
+	
+	  componentDidMount: function () {
+	    this.restaurantsListener = RestaurantResultsStore.addListener(this.updateRestaurants); //TODO - do i have this action right?
+	    ClientRestActions.fetchRestaurants();
+	  },
+	
+	  updateRestaurants: function () {},
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { id: "restuarant-results" },
+	      React.createElement(
+	        "p",
+	        null,
+	        "here are all the yummy foods"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = RestaurantResults;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(249);
+	var Store = __webpack_require__(254).Store;
+	
+	var RestaurantResultsStore = new Store(AppDispatcher);
+	
+	var _restaurantResults, restaurantDetail;
+	
+	RestaurantResultsStore.__onDispatch = function (payload) {
+	  switch (payload.ActionType) {
+	    case "LOGIN":
+	      RestaurantResultsStore.login(payload.user);
+	      break;
+	    case "LOGOUT":
+	      RestaurantResultsStore.logout();
+	      break;
+	    case "ERROR":
+	      RestaurantResultsStore.setErrors(payload.errors);
+	      break;
+	  }
+	  RestaurantResultsStore.__emitChange();
+	};
+	
+	module.exports = RestaurantResultsStore;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports) {
+
+	//
+	//
+	// fetchRestaurants
 
 /***/ }
 /******/ ]);
