@@ -8,6 +8,7 @@ var React = require('react'),
     ReactDOM = require('react-dom');
 
 var LoginForm = require('./components/LoginForm.jsx');
+var NavBar = require('./components/NavBar.jsx');
 
 var CurrentUserState = require('./mixins/current_user_state');
 
@@ -16,7 +17,7 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
-        <h1>Yep from app component!</h1>
+        <NavBar />
         <LoginForm />
         {this.props.children}
       </div>

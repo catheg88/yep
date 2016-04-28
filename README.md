@@ -51,8 +51,8 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 - [x] create new project
 - [x] create `User` model
-- [ ] authentication
-- [ ] user signup/signin pages
+- [x] authentication
+- [x] user signup/signin pages
 - [ ] blank landing page after signin
 - [x] running on Heroku
 

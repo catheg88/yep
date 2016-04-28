@@ -9,12 +9,14 @@ var CurrentUserState = {
 			userErrors: UserStore.errors()
 		};
 	},
+
 	componentDidMount: function(){
 		UserStore.addListener(this.updateUser);
 		if (typeof UserStore.currentUser() === 'undefined') {
 			UserActions.fetchCurrentUser();
 		}
 	},
+
 	updateUser: function(){
 		this.setState({
 			currentUser: UserStore.currentUser(),
