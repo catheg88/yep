@@ -6,6 +6,7 @@ var hashHistory = ReactRouter.hashHistory;
 
 var React = require('react'),
     ReactDOM = require('react-dom');
+    Modal = require("react-modal");
 
 var LoginForm = require('./components/LoginForm.jsx');
 var NavBar = require('./components/NavBar.jsx');
@@ -34,6 +35,7 @@ var routes = (
 );
 
 document.addEventListener("DOMContentLoaded", function () {
+  Modal.setAppElement(document.body)
   var root = document.getElementById('content');
   ReactDOM.render(routes, root);
 });

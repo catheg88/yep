@@ -100,5 +100,7 @@ KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
+  -catch get requests - 404s
 -hook up the authButton to the form
--catch get requests - 404s
+
+modals
