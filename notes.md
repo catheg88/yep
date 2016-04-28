@@ -30,7 +30,6 @@ items that care whether we're logged in or not
       the navbar's state.
 
 
-
   restaurant results // always displayed. state = what restaurants to display
     listens to restaurants store
     for now, it should display all restaurants
@@ -103,4 +102,5 @@ KNOWN ISSUES/TODOS:
   -catch get requests - 404s
 -hook up the authButton to the form
 
-modals
+-modal
+  -error with one setState or another...

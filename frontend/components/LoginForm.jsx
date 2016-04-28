@@ -8,6 +8,7 @@ var LoginForm = React.createClass({
 	getInitialState: function(){
 		return {form: "login", username: "", password: ""};
 	},
+
 	setForm: function(e){
 		this.setState({form: e.currentTarget.value});
 	},
