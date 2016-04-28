@@ -100,7 +100,5 @@ KNOWN ISSUES/TODOS:
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
   -catch get requests - 404s
--hook up the authButton to the form
 
--modal
-  -error with one setState or another...
+-have not been removing store listeners when components unmount

@@ -34652,9 +34652,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var RestuarantResultsStore = __webpack_require__(275);
+	var RestaurantResultsStore = __webpack_require__(275);
 	var ClientRestActions = __webpack_require__(276);
-	// var ClientRestApiUtil = require("ClientRestApiUtil.js");
+	var ClientRestApiUtil = __webpack_require__(277);
 	
 	var RestaurantResults = React.createClass({
 	  displayName: "RestaurantResults",
@@ -34717,6 +34717,12 @@
 	//
 	//
 	// fetchRestaurants
+
+/***/ },
+/* 277 */
+/***/ function(module, exports) {
+
+
 
 /***/ }
 /******/ ]);
