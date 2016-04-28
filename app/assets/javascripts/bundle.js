@@ -32565,26 +32565,50 @@
 	  render: function () {
 	
 	    if (this.state.currentUser === undefined) {
-	      return React.createElement(
-	        "div",
-	        { id: "navbar" },
-	        React.createElement(
-	          "h3",
-	          null,
-	          "sup"
-	        )
+	      // before username state is set up
+	      var username = "not logged in";
+	      var authButton = React.createElement(
+	        "a",
+	        { href: "#" },
+	        "sign in / sign up"
 	      );
 	    } else {
-	      return React.createElement(
-	        "div",
-	        { id: "navbar" },
-	        React.createElement(
-	          "h3",
-	          null,
-	          this.state.currentUser.username
-	        )
+	      // after username state is set up
+	      var username = "Hello, " + this.state.currentUser.username + "!";
+	      var authButton = React.createElement(
+	        "a",
+	        { href: "#" },
+	        "sign out"
 	      );
 	    }
+	
+	    return React.createElement(
+	      "header",
+	      { className: "header" },
+	      React.createElement(
+	        "div",
+	        { className: "header-logo" },
+	        React.createElement(
+	          "a",
+	          { href: "#" },
+	          "sick logo here"
+	        )
+	      ),
+	      React.createElement(
+	        "ul",
+	        { className: "header-list" },
+	        React.createElement(
+	          "li",
+	          null,
+	          username
+	        ),
+	        React.createElement(
+	          "li",
+	          null,
+	          authButton
+	        )
+	      )
+	    );
 	  }
 	});
 	

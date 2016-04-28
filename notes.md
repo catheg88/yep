@@ -91,3 +91,14 @@ render the nav bar and the showrestaurants right into the app navbar
   i think there's only going to be 2 routes:
   showing the login modal
   showing the review form modal
+
+
+
+
+
+KNOWN ISSUES/TODOS:
+-benchBnB front-end auth makes several GET requests always, so when you
+ refresh the page the screen flickers from the login form to logged in
+  -solution:  style the header so that before it loads, it's "LOADING"
+-hook up the authButton to the form
+-catch get requests - 404s
