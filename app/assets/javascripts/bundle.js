@@ -20053,7 +20053,7 @@
 	var LoginForm = React.createClass({
 		displayName: "LoginForm",
 	
-		mixins: [LinkedStateMixin, CurrentUserState],
+		mixins: [CurrentUserState],
 		getInitialState: function () {
 			return { form: "login", username: "", password: "" };
 		},

@@ -3,7 +3,7 @@ var UserActions = require("../actions/user_actions");
 var CurrentUserState = require("../mixins/current_user_state");
 
 var LoginForm = React.createClass({
-	mixins: [LinkedStateMixin, CurrentUserState],
+	mixins: [CurrentUserState],
 	getInitialState: function(){
 		return {form: "login", username: "", password: ""};
 	},
