@@ -14,6 +14,15 @@
  *= require_self
  */
 
+ html {
+   padding: 20px;
+   height: 100%;
+   background-image: url(thai_food.jpg);
+   background-position: center center;
+   background-size: cover;
+   font-family: Helvetica, sans-serif;
+ }
+
  ul {
    list-style: none;
  }

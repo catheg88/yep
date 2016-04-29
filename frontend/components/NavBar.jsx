@@ -69,7 +69,7 @@ var NavBar = React.createClass({
           style={ModalStyle}>
           <LoginForm />
           <br />
-          <button onClick={this.onModalClose}>Close</button>
+
         </Modal>
 
       </header>
