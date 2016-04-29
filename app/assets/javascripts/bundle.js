@@ -34667,7 +34667,7 @@
 /* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ServerRestActions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions/server_rest_actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var ServerRestActions = __webpack_require__(280);
 	
 	var ClientRestApiUtil = {
 	  fetchRestaurants: function () {
@@ -34760,7 +34760,33 @@
 	module.exports = RestResults;
 
 /***/ },
-/* 280 */,
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(249);
+	var RestaurantConstants = __webpack_require__(281);
+	
+	var ServerRestActions = {
+	
+	  receiveRestaurants: function (restaurants) {
+	    Dispatcher.dispatch({
+	      actionType: RestaurantConstants.RESTAURANTS_RECEIVED,
+	      restaurants: restaurants
+	    });
+	  },
+	
+	  receiveRestaurant: function (restaurant) {
+	    Dispatcher.dispatch({
+	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
+	      restaurant: restaurant
+	    });
+	  }
+	
+	};
+	
+	module.exports = ServerRestActions;
+
+/***/ },
 /* 281 */
 /***/ function(module, exports) {
 

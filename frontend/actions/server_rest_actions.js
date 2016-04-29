@@ -8,7 +8,7 @@ var ServerRestActions = {
       actionType: RestaurantConstants.RESTAURANTS_RECEIVED,
       restaurants: restaurants
     });
-  }
+  },
 
   receiveRestaurant: function (restaurant) {
     Dispatcher.dispatch({
