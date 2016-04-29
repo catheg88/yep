@@ -21,23 +21,6 @@ div id root
           p toy list item
           p toy list item
 
-items that care whether we're logged in or not
-  navbar // signed in status as navbar's state. navbar listens to user store
-    user name
-    sign up/sign in button / sign out button
-
-      both sub-elements are not react elements, just displayed or not based on
-      the navbar's state.
-
-
-  restaurant results // always displayed. state = what restaurants to display
-    listens to restaurants store
-    for now, it should display all restaurants
-      make a fetchAllRestaurants client action, to populate restaurant store
-      restaurant results controller serves up all the restaurants
-        path?
-      receiveRestaurants server action, which dispatches the restaurants and adds them to the restaurant store
-      restaurant results updates its state to reflect all restaurants in store
 
       all the restaurants reviews should be included in the store, yes?
 
@@ -107,5 +90,4 @@ KNOWN ISSUES/TODOS:
 -still need to add model assns
 
 
-
-* is a 204 
+questions:

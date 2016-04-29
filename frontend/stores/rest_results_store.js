@@ -21,7 +21,6 @@ RestResultsStore.__onDispatch = function (payload) {
 };
 
 var resetRestaurants = function(restaurants) {
-  console.log("restaurants: " + restaurants);
   _restResults = {};
   restaurants.forEach(function(restaurant) {
     _restResults[restaurant.id] = restaurant;

@@ -17,5 +17,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, :cuisine, :address, :phone, :hours, :description, presence: true;
   validates :name, uniqueness: true
 
-  
+  has_many :reviews
+
+
 end

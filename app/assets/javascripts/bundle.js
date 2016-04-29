@@ -34656,6 +34656,7 @@
 	
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
+	    console.log("fetchRestaurants");
 	    ClientRestApiUtil.fetchRestaurants();
 	  },
 	
@@ -34723,7 +34724,6 @@
 	};
 	
 	var resetRestaurants = function (restaurants) {
-	  console.log("restaurants: " + restaurants);
 	  _restResults = {};
 	  restaurants.forEach(function (restaurant) {
 	    _restResults[restaurant.id] = restaurant;
@@ -34773,7 +34773,6 @@
 	  },
 	
 	  render: function () {
-	    console.log(this.state.restaurants);
 	    return React.createElement(
 	      "div",
 	      { id: "restaurant-results" },

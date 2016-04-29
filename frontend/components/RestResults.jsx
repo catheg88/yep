@@ -20,7 +20,6 @@ var RestResults = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.restaurants)
     return (
       <div id="restaurant-results">
         <header id="restaurant-results-header">
