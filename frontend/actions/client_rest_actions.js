@@ -6,6 +6,7 @@ var ClientRestActions = {
   },
 
   getRestaurant: function(id){
+    console.log("getRestaurant client action, id: " + id);
     ClientRestApiUtil.getRestaurant(id);
   }
 

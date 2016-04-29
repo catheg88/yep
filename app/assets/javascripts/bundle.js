@@ -34660,6 +34660,7 @@
 	  },
 	
 	  getRestaurant: function (id) {
+	    console.log("getRestaurant client action, id: " + id);
 	    ClientRestApiUtil.getRestaurant(id);
 	  }
 	
@@ -34834,6 +34835,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
+	var ClientRestActions = __webpack_require__(276);
 	
 	RestResultItem = React.createClass({
 	  displayName: "RestResultItem",
@@ -34848,11 +34850,33 @@
 	
 	  // onClick={this.showDetail} // this was from the li tag
 	
+	  showDetail: function (e) {
+	    console.log(e.currentTarget);
+	    ClientRestActions.getRestaurant(e.currentTarget.id);
+	  },
+	
 	  render: function () {
 	    return React.createElement(
 	      "li",
-	      { className: "rest-result-item" },
-	      this.props.restaurant.name
+	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
+	      this.props.restaurant.name,
+	      " ",
+	      React.createElement("br", null),
+	      this.props.restaurant.cuisine,
+	      " ",
+	      React.createElement("br", null),
+	      this.props.restaurant.hours,
+	      " ",
+	      React.createElement("br", null),
+	      this.props.restaurant.address,
+	      " ",
+	      React.createElement("br", null),
+	      this.props.restaurant.phone,
+	      " ",
+	      React.createElement("br", null),
+	      this.props.restaurant.description,
+	      " ",
+	      React.createElement("br", null)
 	    );
 	  }
 	});
