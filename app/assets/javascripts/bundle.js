@@ -34706,7 +34706,7 @@
 	
 	var RestResultsStore = new Store(AppDispatcher);
 	
-	var _restResults = window._restResults = {};
+	var _restResults = window._restResults = {}; // TODO
 	
 	RestResultsStore.__onDispatch = function (payload) {
 	  // console.log("hit RRS.__onDispatch.  payload.actionType:" + payload.actionType)
@@ -34852,12 +34852,7 @@
 	    return React.createElement(
 	      "li",
 	      { className: "rest-result-item" },
-	      React.createElement(
-	        "p",
-	        null,
-	        "Name: ",
-	        this.props.restaurant.name
-	      )
+	      this.props.restaurant.name
 	    );
 	  }
 	});

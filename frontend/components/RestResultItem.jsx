@@ -14,7 +14,7 @@ RestResultItem = React.createClass({
   render: function () {
     return(
       <li className="rest-result-item">
-        <p>Name: {this.props.restaurant.name}</p>
+        {this.props.restaurant.name}
       </li>
     );
   }

@@ -22,7 +22,7 @@ Restaurant.create({name: "Al's Pizza",
                    description: "Come enjoy a classic San Francisco pizza!"
                    })
 
-Restaurant.create({name: "Momma's Meatloaf",
+Restaurant.create({name: "Manny's Meatloaf",
                    cuisine: "American",
                    address: "1234 7th St, San Francisco, CA, 94118",
                    phone: "415-518-7348",
