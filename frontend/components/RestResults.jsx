@@ -1,10 +1,14 @@
 var React = require("react");
 var RestResultsStore = require("../stores/rest_results_store.js");
+var RestResultItem = require("./RestResultItem.jsx");
 var ClientRestActions = require("../actions/client_rest_actions.js");
 
 
 
 var RestResults = React.createClass({
+  getInitialState: function() {
+    return { restaurants: RestResultsStore.all() };
+  },
 
   componentDidMount: function() {
     this.restListener = RestResultsStore.addListener(this.updateRestaurants);
@@ -16,9 +20,17 @@ var RestResults = React.createClass({
   },
 
   render: function() {
+    console.log(this.state.restaurants)
     return (
       <div id="restaurant-results">
-        <p>here are all the yummy foods</p>
+        <header id="restaurant-results-header">
+          Restaurants Results
+        </header>
+        <ul id="results-index">
+          {this.state.restaurants.map(function (restaurant) {
+            return <RestResultItem key={restaurant.id} restaurant={restaurant} />;
+          })}
+        </ul>
       </div>
     )
   }

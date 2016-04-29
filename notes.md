@@ -108,4 +108,4 @@ KNOWN ISSUES/TODOS:
 
 
 
-* is a 204 status code the right thing to return for no current user?
+* is a 204 

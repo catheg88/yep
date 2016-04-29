@@ -34751,11 +34751,15 @@
 
 	var React = __webpack_require__(24);
 	var RestResultsStore = __webpack_require__(278);
+	var RestResultItem = __webpack_require__(282);
 	var ClientRestActions = __webpack_require__(276);
 	
 	var RestResults = React.createClass({
 	  displayName: "RestResults",
 	
+	  getInitialState: function () {
+	    return { restaurants: RestResultsStore.all() };
+	  },
 	
 	  componentDidMount: function () {
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
@@ -34767,13 +34771,21 @@
 	  },
 	
 	  render: function () {
+	    console.log(this.state.restaurants);
 	    return React.createElement(
 	      "div",
 	      { id: "restaurant-results" },
 	      React.createElement(
-	        "p",
-	        null,
-	        "here are all the yummy foods"
+	        "header",
+	        { id: "restaurant-results-header" },
+	        "Restaurants Results"
+	      ),
+	      React.createElement(
+	        "ul",
+	        { id: "results-index" },
+	        this.state.restaurants.map(function (restaurant) {
+	          return React.createElement(RestResultItem, { key: restaurant.id, restaurant: restaurant });
+	        })
 	      )
 	    );
 	  }
@@ -34816,6 +34828,41 @@
 	  RESTAURANTS_RECEIVED: "RESTAURANTS_RECEIVED",
 	  RESTAURANT_RECEIVED: "RESTAURANT_RECEIVED"
 	};
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	
+	RestResultItem = React.createClass({
+	  displayName: "RestResultItem",
+	
+	  // contextTypes: {
+	  //   router: React.PropTypes.object.isRequired
+	  // },
+	  //
+	  // showDetail: function () {
+	  //   this.context.router.push('/pokemon/'+ this.props.pokemon.id);
+	  // },
+	
+	  // onClick={this.showDetail} // this was from the li tag
+	
+	  render: function () {
+	    return React.createElement(
+	      "li",
+	      { className: "rest-result-item" },
+	      React.createElement(
+	        "p",
+	        null,
+	        "Name: ",
+	        this.props.restaurant.name
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = RestResultItem;
 
 /***/ }
 /******/ ]);

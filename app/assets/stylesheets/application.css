@@ -97,7 +97,16 @@ body {
  #restaurant-results {
    height: 100%;
    margin: 30px;
-   background-color: green;
+   background-color: rgba(55,133,55,0.9);
    border: 2px solid black;
    display: flex;
+   flex-direction: column;
+ }
+
+ #restaurant-results-header {
+   height: 100%;
+   width: 100%;
+   border-bottom: 2px solid black;
+   background-color: yellow;
+   padding: 10px;
  }
