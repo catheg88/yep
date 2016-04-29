@@ -17,7 +17,7 @@ var RestResults = React.createClass({
 
   render: function() {
     return (
-      <div id="restuarant-results">
+      <div id="restaurant-results">
         <p>here are all the yummy foods</p>
       </div>
     )

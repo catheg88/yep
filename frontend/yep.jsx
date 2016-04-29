@@ -18,7 +18,7 @@ var App = React.createClass({
   mixins: [CurrentUserState],
   render: function () {
     return (
-      <div>
+      <div id="App">
         <NavBar />
         <RestResults />
         {this.props.children}

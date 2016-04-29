@@ -67,7 +67,7 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { id: 'App' },
 	      React.createElement(NavBar, null),
 	      React.createElement(RestResults, null),
 	      this.props.children
@@ -34736,7 +34736,7 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { id: "restuarant-results" },
+	      { id: "restaurant-results" },
 	      React.createElement(
 	        "p",
 	        null,
