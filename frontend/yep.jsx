@@ -10,7 +10,7 @@ var React = require('react'),
 
 var LoginForm = require('./components/LoginForm.jsx');
 var NavBar = require('./components/NavBar.jsx');
-var RestaurantResults = require('./components/RestaurantResults.jsx');
+var RestResults = require('./components/RestResults.jsx');
 
 var CurrentUserState = require('./mixins/current_user_state');
 
@@ -20,7 +20,7 @@ var App = React.createClass({
     return (
       <div>
         <NavBar />
-        <RestaurantResults />
+        <RestResults />
         {this.props.children}
       </div>
     );

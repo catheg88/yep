@@ -56,7 +56,7 @@
 	
 	var LoginForm = __webpack_require__(245);
 	var NavBar = __webpack_require__(272);
-	var RestaurantResults = __webpack_require__(274);
+	var RestResults = __webpack_require__(279);
 	
 	var CurrentUserState = __webpack_require__(271);
 	
@@ -69,7 +69,7 @@
 	      'div',
 	      null,
 	      React.createElement(NavBar, null),
-	      React.createElement(RestaurantResults, null),
+	      React.createElement(RestResults, null),
 	      this.props.children
 	    );
 	  }
@@ -27618,10 +27618,8 @@
 
 /***/ },
 /* 248 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var AppDispatcher = __webpack_require__(249);
-	
 	var UserApiUtil = {
 		post: function (options) {
 			$.ajax({
@@ -34648,24 +34646,81 @@
 	module.exports = style;
 
 /***/ },
-/* 274 */
+/* 274 */,
+/* 275 */,
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ClientRestApiUtil = __webpack_require__(277);
+	
+	var ClientRestActions = {
+	  fetchRestaurants: function () {}
+	
+	};
+	
+	module.exports = ClientRestActions;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ServerRestActions = __webpack_require__(276);
+	
+	var ClientRestApiUtil = {
+	  fetchRestaurants: function () {}
+	
+	};
+	
+	module.exports = ClientRestApiUtil;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(249);
+	var Store = __webpack_require__(254).Store;
+	
+	var RestResultsStore = new Store(AppDispatcher);
+	
+	var _restResults, restaurantDetail;
+	
+	RestResultsStore.__onDispatch = function (payload) {
+	  switch (payload.ActionType) {
+	    case "LOGIN":
+	      RestResultsStore.login(payload.user);
+	      break;
+	    case "LOGOUT":
+	      RestResultsStore.logout();
+	      break;
+	    case "ERROR":
+	      RestResultsStore.setErrors(payload.errors);
+	      break;
+	  }
+	  RestResultsStore.__emitChange();
+	};
+	
+	module.exports = RestResultsStore;
+
+/***/ },
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var RestaurantResultsStore = __webpack_require__(275);
+	var RestResultsStore = __webpack_require__(278);
 	var ClientRestActions = __webpack_require__(276);
-	var ClientRestApiUtil = __webpack_require__(277);
 	
-	var RestaurantResults = React.createClass({
-	  displayName: "RestaurantResults",
+	var RestResults = React.createClass({
+	  displayName: "RestResults",
 	
 	
 	  componentDidMount: function () {
-	    this.restaurantsListener = RestaurantResultsStore.addListener(this.updateRestaurants); //TODO - do i have this action right?
+	    this.restListener = RestResultsStore.addListener(this.updateRestaurants); //TODO - do i have this action right?
 	    ClientRestActions.fetchRestaurants();
 	  },
 	
-	  updateRestaurants: function () {},
+	  updateRestaurants: function () {
+	    //TODO
+	  },
 	
 	  render: function () {
 	    return React.createElement(
@@ -34680,49 +34735,7 @@
 	  }
 	});
 	
-	module.exports = RestaurantResults;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var AppDispatcher = __webpack_require__(249);
-	var Store = __webpack_require__(254).Store;
-	
-	var RestaurantResultsStore = new Store(AppDispatcher);
-	
-	var _restaurantResults, restaurantDetail;
-	
-	RestaurantResultsStore.__onDispatch = function (payload) {
-	  switch (payload.ActionType) {
-	    case "LOGIN":
-	      RestaurantResultsStore.login(payload.user);
-	      break;
-	    case "LOGOUT":
-	      RestaurantResultsStore.logout();
-	      break;
-	    case "ERROR":
-	      RestaurantResultsStore.setErrors(payload.errors);
-	      break;
-	  }
-	  RestaurantResultsStore.__emitChange();
-	};
-	
-	module.exports = RestaurantResultsStore;
-
-/***/ },
-/* 276 */
-/***/ function(module, exports) {
-
-	//
-	//
-	// fetchRestaurants
-
-/***/ },
-/* 277 */
-/***/ function(module, exports) {
-
-
+	module.exports = RestResults;
 
 /***/ }
 /******/ ]);

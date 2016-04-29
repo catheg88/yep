@@ -1,5 +1,3 @@
-var AppDispatcher = require('../dispatcher/dispatcher');
-
 var UserApiUtil = {
   post: function(options){
 		$.ajax({

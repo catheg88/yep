@@ -1,18 +1,18 @@
 var React = require("react");
-var RestaurantResultsStore = require("../stores/restaurant_results_store.js");
+var RestResultsStore = require("../stores/rest_results_store.js");
 var ClientRestActions = require("../actions/client_rest_actions.js");
-var ClientRestApiUtil = require("../util/client_rest_api_util.js");
 
 
-var RestaurantResults = React.createClass({
+
+var RestResults = React.createClass({
 
   componentDidMount: function() {
-    this.restaurantsListener = RestaurantResultsStore.addListener(this.updateRestaurants) //TODO - do i have this action right?
+    this.restListener = RestResultsStore.addListener(this.updateRestaurants) //TODO - do i have this action right?
     ClientRestActions.fetchRestaurants();
   },
 
   updateRestaurants: function() {
-
+    //TODO
   },
 
   render: function() {
@@ -24,4 +24,4 @@ var RestaurantResults = React.createClass({
   }
 });
 
-module.exports = RestaurantResults;
+module.exports = RestResults;
