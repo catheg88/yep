@@ -1,12 +1,12 @@
-var ServerRestActions = require("../actions/client_rest_actions");
+var ServerRestActions = require("../actions/server_rest_actions");
 
 var ClientRestApiUtil = {
   fetchRestaurants: function(){
     $.ajax({
-      url: "PATH",
-      type: "METHOD",
-      success: function (RESPONSE) {
-        ServerActions.METHODNAME(RESPONSE);
+      url: "api/restaurants",
+      type: "GET",
+      success: function (restaurants) {
+        ServerRestActions.receiveRestaurants(restaurants);
       }
     });
   }

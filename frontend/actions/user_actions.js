@@ -36,7 +36,6 @@ var UserActions = {
 
   // 2 helper invoked by fetchCurrentUser, login, signup
   receiveCurrentUser: function(user){
-    console.log("204 triggered success");
     AppDispatcher.dispatch({
       actionType: UserConstants.LOGIN,
       user: user

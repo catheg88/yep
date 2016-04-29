@@ -21,7 +21,6 @@ UserStore.__onDispatch = function (payload) {
 };
 
 UserStore.login = function(user) {
-  console.log(user);
   _currentUser = user;
   _errors = null;
 };

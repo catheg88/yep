@@ -27575,7 +27575,6 @@
 	
 	  // 2 helper invoked by fetchCurrentUser, login, signup
 	  receiveCurrentUser: function (user) {
-	    console.log("204 triggered success");
 	    AppDispatcher.dispatch({
 	      actionType: UserConstants.LOGIN,
 	      user: user
@@ -27996,7 +27995,6 @@
 	};
 	
 	UserStore.login = function (user) {
-	  console.log(user);
 	  _currentUser = user;
 	  _errors = null;
 	};
@@ -34669,15 +34667,15 @@
 /* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ServerRestActions = __webpack_require__(276);
+	var ServerRestActions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions/server_rest_actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var ClientRestApiUtil = {
 	  fetchRestaurants: function () {
 	    $.ajax({
-	      url: "PATH",
-	      type: "METHOD",
-	      success: function (RESPONSE) {
-	        ServerActions.METHODNAME(RESPONSE);
+	      url: "api/restaurants",
+	      type: "GET",
+	      success: function (restaurants) {
+	        ServerRestActions.receiveRestaurants(restaurants);
 	      }
 	    });
 	  }
@@ -34692,24 +34690,35 @@
 
 	var AppDispatcher = __webpack_require__(249);
 	var Store = __webpack_require__(254).Store;
+	var RestaurantConstants = __webpack_require__(281);
 	
 	var RestResultsStore = new Store(AppDispatcher);
 	
-	var _restResults, restaurantDetail;
+	var _restResults = window._restResults = {};
 	
 	RestResultsStore.__onDispatch = function (payload) {
-	  switch (payload.ActionType) {
-	    case "LOGIN":
-	      RestResultsStore.login(payload.user);
+	  switch (payload.actionType) {
+	    case RestaurantConstants.RESTAURANTS_RECEIVED:
+	      resetRestaurants(payload.restaurants);
 	      break;
-	    case "LOGOUT":
-	      RestResultsStore.logout();
-	      break;
-	    case "ERROR":
-	      RestResultsStore.setErrors(payload.errors);
+	    case RestaurantConstants.RESTAURANT_RECEIVED:
+	      resetRestaurant(payload.restaurant);
 	      break;
 	  }
 	  RestResultsStore.__emitChange();
+	};
+	
+	var resetRestaurants = function (restaurants) {
+	  console.log("hitting resetRestaurants");
+	  _restResults = {};
+	  restaurants.forEach(function (restaurant) {
+	    _restResults[restaurant.id] = restaurant;
+	    window._restResults[restaurant.id] = restaurant;
+	  });
+	};
+	
+	var resetRestaurant = function (restaurant) {
+	  _restResults[restaurant.id] = restaurant;
 	};
 	
 	module.exports = RestResultsStore;
@@ -34749,6 +34758,16 @@
 	});
 	
 	module.exports = RestResults;
+
+/***/ },
+/* 280 */,
+/* 281 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  RESTAURANTS_RECEIVED: "RESTAURANTS_RECEIVED",
+	  RESTAURANT_RECEIVED: "RESTAURANT_RECEIVED"
+	};
 
 /***/ }
 /******/ ]);
