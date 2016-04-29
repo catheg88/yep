@@ -55,7 +55,7 @@ var NavBar = React.createClass({
       <header className="header">
 
         <div className="header-logo">
-          <a href="#">YEPP logo here</a>
+          <h3>YEPP</h3>
         </div>
 
         <ul className="header-list">

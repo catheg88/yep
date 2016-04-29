@@ -14,8 +14,14 @@
  *= require_self
  */
 
+ .group:after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+
+
  html {
-   padding: 20px;
    height: 100%;
    background-image: url("background.jpg");
    background-position: center center;
@@ -28,26 +34,40 @@
  }
 
  .header {
+   margin-left: -10px;
+   margin-right: -10px;
+   padding: 0;
    background: #f00;
    color: #fff;
-   border: 1px solid black;
-   padding: 10px 0px;
-   display: block;
-
+   border: 2px solid black;
+   padding: 0px 0px;
+   display: flex;
  }
-
 
  .header-logo {
-   float: left;
-   border-right: 1px solid #ccc;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   border-right: 2px solid black;
    font-weight: 700;
- }
-
- .header a {
-   display: inline-block;
-   /*padding: 10px 20px;*/
+   padding: 0px 20px 0px 20px;
  }
 
  .header-list {
-  /*float: right;*/
-}
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+ }
+
+ .header a {
+   display: flex;
+   justify-content: flex-end;
+   float: right;
+ }
+
+ .header-list > li {
+   display: flex;
+   justify-content: flex-end;
+   padding-left: 30px;
+   padding-right: 50px;
+ }

@@ -34579,9 +34579,9 @@
 	        "div",
 	        { className: "header-logo" },
 	        React.createElement(
-	          "a",
-	          { href: "#" },
-	          "YEPP logo here"
+	          "h3",
+	          null,
+	          "YEPP"
 	        )
 	      ),
 	      React.createElement(
