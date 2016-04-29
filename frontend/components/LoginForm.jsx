@@ -61,32 +61,32 @@ var LoginForm = React.createClass({
 			return;
 		}
 		return(
-				<form onSubmit={this.handleSubmit}>
-					<section>
-						<label> Username:<br />
-							<input type="text" value={this.state.username} onChange={this.usernameChange}/>
-						</label>
-						<br />
-						<br />
-						<label> Password:<br />
-							<input type="password" value={this.state.password} onChange={this.passwordChange}/>
-						</label>
-						<br />
-						<br />
-					</section>
+			<form id="actual-login-form" onSubmit={this.handleSubmit}>
+				<section>
+					<label> Username:<br />
+						<input type="text" value={this.state.username} onChange={this.usernameChange}/>
+					</label>
+					<br />
+					<br />
+					<label> Password:<br />
+						<input type="password" value={this.state.password} onChange={this.passwordChange}/>
+					</label>
+					<br />
+					<br />
+				</section>
 
-					<section>
-						<label> Login
-							<input type="Radio" name="action" value="login" onChange={this.setForm}/>
-						</label>
+				<section>
+					<label> Login
+						<input type="Radio" name="action" value="login" onChange={this.setForm}/>
+					</label>
 
-						<label> Sign Up
-							<input type="Radio" name="action" value="signup" onChange={this.setForm}/>
-						</label>
-					</section>
+					<label> Sign Up
+						<input type="Radio" name="action" value="signup" onChange={this.setForm}/>
+					</label>
+				</section>
 
-					<button>Submit</button>
-				</form>
+				<button>Submit</button>
+			</form>
 		);
 	},
 	render: function(){

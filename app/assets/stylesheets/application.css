@@ -21,6 +21,10 @@
  }
 
 
+body {
+  margin: 0;
+}
+
  html {
    height: 100%;
    background-image: url("background.jpg");
@@ -38,8 +42,9 @@
    background: #f00;
    color: #fff;
    border: 2px solid black;
-   padding: 0px 0px;
    display: flex;
+   justify-content: space-between;
+   width: 100%;
  }
 
  .header-logo {
@@ -76,4 +81,12 @@
    background-color: green;
    border: 2px solid black;
    display: flex;
+ }
+
+ #login-form {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   align-content: center;
+   justify-content: center;
  }

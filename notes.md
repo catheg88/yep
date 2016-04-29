@@ -105,3 +105,7 @@ KNOWN ISSUES/TODOS:
 
 -modal centering: why not?
 -still need to add model assns
+
+
+
+* is a 204 status code the right thing to return for no current user?

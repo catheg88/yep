@@ -27474,7 +27474,7 @@
 			}
 			return React.createElement(
 				"form",
-				{ onSubmit: this.handleSubmit },
+				{ id: "actual-login-form", onSubmit: this.handleSubmit },
 				React.createElement(
 					"section",
 					null,
@@ -27575,6 +27575,7 @@
 	
 	  // 2 helper invoked by fetchCurrentUser, login, signup
 	  receiveCurrentUser: function (user) {
+	    console.log("204 triggered success");
 	    AppDispatcher.dispatch({
 	      actionType: UserConstants.LOGIN,
 	      user: user
@@ -27995,6 +27996,7 @@
 	};
 	
 	UserStore.login = function (user) {
+	  console.log(user);
 	  _currentUser = user;
 	  _errors = null;
 	};
