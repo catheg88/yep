@@ -19,7 +19,6 @@ RestResultsStore.__onDispatch = function (payload) {
 };
 
 var resetRestaurants = function(restaurants) {
-  console.log("hitting resetRestaurants");
   _restResults = {};
   restaurants.forEach(function(restaurant) {
     _restResults[restaurant.id] = restaurant;

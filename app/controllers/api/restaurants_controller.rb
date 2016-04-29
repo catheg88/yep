@@ -3,8 +3,8 @@ class Api::RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  def create
-
+  def show
+    @restaurant = Restaurant.find(params[:id])
   end
 
   private

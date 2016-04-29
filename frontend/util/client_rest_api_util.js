@@ -4,9 +4,17 @@ var ClientRestApiUtil = {
   fetchRestaurants: function(){
     $.ajax({
       url: "api/restaurants",
-      type: "GET",
       success: function (restaurants) {
         ServerRestActions.receiveRestaurants(restaurants);
+      }
+    });
+  },
+
+  getRestaurant: function(id){
+    $.ajax({
+      url: "api/restaurants/" + id,
+      success: function (restaurant) {
+        ServerRestActions.receiveRestaurant(restaurant);
       }
     });
   }

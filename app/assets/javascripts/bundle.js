@@ -34657,6 +34657,10 @@
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
 	    ClientRestApiUtil.fetchRestaurants();
+	  },
+	
+	  getRestaurant: function (id) {
+	    ClientRestApiUtil.getRestaurant(id);
 	  }
 	
 	};
@@ -34673,9 +34677,17 @@
 	  fetchRestaurants: function () {
 	    $.ajax({
 	      url: "api/restaurants",
-	      type: "GET",
 	      success: function (restaurants) {
 	        ServerRestActions.receiveRestaurants(restaurants);
+	      }
+	    });
+	  },
+	
+	  getRestaurant: function (id) {
+	    $.ajax({
+	      url: "api/restaurants/" + id,
+	      success: function (restaurant) {
+	        ServerRestActions.receiveRestaurant(restaurant);
 	      }
 	    });
 	  }
@@ -34709,7 +34721,6 @@
 	};
 	
 	var resetRestaurants = function (restaurants) {
-	  console.log("hitting resetRestaurants");
 	  _restResults = {};
 	  restaurants.forEach(function (restaurant) {
 	    _restResults[restaurant.id] = restaurant;
