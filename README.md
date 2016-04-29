@@ -8,11 +8,11 @@
 
 Yep is a web application inspired by Yelp that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
-- [ ] New account creation, login, and guest/demo login
+- [x] New account creation, login, and guest/demo login
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for a Yelp-inspired site: the ability to search for restaurants, view their details, and read and write reviews.
-- [ ] Hosting on Heroku
+- [x] Hosting on Heroku
 - [ ] CSS styling that is satisfactorily visually appealing
 - [ ] A production README, replacing this README (**NB**: check out the [sample production README](https://github.com/appacademy/sample-project-proposal/blob/master/docs/production_readme.md) -- you'll write this later)
 
@@ -23,9 +23,9 @@ Yep will allow users to do the following:
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
 
-- [ ] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Search for restauraunts by name or category, with auto-completion and dynamic search results (MVP)
+- [x] Create an account (MVP)
+- [x] Log in / Log out, including as a Guest/Demo User (MVP)
+- [ ] Search for restaurants by name or category, with auto-completion and dynamic search results (MVP)
 - [ ] Create, read, edit, and delete reviews (MVP)
 - [ ] Expand and collapse restaurant details in search results (MVP)
 - [ ] View all of a user's reviews (expected feature, but not MVP)
@@ -53,7 +53,6 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [x] create `User` model
 - [x] authentication
 - [x] user signup/signin pages
-- [ ] blank landing page after signin
 - [x] running on Heroku
 
 ### Phase 2: Create Restaurant and Review models, API, and basic APIUtil (2 days) Wed-Thurs
@@ -61,12 +60,12 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 **Objective:**  can be created, read, edited and destroyed through
 the API.
 
-- [ ] create `Restaurant` model
-- [ ] seed the database with a small amount of test data
-- [ ] jBuilder views for restaurants
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] create `Restaurant` model
+- [x] seed the database with a small amount of test data
+- [x] jBuilder views for restaurants
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (2 days) Fri-Sat
 
@@ -75,8 +74,6 @@ the API.
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router
 - [ ] implement the dynamic search component, building out the flux loop as needed.
-  - [ ] `RestaurantResults`
-  - [ ] `Restaurant`
 
 ### Phase 4: Start Styling (1 day) Sun
 

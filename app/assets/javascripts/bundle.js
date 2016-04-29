@@ -34709,12 +34709,13 @@
 	var _restResults = window._restResults = {};
 	
 	RestResultsStore.__onDispatch = function (payload) {
+	  // console.log("hit RRS.__onDispatch.  payload.actionType:" + payload.actionType)
 	  switch (payload.actionType) {
 	    case RestaurantConstants.RESTAURANTS_RECEIVED:
 	      resetRestaurants(payload.restaurants);
 	      break;
 	    case RestaurantConstants.RESTAURANT_RECEIVED:
-	      resetRestaurant(payload.restaurant);
+	      setRestaurant(payload.restaurant);
 	      break;
 	  }
 	  RestResultsStore.__emitChange();
@@ -34724,15 +34725,25 @@
 	  _restResults = {};
 	  restaurants.forEach(function (restaurant) {
 	    _restResults[restaurant.id] = restaurant;
-	    window._restResults[restaurant.id] = restaurant;
+	    window._restResults[restaurant.id] = restaurant; // TODO
 	  });
 	};
 	
-	var resetRestaurant = function (restaurant) {
+	var setRestaurant = function (restaurant) {
 	  _restResults[restaurant.id] = restaurant;
 	};
 	
+	RestResultsStore.all = function () {
+	  var restaurants = [];
+	  for (var id in _restResults) {
+	    restaurants.push(_restResults[id]);
+	  }
+	  return restaurants;
+	};
+	
 	module.exports = RestResultsStore;
+	
+	window.RestResultsStore = RestResultsStore;
 
 /***/ },
 /* 279 */
@@ -34747,12 +34758,12 @@
 	
 	
 	  componentDidMount: function () {
-	    this.restListener = RestResultsStore.addListener(this.updateRestaurants); //TODO - do i have this action right?
+	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
 	    ClientRestActions.fetchRestaurants();
 	  },
 	
 	  updateRestaurants: function () {
-	    //TODO
+	    this.setState({ restaurants: RestResultsStore.all() });
 	  },
 	
 	  render: function () {

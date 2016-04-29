@@ -7,12 +7,12 @@ var ClientRestActions = require("../actions/client_rest_actions.js");
 var RestResults = React.createClass({
 
   componentDidMount: function() {
-    this.restListener = RestResultsStore.addListener(this.updateRestaurants) //TODO - do i have this action right?
+    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
     ClientRestActions.fetchRestaurants();
   },
 
   updateRestaurants: function() {
-    //TODO
+    this.setState({ restaurants: RestResultsStore.all() })
   },
 
   render: function() {
