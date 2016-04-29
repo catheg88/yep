@@ -34723,6 +34723,7 @@
 	};
 	
 	var resetRestaurants = function (restaurants) {
+	  console.log("restaurants: " + restaurants);
 	  _restResults = {};
 	  restaurants.forEach(function (restaurant) {
 	    _restResults[restaurant.id] = restaurant;
@@ -34852,6 +34853,7 @@
 	
 	  showDetail: function (e) {
 	    console.log(e.currentTarget);
+	    ClientRestActions.fetchRestaurants();
 	    ClientRestActions.getRestaurant(e.currentTarget.id);
 	  },
 	
@@ -34860,23 +34862,11 @@
 	      "li",
 	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
 	      this.props.restaurant.name,
-	      " ",
-	      React.createElement("br", null),
 	      this.props.restaurant.cuisine,
-	      " ",
-	      React.createElement("br", null),
 	      this.props.restaurant.hours,
-	      " ",
-	      React.createElement("br", null),
 	      this.props.restaurant.address,
-	      " ",
-	      React.createElement("br", null),
 	      this.props.restaurant.phone,
-	      " ",
-	      React.createElement("br", null),
-	      this.props.restaurant.description,
-	      " ",
-	      React.createElement("br", null)
+	      this.props.restaurant.description
 	    );
 	  }
 	});

@@ -14,18 +14,19 @@ RestResultItem = React.createClass({
 
   showDetail: function(e) {
     console.log(e.currentTarget);
+    ClientRestActions.fetchRestaurants();
     ClientRestActions.getRestaurant(e.currentTarget.id);
   },
 
   render: function () {
     return(
       <li className="rest-result-item" onClick={this.showDetail} id={this.props.restaurant.id}>
-        {this.props.restaurant.name} <br />
-        {this.props.restaurant.cuisine} <br />
-        {this.props.restaurant.hours} <br />
-        {this.props.restaurant.address} <br />
-        {this.props.restaurant.phone} <br />
-        {this.props.restaurant.description} <br />
+        {this.props.restaurant.name}
+        {this.props.restaurant.cuisine}
+        {this.props.restaurant.hours}
+        {this.props.restaurant.address}
+        {this.props.restaurant.phone}
+        {this.props.restaurant.description}
 
       </li>
     );
