@@ -102,3 +102,5 @@ KNOWN ISSUES/TODOS:
   -catch get requests - 404s
 
 -have not been removing store listeners when components unmount
+
+-modal centering: why not?

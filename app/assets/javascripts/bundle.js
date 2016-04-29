@@ -34604,8 +34604,7 @@
 	          isOpen: this.state.modalOpen,
 	          onRequestClose: this.onModalClose,
 	          style: ModalStyle },
-	        React.createElement(LoginForm, null),
-	        React.createElement("br", null)
+	        React.createElement(LoginForm, null)
 	      )
 	    );
 	  }
@@ -34671,7 +34670,15 @@
 	var ServerRestActions = __webpack_require__(276);
 	
 	var ClientRestApiUtil = {
-	  fetchRestaurants: function () {}
+	  fetchRestaurants: function () {
+	    $.ajax({
+	      url: "PATH",
+	      type: "METHOD",
+	      success: function (RESPONSE) {
+	        ServerActions.METHODNAME(RESPONSE);
+	      }
+	    });
+	  }
 	
 	};
 	

@@ -68,8 +68,6 @@ var NavBar = React.createClass({
           onRequestClose={this.onModalClose}
           style={ModalStyle}>
           <LoginForm />
-          <br />
-
         </Modal>
 
       </header>
