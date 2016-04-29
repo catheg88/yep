@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Restaurant.create({name: "City Wok",
+                   cuisine: "Mongolian BBQ",
+                   address: "123 Grant St.",
+                   phone: "415-867-5309",
+                   hours: "7pm - 7pm",
+                   description: "Hello, welcome to CityWok!"
+                   })
+
+Restaurant.create({name: "Al's Pizza",
+                   cuisine: "pizza",
+                   address: "1533 11th Ave, San Francisco, CA, 94122",
+                   phone: "415-123-4567",
+                   hours: "Daily 8am-8pm",
+                   description: "Come enjoy a classic San Francisco pizza!"
+                   })

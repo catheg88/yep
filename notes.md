@@ -104,3 +104,4 @@ KNOWN ISSUES/TODOS:
 -have not been removing store listeners when components unmount
 
 -modal centering: why not?
+-still need to add model assns
