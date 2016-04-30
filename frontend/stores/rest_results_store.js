@@ -41,7 +41,7 @@ RestResultsStore.all = function () {
 };
 
 RestResultsStore.find = function(id) {
-
+  return _restResults[id];
 };
 
 module.exports = RestResultsStore;

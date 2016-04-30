@@ -6,8 +6,7 @@ RestResultItem = React.createClass({
 
 
   showDetail: function(e) { // rather than change what the index item displays, redirect using router to render the details component
-    // prevent default, although it doesn't really matter, since it's an li and there's no
-    // console.log(e.currentTarget);
+    e.preventDefault();
     // OLD ClientRestActions.fetchRestaurants();
     ClientRestActions.getRestaurant(e.currentTarget.id);
     // hashHistory.push --match path to restaurant.  restaurants/ redirect to e.g. restaurants/1
