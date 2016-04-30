@@ -56,8 +56,8 @@
 	
 	var LoginForm = __webpack_require__(245);
 	var NavBar = __webpack_require__(272);
-	var RestResults = __webpack_require__(279);
-	var RestDetails = __webpack_require__(283);
+	var RestResults = __webpack_require__(274);
+	var RestDetails = __webpack_require__(281);
 	
 	var CurrentUserState = __webpack_require__(271);
 	
@@ -81,11 +81,11 @@
 	  React.createElement(
 	    Route,
 	    { path: '/', component: App },
-	    React.createElement(IndexRoute, { component: RestResults })
+	    React.createElement(IndexRoute, { component: RestResults }),
+	    React.createElement(Route, { path: 'restaurants', component: RestResults }),
+	    React.createElement(Route, { path: 'restaurants/:id', component: RestDetails })
 	  )
 	);
-	
-	// <Route path="restaurants/:id" component={RestDetails} />
 	
 	// new version to move to:
 	// var routes = (
@@ -27555,8 +27555,8 @@
 
 	var UserConstants = __webpack_require__(247);
 	var UserApiUtil = __webpack_require__(248);
-	var UserStore = __webpack_require__(253);
-	var AppDispatcher = __webpack_require__(249);
+	var UserStore = __webpack_require__(249);
+	var AppDispatcher = __webpack_require__(250);
 	
 	var UserActions = {
 	  // 1
@@ -27672,12 +27672,66 @@
 /* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(250).Dispatcher;
+	var AppDispatcher = __webpack_require__(250);
+	var Store = __webpack_require__(254).Store;
+	
+	var UserStore = new Store(AppDispatcher);
+	
+	var _currentUser, _errors;
+	
+	UserStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case "LOGIN":
+	      UserStore.login(payload.user);
+	      break;
+	    case "LOGOUT":
+	      UserStore.logout();
+	      break;
+	    case "ERROR":
+	      UserStore.setErrors(payload.errors);
+	      break;
+	  }
+	  UserStore.__emitChange();
+	};
+	
+	UserStore.login = function (user) {
+	  _currentUser = user;
+	  _errors = null;
+	};
+	
+	UserStore.logout = function () {
+	  _currentUser = null;
+	  _errors = null;
+	};
+	
+	UserStore.setErrors = function (errors) {
+	  _errors = errors;
+	};
+	
+	UserStore.currentUser = function () {
+	  if (_currentUser) {
+	    return $.extend({}, _currentUser);
+	  }
+	};
+	
+	UserStore.errors = function () {
+	  if (_errors) {
+	    return [].slice.call(_errors);
+	  }
+	};
+	
+	module.exports = UserStore;
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(251).Dispatcher;
 	
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27689,11 +27743,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(251);
+	module.exports.Dispatcher = __webpack_require__(252);
 
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -27715,7 +27769,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	var _prefix = 'ID_';
 	
@@ -27930,7 +27984,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -27985,60 +28039,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 253 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var AppDispatcher = __webpack_require__(249);
-	var Store = __webpack_require__(254).Store;
-	
-	var UserStore = new Store(AppDispatcher);
-	
-	var _currentUser, _errors;
-	
-	UserStore.__onDispatch = function (payload) {
-	  switch (payload.actionType) {
-	    case "LOGIN":
-	      UserStore.login(payload.user);
-	      break;
-	    case "LOGOUT":
-	      UserStore.logout();
-	      break;
-	    case "ERROR":
-	      UserStore.setErrors(payload.errors);
-	      break;
-	  }
-	  UserStore.__emitChange();
-	};
-	
-	UserStore.login = function (user) {
-	  _currentUser = user;
-	  _errors = null;
-	};
-	
-	UserStore.logout = function () {
-	  _currentUser = null;
-	  _errors = null;
-	};
-	
-	UserStore.setErrors = function (errors) {
-	  _errors = errors;
-	};
-	
-	UserStore.currentUser = function () {
-	  if (_currentUser) {
-	    return $.extend({}, _currentUser);
-	  }
-	};
-	
-	UserStore.errors = function () {
-	  if (_errors) {
-	    return [].slice.call(_errors);
-	  }
-	};
-	
-	module.exports = UserStore;
-
-/***/ },
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28083,7 +28083,7 @@
 	
 	var FluxStoreGroup = __webpack_require__(256);
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	var shallowEqual = __webpack_require__(257);
 	
 	var DEFAULT_OPTIONS = {
@@ -28261,7 +28261,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	/**
 	 * FluxStoreGroup allows you to execute a callback on every dispatch after
@@ -28402,7 +28402,7 @@
 	var FluxReduceStore = __webpack_require__(259);
 	var Immutable = __webpack_require__(269);
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	/**
 	 * This is a simple store. It allows caching key value pairs. An implementation
@@ -28552,7 +28552,7 @@
 	var FluxStore = __webpack_require__(260);
 	
 	var abstractMethod = __webpack_require__(268);
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	var FluxReduceStore = (function (_FluxStore) {
 	  _inherits(FluxReduceStore, _FluxStore);
@@ -28658,7 +28658,7 @@
 	
 	var EventEmitter = _require.EventEmitter;
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	/**
 	 * This class should be extended by the stores in your application, like so:
@@ -29365,7 +29365,7 @@
 	
 	'use strict';
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	function abstractMethod(className, methodName) {
 	   true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Subclasses of %s must override %s() with their own implementation.', className, methodName) : invariant(false) : undefined;
@@ -34378,7 +34378,7 @@
 	
 	var FluxStoreGroup = __webpack_require__(256);
 	
-	var invariant = __webpack_require__(252);
+	var invariant = __webpack_require__(253);
 	
 	/**
 	 * `FluxContainer` should be preferred over this mixin, but it requires using
@@ -34485,7 +34485,7 @@
 /* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var UserStore = __webpack_require__(253);
+	var UserStore = __webpack_require__(249);
 	var UserActions = __webpack_require__(246);
 	
 	var CurrentUserState = {
@@ -34529,7 +34529,7 @@
 	var Modal = __webpack_require__(225);
 	var ModalStyle = __webpack_require__(273);
 	var LoginForm = __webpack_require__(245);
-	var UserStore = __webpack_require__(253);
+	var UserStore = __webpack_require__(249);
 	
 	var NavBar = React.createClass({
 	  displayName: "NavBar",
@@ -34663,64 +34663,65 @@
 	module.exports = style;
 
 /***/ },
-/* 274 */,
-/* 275 */,
-/* 276 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ClientRestApiUtil = __webpack_require__(277);
+	var React = __webpack_require__(24);
+	var RestResultsStore = __webpack_require__(275);
+	var RestResultItem = __webpack_require__(277);
+	var ClientRestActions = __webpack_require__(278);
 	
-	var ClientRestActions = {
-	  fetchRestaurants: function () {
-	    console.log("fetchRestaurants");
-	    ClientRestApiUtil.fetchRestaurants();
+	var RestResults = React.createClass({
+	  displayName: "RestResults",
+	
+	  getInitialState: function () {
+	    return { restaurants: RestResultsStore.all() };
 	  },
 	
-	  getRestaurant: function (id) {
-	    console.log("getRestaurant client action, id: " + id);
-	    ClientRestApiUtil.getRestaurant(id);
-	  }
-	
-	};
-	
-	module.exports = ClientRestActions;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var ServerRestActions = __webpack_require__(280);
-	
-	var ClientRestApiUtil = {
-	  fetchRestaurants: function () {
-	    $.ajax({
-	      url: "api/restaurants",
-	      success: function (restaurants) {
-	        ServerRestActions.receiveRestaurants(restaurants);
-	      }
-	    });
+	  componentDidMount: function () {
+	    console.log("RestResults.jsx componentDidMount; add listener; fetchRestaurants");
+	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
+	    ClientRestActions.fetchRestaurants();
 	  },
 	
-	  getRestaurant: function (id) {
-	    $.ajax({
-	      url: "api/restaurants/" + id,
-	      success: function (restaurant) {
-	        ServerRestActions.receiveRestaurant(restaurant);
-	      }
-	    });
+	  componentWillUnmount: function () {
+	    console.log("RestResults.jsx componentWillUnmount; remove listener");
+	    this.restListener.remove();
+	  },
+	
+	  updateRestaurants: function () {
+	    this.setState({ restaurants: RestResultsStore.all() });
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { id: "restaurant-results" },
+	      React.createElement(
+	        "header",
+	        { id: "restaurant-results-header" },
+	        "Restaurants Results"
+	      ),
+	      React.createElement(
+	        "ul",
+	        { id: "results-index" },
+	        this.state.restaurants.map(function (restaurant) {
+	          return React.createElement(RestResultItem, { key: restaurant.id, restaurant: restaurant });
+	        })
+	      )
+	    );
 	  }
+	});
 	
-	};
-	
-	module.exports = ClientRestApiUtil;
+	module.exports = RestResults;
 
 /***/ },
-/* 278 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(249);
+	var AppDispatcher = __webpack_require__(250);
 	var Store = __webpack_require__(254).Store;
-	var RestaurantConstants = __webpack_require__(281);
+	var RestaurantConstants = __webpack_require__(276);
 	
 	var RestResultsStore = new Store(AppDispatcher);
 	
@@ -34768,87 +34769,7 @@
 	window.RestResultsStore = RestResultsStore;
 
 /***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(24);
-	var RestResultsStore = __webpack_require__(278);
-	var RestResultItem = __webpack_require__(282);
-	var ClientRestActions = __webpack_require__(276);
-	
-	var RestResults = React.createClass({
-	  displayName: "RestResults",
-	
-	  getInitialState: function () {
-	    return { restaurants: RestResultsStore.all() };
-	  },
-	
-	  componentDidMount: function () {
-	    console.log("RestResults.jsx componentDidMount; add listener; fetchRestaurants");
-	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
-	    ClientRestActions.fetchRestaurants();
-	  },
-	
-	  componentWillUnmount: function () {
-	    console.log("RestResults.jsx componentWillUnmount; remove listener");
-	    this.restListener.remove();
-	  },
-	
-	  updateRestaurants: function () {
-	    this.setState({ restaurants: RestResultsStore.all() });
-	  },
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { id: "restaurant-results" },
-	      React.createElement(
-	        "header",
-	        { id: "restaurant-results-header" },
-	        "Restaurants Results"
-	      ),
-	      React.createElement(
-	        "ul",
-	        { id: "results-index" },
-	        this.state.restaurants.map(function (restaurant) {
-	          return React.createElement(RestResultItem, { key: restaurant.id, restaurant: restaurant });
-	        })
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = RestResults;
-
-/***/ },
-/* 280 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Dispatcher = __webpack_require__(249);
-	var RestaurantConstants = __webpack_require__(281);
-	
-	var ServerRestActions = {
-	
-	  receiveRestaurants: function (restaurants) {
-	    Dispatcher.dispatch({
-	      actionType: RestaurantConstants.RESTAURANTS_RECEIVED,
-	      restaurants: restaurants
-	    });
-	  },
-	
-	  receiveRestaurant: function (restaurant) {
-	    Dispatcher.dispatch({
-	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
-	      restaurant: restaurant
-	    });
-	  }
-	
-	};
-	
-	module.exports = ServerRestActions;
-
-/***/ },
-/* 281 */
+/* 276 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -34857,11 +34778,12 @@
 	};
 
 /***/ },
-/* 282 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var ClientRestActions = __webpack_require__(276);
+	var ClientRestActions = __webpack_require__(278);
+	var hashHistory = __webpack_require__(1).hashHistory;
 	
 	RestResultItem = React.createClass({
 	  displayName: "RestResultItem",
@@ -34874,6 +34796,8 @@
 	    ClientRestActions.getRestaurant(e.currentTarget.id);
 	    // hashHistory.push --match path to restaurant.  restaurants/ redirect to e.g. restaurants/1
 	    // unmounts index; mounts details
+	    console.log("hashHistory.push");
+	    hashHistory.push("/restaurants/" + e.currentTarget.id);
 	  },
 	
 	  render: function () {
@@ -34884,34 +34808,114 @@
 	      this.props.restaurant.name,
 	      this.props.restaurant.cuisine,
 	      this.props.restaurant.hours,
-	      this.props.restaurant.address,
-	      this.props.restaurant.phone,
 	      this.props.restaurant.description
-	    );
+	    )
+	    // {this.props.restaurant.address}
+	    // {this.props.restaurant.phone}
+	    ;
 	  }
 	});
 	
 	module.exports = RestResultItem;
 
 /***/ },
-/* 283 */
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ClientRestApiUtil = __webpack_require__(279);
+	
+	var ClientRestActions = {
+	  fetchRestaurants: function () {
+	    console.log("fetchRestaurants");
+	    ClientRestApiUtil.fetchRestaurants();
+	  },
+	
+	  getRestaurant: function (id) {
+	    console.log("getRestaurant client action, id: " + id);
+	    ClientRestApiUtil.getRestaurant(id);
+	  }
+	
+	};
+	
+	module.exports = ClientRestActions;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ServerRestActions = __webpack_require__(280);
+	
+	var ClientRestApiUtil = {
+	  fetchRestaurants: function () {
+	    $.ajax({
+	      url: "api/restaurants",
+	      success: function (restaurants) {
+	        ServerRestActions.receiveRestaurants(restaurants);
+	      }
+	    });
+	  },
+	
+	  getRestaurant: function (id) {
+	    $.ajax({
+	      url: "api/restaurants/" + id,
+	      success: function (restaurant) {
+	        ServerRestActions.receiveRestaurant(restaurant);
+	      }
+	    });
+	  }
+	
+	};
+	
+	module.exports = ClientRestApiUtil;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(250);
+	var RestaurantConstants = __webpack_require__(276);
+	
+	var ServerRestActions = {
+	
+	  receiveRestaurants: function (restaurants) {
+	    Dispatcher.dispatch({
+	      actionType: RestaurantConstants.RESTAURANTS_RECEIVED,
+	      restaurants: restaurants
+	    });
+	  },
+	
+	  receiveRestaurant: function (restaurant) {
+	    console.log("receiveRestaurant server action");
+	    Dispatcher.dispatch({
+	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
+	      restaurant: restaurant
+	    });
+	  }
+	
+	};
+	
+	module.exports = ServerRestActions;
+
+/***/ },
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var RestResultsStore = __webpack_require__(278);
-	var ClientRestActions = __webpack_require__(276);
+	var RestResultsStore = __webpack_require__(275);
+	var ClientRestActions = __webpack_require__(278);
 	
 	var RestDetails = React.createClass({
 	  displayName: "RestDetails",
 	
 	  getInitialState: function () {
-	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.restaurantId)) };
+	    console.log("RestDetails gis");
+	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) };
 	  },
 	
 	  componentDidMount: function () {
-	    console.log("RestDetails.jsx componentDidMount; add listener; _");
+	    console.log("RestDetails.jsx componentDidMount; add listener; getRestaurant(id)");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
-	    ClientRestActions.getRestaurant(id);
+	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
 	
 	  componentWillUnmount: function () {
@@ -34920,11 +34924,32 @@
 	  },
 	
 	  updateRestaurantInState: function () {
-	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.restaurantId)) });
+	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) });
 	  },
 	
 	  render: function () {
-	    return React.createElement("div", null);
+	    return React.createElement(
+	      "div",
+	      { id: "rest-details" },
+	      this.state.restaurantDetails.name,
+	      " ",
+	      React.createElement("br", null),
+	      this.state.restaurantDetails.cuisine,
+	      " ",
+	      React.createElement("br", null),
+	      this.state.restaurantDetails.address,
+	      " ",
+	      React.createElement("br", null),
+	      this.state.restaurantDetails.phone,
+	      " ",
+	      React.createElement("br", null),
+	      this.state.restaurantDetails.hours,
+	      " ",
+	      React.createElement("br", null),
+	      this.state.restaurantDetails.description,
+	      " ",
+	      React.createElement("br", null)
+	    );
 	  }
 	
 	});

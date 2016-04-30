@@ -32,12 +32,12 @@ var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={RestResults} />
-
+      <Route path="restaurants" component={RestResults} />
+      <Route path="restaurants/:id" component={RestDetails} />
     </Route>
   </Router>
 );
 
-      // <Route path="restaurants/:id" component={RestDetails} />
 
 // new version to move to:
 // var routes = (

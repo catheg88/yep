@@ -122,3 +122,12 @@ ul {
   padding: 20px;
   border: 1px solid yellow;
 }
+
+#rest-details {
+ height: 100%;
+ margin: 60px;
+ background-color: rgba(55,133,55,0.94);
+ border: 2px solid black;
+ display: flex;
+ flex-direction: column;
+}
