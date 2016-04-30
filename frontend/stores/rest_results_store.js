@@ -40,6 +40,10 @@ RestResultsStore.all = function () {
   return restaurants;
 };
 
+RestResultsStore.find = function(id) {
+
+};
+
 module.exports = RestResultsStore;
 
 window.RestResultsStore = RestResultsStore;

@@ -11,6 +11,7 @@ var React = require('react'),
 var LoginForm = require('./components/LoginForm.jsx');
 var NavBar = require('./components/NavBar.jsx');
 var RestResults = require('./components/RestResults.jsx');
+var RestDetails = require('./components/RestDetails.jsx');
 
 var CurrentUserState = require('./mixins/current_user_state');
 
@@ -20,20 +21,37 @@ var App = React.createClass({
     return (
       <div id="App">
         <NavBar />
-        <RestResults />
         {this.props.children}
       </div>
     );
   }
 });
 
+
 var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
+      <IndexRoute component={RestResults} />
 
     </Route>
   </Router>
 );
+
+      // <Route path="restaurants/:id" component={RestDetails} />
+
+// new version to move to:
+// var routes = (
+//   <Router history={hashHistory}>
+//     <Route path="/" component={App}>
+//       <IndexRoute component={RestResults} />
+      // <Route path="restaurants/:id" component={RestaurantDetails} />
+//     </Route>
+//   </Router>
+// );
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   Modal.setAppElement(document.body)

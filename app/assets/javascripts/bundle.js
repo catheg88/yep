@@ -57,6 +57,7 @@
 	var LoginForm = __webpack_require__(245);
 	var NavBar = __webpack_require__(272);
 	var RestResults = __webpack_require__(279);
+	var RestDetails = __webpack_require__(283);
 	
 	var CurrentUserState = __webpack_require__(271);
 	
@@ -69,7 +70,6 @@
 	      'div',
 	      { id: 'App' },
 	      React.createElement(NavBar, null),
-	      React.createElement(RestResults, null),
 	      this.props.children
 	    );
 	  }
@@ -78,8 +78,24 @@
 	var routes = React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(Route, { path: '/', component: App })
+	  React.createElement(
+	    Route,
+	    { path: '/', component: App },
+	    React.createElement(IndexRoute, { component: RestResults })
+	  )
 	);
+	
+	// <Route path="restaurants/:id" component={RestDetails} />
+	
+	// new version to move to:
+	// var routes = (
+	//   <Router history={hashHistory}>
+	//     <Route path="/" component={App}>
+	//       <IndexRoute component={RestResults} />
+	// <Route path="restaurants/:id" component={RestaurantDetails} />
+	//     </Route>
+	//   </Router>
+	// );
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  Modal.setAppElement(document.body);
@@ -34743,6 +34759,8 @@
 	  return restaurants;
 	};
 	
+	RestResultsStore.find = function (id) {};
+	
 	module.exports = RestResultsStore;
 	
 	window.RestResultsStore = RestResultsStore;
@@ -34764,8 +34782,14 @@
 	  },
 	
 	  componentDidMount: function () {
+	    console.log("RestResults.jsx componentDidMount; add listener; fetchRestaurants");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
 	    ClientRestActions.fetchRestaurants();
+	  },
+	
+	  componentWillUnmount: function () {
+	    console.log("RestResults.jsx componentWillUnmount; remove listener");
+	    this.restListener.remove();
 	  },
 	
 	  updateRestaurants: function () {
@@ -34840,23 +34864,19 @@
 	RestResultItem = React.createClass({
 	  displayName: "RestResultItem",
 	
-	  // contextTypes: {
-	  //   router: React.PropTypes.object.isRequired
-	  // },
-	  //
-	  // showDetail: function () {
-	  //   this.context.router.push('/pokemon/'+ this.props.pokemon.id);
-	  // },
-	
-	  // onClick={this.showDetail} // this was from the li tag
 	
 	  showDetail: function (e) {
-	    console.log(e.currentTarget);
-	    ClientRestActions.fetchRestaurants();
+	    // rather than change what the index item displays, redirect using router to render the details component
+	    // prevent default, although it doesn't really matter, since it's an li and there's no
+	    // console.log(e.currentTarget);
+	    // OLD ClientRestActions.fetchRestaurants();
 	    ClientRestActions.getRestaurant(e.currentTarget.id);
+	    // hashHistory.push --match path to restaurant.  restaurants/ redirect to e.g. restaurants/1
+	    // unmounts index; mounts details
 	  },
 	
 	  render: function () {
+	
 	    return React.createElement(
 	      "li",
 	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
@@ -34871,6 +34891,44 @@
 	});
 	
 	module.exports = RestResultItem;
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	var RestResultsStore = __webpack_require__(278);
+	var ClientRestActions = __webpack_require__(276);
+	
+	var RestDetails = React.createClass({
+	  displayName: "RestDetails",
+	
+	  getInitialState: function () {
+	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.restaurantId)) };
+	  },
+	
+	  componentDidMount: function () {
+	    console.log("RestDetails.jsx componentDidMount; add listener; _");
+	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
+	    ClientRestActions.getRestaurant(id);
+	  },
+	
+	  componentWillUnmount: function () {
+	    console.log("RestDetails.jsx componentWillUnmount; remove listener");
+	    this.restListener.remove();
+	  },
+	
+	  updateRestaurantInState: function () {
+	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.restaurantId)) });
+	  },
+	
+	  render: function () {
+	    return React.createElement("div", null);
+	  }
+	
+	});
+	
+	module.exports = RestDetails;
 
 /***/ }
 /******/ ]);

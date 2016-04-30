@@ -82,7 +82,7 @@ KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
-  -catch get requests - 404s
+  -add a guest login - think it's written in the backend
 
 -have not been removing store listeners when components unmount
 
@@ -91,3 +91,32 @@ KNOWN ISSUES/TODOS:
 
 
 questions:
+-i want to render the review component when people click for details
+  -that review component will listen to:
+    1) the review store, to know what reviews to display
+
+    2) the user store, to check for current user
+      a) if logged in, show a review form
+      b) if logged
+
+
+
+
+
+
+
+
+
+keep index item, but have it show all info always
+
+make one brand new component, a detail page
+
+
+
+reviews controller
+
+
+
+Qs
+  - i don't have to remove listeners for onClicks, right?
+  

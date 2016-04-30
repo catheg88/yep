@@ -113,6 +113,12 @@ ul {
  justify-content: center;
 }
 
+#results-index {
+  padding-right: 40px;
+}
+
 .rest-result-item {
   color: white;
+  padding: 20px;
+  border: 1px solid yellow;
 }
