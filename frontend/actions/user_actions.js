@@ -21,7 +21,7 @@ var UserActions = {
 
   // 2
   guestLogin: function(){
-    UserActions.login({username: "guest", password: "password"});
+    UserActions.login({username: "Guest", password: "password"});
   },
 
   //1

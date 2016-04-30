@@ -27457,16 +27457,7 @@
 			e.preventDefault();
 			UserActions.logout();
 		},
-		greeting: function () {
-			if (!this.state.currentUser) {
-				return;
-			}
-			return React.createElement(
-				"div",
-				null,
-				React.createElement("input", { type: "submit", value: "logout", onClick: this.logout })
-			);
-		},
+	
 		errors: function () {
 			if (!this.state.userErrors) {
 				return;
@@ -27527,6 +27518,12 @@
 						null,
 						" Sign Up",
 						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm })
+					),
+					React.createElement(
+						"label",
+						null,
+						" Guest Login",
+						React.createElement("input", { type: "Radio", name: "action", value: "guestLogin", onChange: this.setForm })
 					)
 				),
 				React.createElement(
@@ -27540,9 +27537,9 @@
 			return React.createElement(
 				"div",
 				{ id: "login-form" },
-				this.greeting(),
-				this.errors(),
-				this.form()
+				this.form(),
+				React.createElement("br", null),
+				this.errors()
 			);
 		}
 	});
@@ -27576,7 +27573,7 @@
 	
 	  // 2
 	  guestLogin: function () {
-	    UserActions.login({ username: "guest", password: "password" });
+	    UserActions.login({ username: "Guest", password: "password" });
 	  },
 	
 	  //1

@@ -33,16 +33,7 @@ var LoginForm = React.createClass({
 		e.preventDefault();
 		UserActions.logout();
 	},
-	greeting: function(){
-		if (!this.state.currentUser) {
-			return;
-		}
-		return (
-			<div>
-				<input type="submit" value="logout" onClick={this.logout}/>
-			</div>
-		);
-	},
+
 	errors: function(){
 		if (!this.state.userErrors){
 			return;
@@ -83,6 +74,10 @@ var LoginForm = React.createClass({
 					<label> Sign Up
 						<input type="Radio" name="action" value="signup" onChange={this.setForm}/>
 					</label>
+
+					<label> Guest Login
+						<input type="Radio" name="action" value="guestLogin" onChange={this.setForm}/>
+					</label>
 				</section>
 
 				<button>Submit</button>
@@ -92,9 +87,9 @@ var LoginForm = React.createClass({
 	render: function(){
 		return (
 			<div id="login-form">
-				{this.greeting()}
-				{this.errors()}
 				{this.form()}
+				<br />
+				{this.errors()}
 			</div>
 		);
 	}
