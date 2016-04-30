@@ -27,7 +27,7 @@ Restaurant.create({name: "Manny's Meatloaf",
                    address: "1234 7th St, San Francisco, CA, 94118",
                    phone: "415-518-7348",
                    hours: "M-F 8am-8pm; WKND 8am-12am",
-                   description: "Meatloaf done right: meaty, loafy... oh Momma!"
+                   description: "Meatloaf done right: meaty, loafy... oh man!"
                    })
 
 Restaurant.create({name: "Chili Freeze",
