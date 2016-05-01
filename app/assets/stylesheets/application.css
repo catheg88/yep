@@ -106,7 +106,7 @@ ul {
  flex-direction: column;
  align-content: center;
  justify-content: center;
- padding; 0;
+ padding: 0;
 }
 
 #actual-login-form {
@@ -117,7 +117,8 @@ ul {
 
 #un-field {
   display: flex;
-  justify-content: center;}
+  justify-content: center;
+}
 
 #pw-field {
   display: flex;
