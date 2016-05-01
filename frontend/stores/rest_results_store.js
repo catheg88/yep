@@ -8,7 +8,6 @@ var _restResults = window._restResults = {}; // TODO
 
 
 RestResultsStore.__onDispatch = function (payload) {
-  // console.log("hit RRS.__onDispatch.  payload.actionType:" + payload.actionType)
   switch (payload.actionType) {
   case RestaurantConstants.RESTAURANTS_RECEIVED:
     resetRestaurants(payload.restaurants);

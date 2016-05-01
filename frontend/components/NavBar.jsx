@@ -1,5 +1,6 @@
 var React = require("react");
-var UserActions = require("../actions/user_actions"); // why am i including these? bc I'm utilizing logout
+var hashHistory = require('react-router').hashHistory;
+var UserActions = require("../actions/user_actions");
 var CurrentUserState = require("../mixins/current_user_state");
 var Modal = require("react-modal");
 var ModalStyle = require("../../app/assets/stylesheets/modal_style");
@@ -25,10 +26,8 @@ var NavBar = React.createClass({
   },
 
   _handleClick: function(){
-    if (!this.state.currentUser) { // if signed in
+    if (!this.state.currentUser) {
       this.setState({ modalOpen: true });
-    } else { // if not signed in
-      // do something totally fuckin different
     }
   },
 
@@ -41,21 +40,25 @@ var NavBar = React.createClass({
     UserActions.logout();
   },
 
+	goHome: function() {
+		hashHistory.push("/");
+	},
+
   render: function() {
 
-    if (this.state.currentUser === undefined) { // before username state is set up
-      var username = "not logged in"
-      var authLink = <a href="#" id="sign-in-sign-up">sign in / sign up</a>
-    } else { // after username state is set
+    if (this.state.currentUser === undefined) {
+      var username = "Not logged in"
+      var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
+    } else {
       var username = "Hello, " + this.state.currentUser.username + "!"
-      var authLink = <a href="#" id="sign-out" onClick={this.logout}>sign out</a>
+      var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
     }
 
     return (
       <header className="header">
 
-        <div className="header-logo">
-          <h3>YEPP</h3>
+        <div className="header-logo" onClick={this.goHome}>
+					YEPP
         </div>
 
         <ul className="header-list">

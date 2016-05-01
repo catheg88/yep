@@ -4,18 +4,15 @@ var ClientRestActions = require("../actions/client_rest_actions.js");
 
 var RestDetails = React.createClass({
   getInitialState: function() {
-    console.log("RestDetails gis");
     return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id))};
   },
 
   componentDidMount: function() {
-    console.log("RestDetails.jsx componentDidMount; add listener; getRestaurant(id)");
     this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
     ClientRestActions.getRestaurant(this.props.params.id);
   },
 
   componentWillUnmount:  function() {
-    console.log("RestDetails.jsx componentWillUnmount; remove listener");
     this.restListener.remove();
   },
 

@@ -67,6 +67,16 @@ ul {
  padding: 0px 20px 0px 20px;
 }
 
+.header-logo:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+
+#logo-link {
+  text-decoration: none;
+  color: white;
+}
+
 .header-list {
  display: flex;
  justify-content: flex-end;
@@ -77,6 +87,8 @@ ul {
  display: flex;
  justify-content: flex-end;
  float: right;
+ color: white;
+ text-decoration: none;
 }
 
 .header-list > li {
@@ -148,6 +160,11 @@ ul {
   color: white;
   padding: 20px;
   border: 1px solid yellow;
+  cursor: pointer;
+}
+
+.rest-result-item:hover {
+  background-color: orange;
 }
 
 #rest-details {

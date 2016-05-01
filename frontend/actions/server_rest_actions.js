@@ -11,14 +11,11 @@ var ServerRestActions = {
   },
 
   receiveRestaurant: function (restaurant) {
-    console.log("receiveRestaurant server action");
     Dispatcher.dispatch({
       actionType: RestaurantConstants.RESTAURANT_RECEIVED,
       restaurant: restaurant
     });
   }
-
-
 
 };
 

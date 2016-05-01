@@ -82,11 +82,10 @@ KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
-  -add a guest login - think it's written in the backend
+-change header logo so you can click on the whole box, not just the link in the center
 
 -have not been removing store listeners when components unmount
 
--modal centering: why not?
 -still need to add model assns
 
 
@@ -119,4 +118,3 @@ reviews controller
 
 Qs
   - i don't have to remove listeners for onClicks, right?
-  

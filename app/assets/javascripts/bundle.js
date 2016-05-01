@@ -34524,7 +34524,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(24);
-	var UserActions = __webpack_require__(246); // why am i including these? bc I'm utilizing logout
+	var hashHistory = __webpack_require__(1).hashHistory;
+	var UserActions = __webpack_require__(246);
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
 	var ModalStyle = __webpack_require__(273);
@@ -34552,10 +34553,7 @@
 	
 	  _handleClick: function () {
 	    if (!this.state.currentUser) {
-	      // if signed in
 	      this.setState({ modalOpen: true });
-	    } else {// if not signed in
-	      // do something totally fuckin different
 	    }
 	  },
 	
@@ -34568,23 +34566,25 @@
 	    UserActions.logout();
 	  },
 	
+	  goHome: function () {
+	    hashHistory.push("/");
+	  },
+	
 	  render: function () {
 	
 	    if (this.state.currentUser === undefined) {
-	      // before username state is set up
-	      var username = "not logged in";
+	      var username = "Not logged in";
 	      var authLink = React.createElement(
 	        "a",
 	        { href: "#", id: "sign-in-sign-up" },
-	        "sign in / sign up"
+	        "Sign In/Up"
 	      );
 	    } else {
-	      // after username state is set
 	      var username = "Hello, " + this.state.currentUser.username + "!";
 	      var authLink = React.createElement(
 	        "a",
 	        { href: "#", id: "sign-out", onClick: this.logout },
-	        "sign out"
+	        "Sign Out"
 	      );
 	    }
 	
@@ -34593,12 +34593,8 @@
 	      { className: "header" },
 	      React.createElement(
 	        "div",
-	        { className: "header-logo" },
-	        React.createElement(
-	          "h3",
-	          null,
-	          "YEPP"
-	        )
+	        { className: "header-logo", onClick: this.goHome },
+	        "YEPP"
 	      ),
 	      React.createElement(
 	        "ul",
@@ -34681,13 +34677,11 @@
 	  },
 	
 	  componentDidMount: function () {
-	    console.log("RestResults.jsx componentDidMount; add listener; fetchRestaurants");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
 	    ClientRestActions.fetchRestaurants();
 	  },
 	
 	  componentWillUnmount: function () {
-	    console.log("RestResults.jsx componentWillUnmount; remove listener");
 	    this.restListener.remove();
 	  },
 	
@@ -34730,7 +34724,6 @@
 	var _restResults = window._restResults = {}; // TODO
 	
 	RestResultsStore.__onDispatch = function (payload) {
-	  // console.log("hit RRS.__onDispatch.  payload.actionType:" + payload.actionType)
 	  switch (payload.actionType) {
 	    case RestaurantConstants.RESTAURANTS_RECEIVED:
 	      resetRestaurants(payload.restaurants);
@@ -34790,20 +34783,12 @@
 	RestResultItem = React.createClass({
 	  displayName: "RestResultItem",
 	
-	
 	  showDetail: function (e) {
-	    // rather than change what the index item displays, redirect using router to render the details component
-	    e.preventDefault();
-	    // OLD ClientRestActions.fetchRestaurants();
 	    ClientRestActions.getRestaurant(e.currentTarget.id);
-	    // hashHistory.push --match path to restaurant.  restaurants/ redirect to e.g. restaurants/1
-	    // unmounts index; mounts details
-	    console.log("hashHistory.push");
 	    hashHistory.push("/restaurants/" + e.currentTarget.id);
 	  },
 	
 	  render: function () {
-	
 	    return React.createElement(
 	      "li",
 	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
@@ -34828,12 +34813,10 @@
 	
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
-	    console.log("fetchRestaurants");
 	    ClientRestApiUtil.fetchRestaurants();
 	  },
 	
 	  getRestaurant: function (id) {
-	    console.log("getRestaurant client action, id: " + id);
 	    ClientRestApiUtil.getRestaurant(id);
 	  }
 	
@@ -34887,7 +34870,6 @@
 	  },
 	
 	  receiveRestaurant: function (restaurant) {
-	    console.log("receiveRestaurant server action");
 	    Dispatcher.dispatch({
 	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
 	      restaurant: restaurant
@@ -34910,18 +34892,15 @@
 	  displayName: "RestDetails",
 	
 	  getInitialState: function () {
-	    console.log("RestDetails gis");
 	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) };
 	  },
 	
 	  componentDidMount: function () {
-	    console.log("RestDetails.jsx componentDidMount; add listener; getRestaurant(id)");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
 	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
 	
 	  componentWillUnmount: function () {
-	    console.log("RestDetails.jsx componentWillUnmount; remove listener");
 	    this.restListener.remove();
 	  },
 	

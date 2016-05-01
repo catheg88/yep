@@ -9,13 +9,11 @@ var RestResults = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log("RestResults.jsx componentDidMount; add listener; fetchRestaurants");
     this.restListener = RestResultsStore.addListener(this.updateRestaurants);
     ClientRestActions.fetchRestaurants();
   },
 
   componentWillUnmount:  function() {
-    console.log("RestResults.jsx componentWillUnmount; remove listener");
     this.restListener.remove();
   },
 
