@@ -27485,10 +27485,11 @@
 				React.createElement(
 					"section",
 					null,
+					React.createElement("br", null),
 					React.createElement(
 						"label",
-						null,
-						" Username:",
+						{ id: "un-field" },
+						" Username:   ",
 						React.createElement("br", null),
 						React.createElement("input", { type: "text", value: this.state.username, onChange: this.usernameChange })
 					),
@@ -27496,8 +27497,8 @@
 					React.createElement("br", null),
 					React.createElement(
 						"label",
-						null,
-						" Password:",
+						{ id: "pw-field" },
+						" Password:   ",
 						React.createElement("br", null),
 						React.createElement("input", { type: "password", value: this.state.password, onChange: this.passwordChange })
 					),
@@ -27506,29 +27507,32 @@
 				),
 				React.createElement(
 					"section",
-					null,
+					{ id: "form-radios" },
 					React.createElement(
 						"label",
 						null,
-						" Login",
-						React.createElement("input", { type: "Radio", name: "action", value: "login", onChange: this.setForm })
+						React.createElement("input", { type: "Radio", name: "action", value: "login", onChange: this.setForm }),
+						" Login  "
 					),
+					React.createElement("br", null),
 					React.createElement(
 						"label",
 						null,
-						" Sign Up",
-						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm })
+						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm }),
+						" Sign Up  "
 					),
+					React.createElement("br", null),
 					React.createElement(
 						"label",
 						null,
-						" Guest Login",
-						React.createElement("input", { type: "Radio", name: "action", value: "guestLogin", onChange: this.setForm })
+						React.createElement("input", { type: "Radio", name: "action", value: "guestLogin", onChange: this.setForm }),
+						" Guest Login  "
 					)
 				),
+				React.createElement("br", null),
 				React.createElement(
 					"button",
-					null,
+					{ id: "login-submit" },
 					"Submit"
 				)
 			);
@@ -27538,7 +27542,6 @@
 				"div",
 				{ id: "login-form" },
 				this.form(),
-				React.createElement("br", null),
 				this.errors()
 			);
 		}
@@ -34638,6 +34641,7 @@
 	    right: 0,
 	    bottom: 0,
 	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
 	    "zindex": 10
 	  },
 	  content: {
@@ -34652,6 +34656,7 @@
 	    flexdirection: 'column',
 	    alignitems: 'center',
 	    justifycontent: 'center',
+	    padding: 0,
 	    "zindex": 10
 	  }
 	

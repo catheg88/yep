@@ -7,6 +7,7 @@ var style = {
     right           : 0,
     bottom          : 0,
     backgroundColor : 'rgba(255, 255, 255, 0.75)',
+    padding: 0,
     "zindex"        : 10
   },
   content : {
@@ -21,6 +22,7 @@ var style = {
     flexdirection   : 'column',
     alignitems      : 'center',
     justifycontent  : 'center',
+    padding: 0,
     "zindex"        : 10
   }
 

@@ -89,9 +89,36 @@ ul {
 #login-form {
  height: 100%;
  width: 100%;
+ background-color: red;
  display: flex;
+ flex-direction: column;
  align-content: center;
  justify-content: center;
+ padding; 0;
+}
+
+#actual-login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#un-field {
+  display: flex;
+  justify-content: center;}
+
+#pw-field {
+  display: flex;
+  justify-content: center;
+}
+
+#form-radios {
+  display: flex;
+  justify-content: center;
+}
+
+#login-submit {
+  margin: 0px 65px;
 }
 
 #restaurant-results {

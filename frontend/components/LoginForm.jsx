@@ -54,33 +54,37 @@ var LoginForm = React.createClass({
 		return(
 			<form id="actual-login-form" onSubmit={this.handleSubmit}>
 				<section>
-					<label> Username:<br />
+					<br />
+					<label id="un-field"> Username:&nbsp;&nbsp;&nbsp;<br />
 						<input type="text" value={this.state.username} onChange={this.usernameChange}/>
 					</label>
 					<br />
 					<br />
-					<label> Password:<br />
+					<label id="pw-field"> Password:&nbsp;&nbsp;&nbsp;<br />
 						<input type="password" value={this.state.password} onChange={this.passwordChange}/>
 					</label>
 					<br />
 					<br />
 				</section>
 
-				<section>
-					<label> Login
+				<section id="form-radios">
+					<label>
 						<input type="Radio" name="action" value="login" onChange={this.setForm}/>
+						&nbsp;Login&nbsp;&nbsp;
 					</label>
-
-					<label> Sign Up
+					<br />
+					<label>
 						<input type="Radio" name="action" value="signup" onChange={this.setForm}/>
+						&nbsp;Sign Up&nbsp;&nbsp;
 					</label>
-
-					<label> Guest Login
+					<br />
+					<label>
 						<input type="Radio" name="action" value="guestLogin" onChange={this.setForm}/>
+						&nbsp;Guest Login&nbsp;&nbsp;
 					</label>
 				</section>
-
-				<button>Submit</button>
+				<br />
+				<button id="login-submit">Submit</button>
 			</form>
 		);
 	},
@@ -88,7 +92,6 @@ var LoginForm = React.createClass({
 		return (
 			<div id="login-form">
 				{this.form()}
-				<br />
 				{this.errors()}
 			</div>
 		);
