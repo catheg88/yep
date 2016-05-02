@@ -41,7 +41,9 @@ var RestDetails = React.createClass({
           {this.state.restaurantDetails.description} <br />
         </content>
         <ul id="reviews-index">
-          <RestReview />
+          {_reviews.map(function (review) {
+            return <RestReview key={review.id} review={review} />;
+          })}
         </ul>
 
       </div>
@@ -50,9 +52,6 @@ var RestDetails = React.createClass({
 
 });
 
-// {_reviews.map(function (review) {
-//   return <RestReview key={review.id} restaurant={review} />;
-// })}
 
 // <content id="reviews">
 //   {this.state.restaurantDetails.reviews}

@@ -5,9 +5,16 @@ var ClientRestActions = require("../actions/client_rest_actions.js"); // TODO wh
 var RestReview = React.createClass({
 
   render: function() {
+    if (this.props.review.yepp === true) {
+      var _yepp = "Yepp!"
+    } else {
+      _yepp = "Nope!"
+    }
     return (
       <div>
-        <li>sup</li>
+        <li>{this.props.review.user_id}</li>
+        <li>{this.props.review.rev_content}</li>
+        <li>{_yepp}</li>
       </div>
     )
   }

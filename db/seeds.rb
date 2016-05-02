@@ -109,3 +109,10 @@ Review.create({
   user_id: 3,
   restaurant_id: 1
 })
+
+Review.create({
+  rev_content: "Ask for their secret Chinese menu!",
+  yepp: true,
+  user_id: 2,
+  restaurant_id: 1
+})

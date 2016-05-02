@@ -34945,16 +34945,14 @@
 	      React.createElement(
 	        "ul",
 	        { id: "reviews-index" },
-	        React.createElement(RestReview, null)
+	        _reviews.map(function (review) {
+	          return React.createElement(RestReview, { key: review.id, review: review });
+	        })
 	      )
 	    );
 	  }
 	
 	});
-	
-	// {_reviews.map(function (review) {
-	//   return <RestReview key={review.id} restaurant={review} />;
-	// })}
 	
 	// <content id="reviews">
 	//   {this.state.restaurantDetails.reviews}
@@ -34975,13 +34973,28 @@
 	
 	
 	  render: function () {
+	    if (this.props.review.yepp === true) {
+	      var _yepp = "Yepp!";
+	    } else {
+	      _yepp = "Nope!";
+	    }
 	    return React.createElement(
 	      "div",
 	      null,
 	      React.createElement(
 	        "li",
 	        null,
-	        "sup"
+	        this.props.review.user_id
+	      ),
+	      React.createElement(
+	        "li",
+	        null,
+	        this.props.review.rev_content
+	      ),
+	      React.createElement(
+	        "li",
+	        null,
+	        _yepp
 	      )
 	    );
 	  }
