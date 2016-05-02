@@ -38,21 +38,6 @@ var routes = (
   </Router>
 );
 
-
-// new version to move to:
-// var routes = (
-//   <Router history={hashHistory}>
-//     <Route path="/" component={App}>
-//       <IndexRoute component={RestResults} />
-      // <Route path="restaurants/:id" component={RestaurantDetails} />
-//     </Route>
-//   </Router>
-// );
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   Modal.setAppElement(document.body)
   var root = document.getElementById('content');

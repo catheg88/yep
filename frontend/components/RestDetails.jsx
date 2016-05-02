@@ -12,7 +12,7 @@ var RestDetails = React.createClass({
     ClientRestActions.getRestaurant(this.props.params.id);
   },
 
-  componentWillUnmount:  function() {
+  componentWillUnmount: function() {
     this.restListener.remove();
   },
 
@@ -23,12 +23,19 @@ var RestDetails = React.createClass({
   render: function() {
     return (
       <div id="rest-details">
-        {this.state.restaurantDetails.name} <br />
-        {this.state.restaurantDetails.cuisine} <br />
-        {this.state.restaurantDetails.address} <br />
-        {this.state.restaurantDetails.phone} <br />
-        {this.state.restaurantDetails.hours} <br />
-        {this.state.restaurantDetails.description} <br />
+        <header id="restaurant-details-header">
+          {this.state.restaurantDetails.name}
+        </header>
+        <content id="rest-detail-content">
+          {this.state.restaurantDetails.hours} <br />
+          {this.state.restaurantDetails.cuisine} <br />
+          {this.state.restaurantDetails.address} <br />
+          {this.state.restaurantDetails.phone} <br />
+          {this.state.restaurantDetails.description} <br />
+        </content>
+        <content id="reviews">
+          {this.state.restaurantDetails.reviews}
+        </content>
       </div>
     );
   }

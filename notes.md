@@ -68,25 +68,13 @@ div id root
   restaurant
 
 
-render the nav bar and the showrestaurants right into the app navbar
-
-  i think there's only going to be 2 routes:
-  showing the login modal
-  showing the review form modal
-
-
-
-
 
 KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
--change header logo so you can click on the whole box, not just the link in the center
+-if the full restaurant details are in the store, don't fetch again
 
--have not been removing store listeners when components unmount
-
--still need to add model assns
 
 
 questions:
@@ -99,22 +87,4 @@ questions:
       b) if logged
 
 
-
-
-
-
-
-
-
-keep index item, but have it show all info always
-
-make one brand new component, a detail page
-
-
-
 reviews controller
-
-
-
-Qs
-  - i don't have to remove listeners for onClicks, right?

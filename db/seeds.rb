@@ -33,3 +33,51 @@ Restaurant.create({name: "Chili Freeze",
                    hours: "Daily 10am-8pm",
                    description: "Where else can you get chili ice cream?"
                    })
+
+Restaurant.create({name: "McDonald's",
+                   cuisine: "McDelicious",
+                   address: "553 Cowtown Blvd, San Francisco, CA, 94111",
+                   phone: "415-734-5666",
+                   hours: "7am-11pm Daily",
+                   description: ""
+})
+
+Restaurant.create({name: "placeholder",
+                   cuisine: "placeholder",
+                   address: "placeholder",
+                   phone: "placeholder",
+                   hours: "placeholder",
+                   description: "placeholder"
+})
+
+Restaurant.create({name: "placeholder2",
+                   cuisine: "placeholder",
+                   address: "placeholder",
+                   phone: "placeholder",
+                   hours: "placeholder",
+                   description: "placeholder"
+})
+
+Restaurant.create({name: "placeholder3",
+                   cuisine: "placeholder",
+                   address: "placeholder",
+                   phone: "placeholder",
+                   hours: "placeholder",
+                   description: "placeholder"
+})
+
+Restaurant.create({name: "placeholder4",
+                   cuisine: "placeholder",
+                   address: "placeholder",
+                   phone: "placeholder",
+                   hours: "placeholder",
+                   description: "placeholder"
+})
+
+Restaurant.create({name: "placeholder5",
+                   cuisine: "placeholder",
+                   address: "placeholder",
+                   phone: "placeholder",
+                   hours: "placeholder",
+                   description: "placeholder"
+})

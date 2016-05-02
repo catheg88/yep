@@ -147,7 +147,8 @@ ul {
  height: 100%;
  width: 100%;
  border-bottom: 2px solid black;
- background-color: rgba(30, 243, 255,0.5);
+ background-color: rgba(30, 255, 0,0.5);
+ font-weight: 700;
  padding: 20px 0px;
  display: flex;
  justify-content: center;
@@ -160,12 +161,12 @@ ul {
 .rest-result-item {
   color: white;
   padding: 20px;
-  border: 1px solid yellow;
+  border: 1px solid black;
   cursor: pointer;
 }
 
 .rest-result-item:hover {
-  background-color: orange;
+  background-color: red;
 }
 
 #rest-details {
@@ -175,4 +176,21 @@ ul {
  border: 2px solid black;
  display: flex;
  flex-direction: column;
+}
+
+#restaurant-details-header {
+ height: 100%;
+ width: 100%;
+ border-bottom: 2px solid black;
+ background-color: rgba(30, 255, 0,0.5);
+ font-weight: 700;
+ padding: 20px 0px;
+ display: flex;
+ justify-content: center;
+}
+
+
+#rest-detail-content {
+  color: white;
+  padding: 20px;
 }

@@ -87,16 +87,6 @@
 	  )
 	);
 	
-	// new version to move to:
-	// var routes = (
-	//   <Router history={hashHistory}>
-	//     <Route path="/" component={App}>
-	//       <IndexRoute component={RestResults} />
-	// <Route path="restaurants/:id" component={RestaurantDetails} />
-	//     </Route>
-	//   </Router>
-	// );
-	
 	document.addEventListener("DOMContentLoaded", function () {
 	  Modal.setAppElement(document.body);
 	  var root = document.getElementById('content');
@@ -34636,6 +34626,7 @@
 	    left: 0,
 	    right: 0,
 	    bottom: 0,
+	    color: 'white',
 	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
 	    padding: 0,
 	    "zindex": 10
@@ -34736,8 +34727,14 @@
 	};
 	
 	var resetRestaurants = function (restaurants) {
-	  _restResults = {};
+	  // TODO this will keep a restuarant from updating if it's changed in the db
+	  // _restResults = {};
 	  restaurants.forEach(function (restaurant) {
+	    // debugger
+	    if (_restResults[restaurant.id] !== undefined) {
+	      console.log(_restResults[restaurant.id]);
+	      return;
+	    }
 	    _restResults[restaurant.id] = restaurant;
 	    window._restResults[restaurant.id] = restaurant; // TODO
 	  });
@@ -34745,6 +34742,7 @@
 	
 	var setRestaurant = function (restaurant) {
 	  _restResults[restaurant.id] = restaurant;
+	  window._restResults[restaurant.id] = restaurant; // TODO
 	};
 	
 	RestResultsStore.all = function () {
@@ -34795,11 +34793,10 @@
 	      this.props.restaurant.name,
 	      this.props.restaurant.cuisine,
 	      this.props.restaurant.hours,
-	      this.props.restaurant.description
-	    )
-	    // {this.props.restaurant.address}
-	    // {this.props.restaurant.phone}
-	    ;
+	      this.props.restaurant.description,
+	      this.props.restaurant.address,
+	      this.props.restaurant.phone
+	    );
 	  }
 	});
 	
@@ -34912,24 +34909,35 @@
 	    return React.createElement(
 	      "div",
 	      { id: "rest-details" },
-	      this.state.restaurantDetails.name,
-	      " ",
-	      React.createElement("br", null),
-	      this.state.restaurantDetails.cuisine,
-	      " ",
-	      React.createElement("br", null),
-	      this.state.restaurantDetails.address,
-	      " ",
-	      React.createElement("br", null),
-	      this.state.restaurantDetails.phone,
-	      " ",
-	      React.createElement("br", null),
-	      this.state.restaurantDetails.hours,
-	      " ",
-	      React.createElement("br", null),
-	      this.state.restaurantDetails.description,
-	      " ",
-	      React.createElement("br", null)
+	      React.createElement(
+	        "header",
+	        { id: "restaurant-details-header" },
+	        this.state.restaurantDetails.name
+	      ),
+	      React.createElement(
+	        "content",
+	        { id: "rest-detail-content" },
+	        this.state.restaurantDetails.hours,
+	        " ",
+	        React.createElement("br", null),
+	        this.state.restaurantDetails.cuisine,
+	        " ",
+	        React.createElement("br", null),
+	        this.state.restaurantDetails.address,
+	        " ",
+	        React.createElement("br", null),
+	        this.state.restaurantDetails.phone,
+	        " ",
+	        React.createElement("br", null),
+	        this.state.restaurantDetails.description,
+	        " ",
+	        React.createElement("br", null)
+	      ),
+	      React.createElement(
+	        "content",
+	        { id: "reviews" },
+	        this.state.restaurantDetails.reviews
+	      )
 	    );
 	  }
 	

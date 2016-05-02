@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness
 
+  has_many :reviews
+
   attr_reader :password
 
   # association has_many reviews

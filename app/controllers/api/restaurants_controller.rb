@@ -5,6 +5,7 @@ class Api::RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @user = User.all
   end
 
   private

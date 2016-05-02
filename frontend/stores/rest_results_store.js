@@ -19,9 +19,14 @@ RestResultsStore.__onDispatch = function (payload) {
   RestResultsStore.__emitChange();
 };
 
-var resetRestaurants = function(restaurants) {
-  _restResults = {};
+var resetRestaurants = function(restaurants) { // TODO this will keep a restuarant from updating if it's changed in the db
+  // _restResults = {};
   restaurants.forEach(function(restaurant) {
+    // debugger
+    if (_restResults[restaurant.id] !== undefined) {
+      console.log(_restResults[restaurant.id]);
+      return;
+    }
     _restResults[restaurant.id] = restaurant;
     window._restResults[restaurant.id] = restaurant; // TODO
   });
@@ -29,6 +34,7 @@ var resetRestaurants = function(restaurants) {
 
 var setRestaurant = function(restaurant) {
   _restResults[restaurant.id] = restaurant;
+  window._restResults[restaurant.id] = restaurant; // TODO
 };
 
 RestResultsStore.all = function () {
