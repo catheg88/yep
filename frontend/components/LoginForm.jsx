@@ -88,6 +88,7 @@ var LoginForm = React.createClass({
 			</form>
 		);
 	},
+	
 	render: function(){
 		return (
 			<div id="login-form">

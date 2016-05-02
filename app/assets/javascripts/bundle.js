@@ -27527,6 +27527,7 @@
 				)
 			);
 		},
+	
 		render: function () {
 			return React.createElement(
 				"div",
@@ -34887,9 +34888,12 @@
 	var RestResultsStore = __webpack_require__(275);
 	var ClientRestActions = __webpack_require__(278);
 	var RestReview = __webpack_require__(282);
+	var CurrentUserState = __webpack_require__(271);
 	
 	var RestDetails = React.createClass({
 	  displayName: "RestDetails",
+	
+	  mixins: [CurrentUserState],
 	
 	  getInitialState: function () {
 	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) };
@@ -34908,6 +34912,8 @@
 	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) });
 	  },
 	
+	  handleSubmit: function () {},
+	
 	  render: function () {
 	    // debugger
 	    if (this.state.restaurantDetails.reviews === undefined) {
@@ -34915,6 +34921,51 @@
 	    } else {
 	      _reviews = this.state.restaurantDetails.reviews;
 	    }
+	
+	    // _revForm
+	    if (this.state.currentUser === undefined) {
+	      var postReviewLabel = "Sign in to leave a review";
+	      var postReviewForm = undefined;
+	      // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
+	    } else {
+	        var postReviewLabel = "Leave a review, " + this.state.currentUser.username + "!";
+	        var postReviewForm = React.createElement(
+	          "form",
+	          { id: "rev-form", onSubmit: this.handleSubmit },
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            { id: "rev-content-field" },
+	            " Review:   ",
+	            React.createElement("br", null),
+	            React.createElement("textarea", { value: this.state.revContent, onChange: this.revContentChange }),
+	            " // TODO figure out the state"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "section",
+	            { id: "rev-yepp" },
+	            React.createElement(
+	              "label",
+	              null,
+	              React.createElement("input", { type: "Radio", name: "action", value: "true", onChange: this.setYepp }),
+	              " Yepp!  "
+	            ),
+	            React.createElement("br", null),
+	            React.createElement(
+	              "label",
+	              null,
+	              React.createElement("input", { type: "Radio", name: "action", value: "false", onChange: this.setYepp }),
+	              " Nope!  "
+	            ),
+	            React.createElement("br", null)
+	          ),
+	          React.createElement("br", null)
+	        );
+	        // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
+	      }
+	
 	    return React.createElement(
 	      "div",
 	      { id: "rest-details" },
@@ -34948,6 +34999,12 @@
 	        _reviews.map(function (review) {
 	          return React.createElement(RestReview, { key: review.id, review: review });
 	        })
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "rev-form-container" },
+	        postReviewLabel,
+	        postReviewForm
 	      )
 	    );
 	  }
