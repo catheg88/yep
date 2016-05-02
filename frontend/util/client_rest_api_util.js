@@ -29,8 +29,8 @@ var ClientRestApiUtil = {
                       restaurant_id: review.restaurant_id
         }
       },
-      success: function (RESPONSE) {
-        ServerActions.METHODNAME(RESPONSE);
+      success: function (restaurant) {
+        ServerRestActions.receiveRestaurant(restaurant);
       }
     });
   }
