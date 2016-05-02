@@ -73,18 +73,9 @@ KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
--if the full restaurant details are in the store, don't fetch again
+-add validation to the review form
 
 
 
 questions:
--i want to render the review component when people click for details
-  -that review component will listen to:
-    1) the review store, to know what reviews to display
-
-    2) the user store, to check for current user
-      a) if logged in, show a review form
-      b) if logged
-
-
-reviews controller
+-

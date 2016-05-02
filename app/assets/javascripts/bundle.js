@@ -34912,10 +34912,17 @@
 	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) });
 	  },
 	
+	  setYepp: function (e) {
+	    this.setState({ yepp: e.currentTarget.value });
+	  },
+	
+	  revContentChange: function (e) {
+	    this.setState({ revContent: e.currentTarget.value });
+	  },
+	
 	  handleSubmit: function () {},
 	
 	  render: function () {
-	    // debugger
 	    if (this.state.restaurantDetails.reviews === undefined) {
 	      var _reviews = [];
 	    } else {
@@ -34938,8 +34945,7 @@
 	            { id: "rev-content-field" },
 	            " Review:   ",
 	            React.createElement("br", null),
-	            React.createElement("textarea", { value: this.state.revContent, onChange: this.revContentChange }),
-	            " // TODO figure out the state"
+	            React.createElement("textarea", { value: this.state.revContent, onChange: this.revContentChange })
 	          ),
 	          React.createElement("br", null),
 	          React.createElement("br", null),
@@ -34949,19 +34955,23 @@
 	            React.createElement(
 	              "label",
 	              null,
-	              React.createElement("input", { type: "Radio", name: "action", value: "true", onChange: this.setYepp }),
+	              React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
 	              " Yepp!  "
 	            ),
-	            React.createElement("br", null),
 	            React.createElement(
 	              "label",
 	              null,
-	              React.createElement("input", { type: "Radio", name: "action", value: "false", onChange: this.setYepp }),
+	              React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
 	              " Nope!  "
 	            ),
 	            React.createElement("br", null)
 	          ),
-	          React.createElement("br", null)
+	          React.createElement("br", null),
+	          React.createElement(
+	            "button",
+	            null,
+	            "Submit"
+	          )
 	        );
 	        // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
 	      }
@@ -35010,10 +35020,6 @@
 	  }
 	
 	});
-	
-	// <content id="reviews">
-	//   {this.state.restaurantDetails.reviews}
-	// </content>
 	
 	module.exports = RestDetails;
 

@@ -24,12 +24,19 @@ var RestDetails = React.createClass({
     this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id))});
   },
 
+  setYepp: function(e) {
+    this.setState({ yepp: e.currentTarget.value });
+  },
+
+  revContentChange: function(e) {
+    this.setState({ revContent: e.currentTarget.value });
+  },
+
   handleSubmit: function() {
 
   },
 
   render: function() {
-    // debugger
     if (this.state.restaurantDetails.reviews === undefined) {
       var _reviews = [];
     } else {
@@ -46,23 +53,23 @@ var RestDetails = React.createClass({
       var postReviewForm = (<form id="rev-form" onSubmit={this.handleSubmit}>
           	<br />
           	<label id="rev-content-field"> Review:&nbsp;&nbsp;&nbsp;<br />
-          		<textarea value={this.state.revContent} onChange={this.revContentChange}/> // TODO figure out the state
+          		<textarea value={this.state.revContent} onChange={this.revContentChange}/>
           	</label>
           	<br />
           	<br />
         		<section id="rev-yepp">
         			<label>
-        				<input type="Radio" name="action" value="true" onChange={this.setYepp}/>
+        				<input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
         				&nbsp;Yepp!&nbsp;&nbsp;
         			</label>
-        			<br />
         			<label>
-        				<input type="Radio" name="action" value="false" onChange={this.setYepp}/>
+        				<input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
         				&nbsp;Nope!&nbsp;&nbsp;
         			</label>
         			<br />
         		</section>
         		<br />
+    				<button>Submit</button>
         </form>
       )
       // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
@@ -94,10 +101,5 @@ var RestDetails = React.createClass({
   }
 
 });
-
-
-// <content id="reviews">
-//   {this.state.restaurantDetails.reviews}
-// </content>
 
 module.exports = RestDetails;
