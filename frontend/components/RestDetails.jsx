@@ -1,6 +1,7 @@
 var React = require("react");
 var RestResultsStore = require("../stores/rest_results_store.js");
 var ClientRestActions = require("../actions/client_rest_actions.js");
+var RestReview = require("./RestReview.jsx");
 
 var RestDetails = React.createClass({
   getInitialState: function() {
@@ -21,6 +22,12 @@ var RestDetails = React.createClass({
   },
 
   render: function() {
+    // debugger
+    if (this.state.restaurantDetails.reviews === undefined) {
+      var _reviews = [];
+    } else {
+      _reviews = this.state.restaurantDetails.reviews;
+    }
     return (
       <div id="rest-details">
         <header id="restaurant-details-header">
@@ -33,13 +40,22 @@ var RestDetails = React.createClass({
           {this.state.restaurantDetails.phone} <br />
           {this.state.restaurantDetails.description} <br />
         </content>
-        <content id="reviews">
-          {this.state.restaurantDetails.reviews}
-        </content>
+        <ul id="reviews-index">
+          <RestReview />
+        </ul>
+
       </div>
     );
   }
 
 });
+
+// {_reviews.map(function (review) {
+//   return <RestReview key={review.id} restaurant={review} />;
+// })}
+
+// <content id="reviews">
+//   {this.state.restaurantDetails.reviews}
+// </content>
 
 module.exports = RestDetails;

@@ -15,11 +15,13 @@ RestResultItem = React.createClass({
         {this.props.restaurant.cuisine}
         {this.props.restaurant.hours}
         {this.props.restaurant.description}
-        {this.props.restaurant.address}
-        {this.props.restaurant.phone}
       </li>
     );
   }
 });
 
 module.exports = RestResultItem;
+
+// from render:
+// {this.props.restaurant.address}
+// {this.props.restaurant.phone}

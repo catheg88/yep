@@ -34732,7 +34732,7 @@
 	  restaurants.forEach(function (restaurant) {
 	    // debugger
 	    if (_restResults[restaurant.id] !== undefined) {
-	      console.log(_restResults[restaurant.id]);
+	      // console.log(_restResults[restaurant.id]);
 	      return;
 	    }
 	    _restResults[restaurant.id] = restaurant;
@@ -34793,14 +34793,16 @@
 	      this.props.restaurant.name,
 	      this.props.restaurant.cuisine,
 	      this.props.restaurant.hours,
-	      this.props.restaurant.description,
-	      this.props.restaurant.address,
-	      this.props.restaurant.phone
+	      this.props.restaurant.description
 	    );
 	  }
 	});
 	
 	module.exports = RestResultItem;
+	
+	// from render:
+	// {this.props.restaurant.address}
+	// {this.props.restaurant.phone}
 
 /***/ },
 /* 278 */
@@ -34884,6 +34886,7 @@
 	var React = __webpack_require__(24);
 	var RestResultsStore = __webpack_require__(275);
 	var ClientRestActions = __webpack_require__(278);
+	var RestReview = __webpack_require__(282);
 	
 	var RestDetails = React.createClass({
 	  displayName: "RestDetails",
@@ -34906,6 +34909,12 @@
 	  },
 	
 	  render: function () {
+	    // debugger
+	    if (this.state.restaurantDetails.reviews === undefined) {
+	      var _reviews = [];
+	    } else {
+	      _reviews = this.state.restaurantDetails.reviews;
+	    }
 	    return React.createElement(
 	      "div",
 	      { id: "rest-details" },
@@ -34934,16 +34943,55 @@
 	        React.createElement("br", null)
 	      ),
 	      React.createElement(
-	        "content",
-	        { id: "reviews" },
-	        this.state.restaurantDetails.reviews
+	        "ul",
+	        { id: "reviews-index" },
+	        React.createElement(RestReview, null)
 	      )
 	    );
 	  }
 	
 	});
 	
+	// {_reviews.map(function (review) {
+	//   return <RestReview key={review.id} restaurant={review} />;
+	// })}
+	
+	// <content id="reviews">
+	//   {this.state.restaurantDetails.reviews}
+	// </content>
+	
 	module.exports = RestDetails;
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	var RestResultsStore = __webpack_require__(275);
+	var ClientRestActions = __webpack_require__(278); // TODO why do i have this?
+	
+	var RestReview = React.createClass({
+	  displayName: "RestReview",
+	
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "li",
+	        null,
+	        "sup"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = RestReview;
+	
+	// <li className="rest-review" id={this.props.restaurant.id}>
+	//   {this.props.restaurant.name}
+	// </li>
 
 /***/ }
 /******/ ]);
