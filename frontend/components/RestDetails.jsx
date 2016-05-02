@@ -35,8 +35,10 @@ var RestDetails = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     ClientRestActions.addReview({
-      revContent: this.state.revContent,
-      yepp: this.state.yepp
+      rev_content: this.state.revContent,
+      yepp: this.state.yepp,
+      username: this.state.currentUser.username,
+      restaurant_id: parseInt(this.props.params.id)
     });
   },
 

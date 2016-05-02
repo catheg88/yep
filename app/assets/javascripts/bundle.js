@@ -34857,6 +34857,12 @@
 	    $.ajax({
 	      url: "api/reviews",
 	      type: "POST",
+	      data: { review: { rev_content: review.rev_content,
+	          yepp: review.yepp,
+	          username: review.username,
+	          restaurant_id: review.restaurant_id
+	        }
+	      },
 	      success: function (RESPONSE) {
 	        ServerActions.METHODNAME(RESPONSE);
 	      }
@@ -34937,8 +34943,10 @@
 	  handleSubmit: function (e) {
 	    e.preventDefault();
 	    ClientRestActions.addReview({
-	      revContent: this.state.revContent,
-	      yepp: this.state.yepp
+	      rev_content: this.state.revContent,
+	      yepp: this.state.yepp,
+	      username: this.state.currentUser.username,
+	      restaurant_id: parseInt(this.props.params.id)
 	    });
 	  },
 	
