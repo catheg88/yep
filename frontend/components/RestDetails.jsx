@@ -32,11 +32,18 @@ var RestDetails = React.createClass({
     this.setState({ revContent: e.currentTarget.value });
   },
 
-  handleSubmit: function() {
-
+  handleSubmit: function(e) {
+    e.preventDefault();
+    ClientRestActions.addReview({
+      revContent: this.state.revContent,
+      yepp: this.state.yepp
+    });
   },
 
   render: function() {
+    // if (this.state.restaurantDetails === undefined) {
+    //   console.log("this.state.restaurantDetails === undefined");
+    // } else
     if (this.state.restaurantDetails.reviews === undefined) {
       var _reviews = [];
     } else {

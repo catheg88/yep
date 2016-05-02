@@ -56,14 +56,7 @@ div id root
       handleClick:  router changes url, renders login modal
     when form is submitted, change url back to app.
 
-  next, make search results
-    not in router; always displayed
 
-
-  stores
-    -not refactoring login; don't need user store
-    -instead, i need a reviews store. user data associated w each review
-  review form: should it listen to the user store?
 
   restaurant
 
@@ -74,6 +67,8 @@ KNOWN ISSUES/TODOS:
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
 -add validation to the review form
+-refreshing always takes you to home screen.
+-signing in to add a review takes you to home screen
 
 
 

@@ -17,6 +17,16 @@ var ClientRestApiUtil = {
         ServerRestActions.receiveRestaurant(restaurant);
       }
     });
+  },
+
+  addReview: function(review) {
+    $.ajax({
+      url: "api/reviews",
+      type: "POST",
+      success: function (RESPONSE) {
+        ServerActions.METHODNAME(RESPONSE);
+      }
+    });
   }
 
 };
