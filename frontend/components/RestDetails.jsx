@@ -14,7 +14,6 @@ var RestDetails = React.createClass({
 
   getInitialState: function() {
     if (RestResultsStore.all().length === 0) {
-      console.log("setting initial state to empty strings");
       return ({ restaurantDetails: {
           name: "",
           hours: "",
@@ -41,32 +40,26 @@ var RestDetails = React.createClass({
   },
 
   closeLoginModal: function(){
-    console.log("closeLoginModal");
     if (this.state.currentUser) {
       this.setState({ loginModalOpen: false })
     }
   },
 
   openReviewModal: function(){
-    console.log("opening review modal");
     this.setState({ reviewModalOpen: true });
   },
 
   openLoginModal: function(){
-    console.log("opening login modal");
     this.setState({ loginModalOpen: true });
   },
 
   componentDidMount: function() {
     this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
-    this.userListener = UserStore.addListener(this.closeLoginModal); // this is the line messing things up
     ClientRestActions.getRestaurant(this.props.params.id);
   },
 
   componentWillUnmount: function() {
-    console.log("RestDetails cwu");
     this.restListener.remove();
-    this.userListener.remove();
   },
 
   updateRestaurantInState: function() {
@@ -93,14 +86,8 @@ var RestDetails = React.createClass({
     this.setState({revContent: ""})
   },
 
-  handleClick: function() {
-		console.log("RestDetails handleClick");
-    // NavBar.setState({ modalOpen: true })
-  },
-
   render: function() {
     if (this.state.restaurantDetails === undefined) {
-      console.log("doesn't have state");
     } else
     if (this.state.restaurantDetails.reviews === undefined) {
       var _reviews = [];

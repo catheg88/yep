@@ -34489,7 +34489,6 @@
 		},
 	
 		componentDidMount: function () {
-			console.log("current_user_state cdm");
 			this.userListener = UserStore.addListener(this.updateUser);
 			if (typeof UserStore.currentUser() === 'undefined') {
 				UserActions.fetchCurrentUser();
@@ -34501,11 +34500,13 @@
 		},
 	
 		updateUser: function () {
-			console.log("current_user_state updateUser");
 			this.setState({
 				currentUser: UserStore.currentUser(),
 				userErrors: UserStore.errors()
 			});
+			if (this.state.currentUser !== undefined) {
+				this.setState({ loginModalOpen: false });
+			}
 		}
 	
 	};
@@ -34536,6 +34537,10 @@
 	
 	  componentDidMount: function () {
 	    this.listenerForModal = UserStore.addListener(this.closeModal);
+	  },
+	
+	  componentWillUnmount: function () {
+	    this.listenerForModal.remove();
 	  },
 	
 	  closeModal: function () {
@@ -34635,7 +34640,6 @@
 	  },
 	
 	  componentDidMount: function () {
-	    console.log("RestResults cdm");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
 	    ClientRestActions.fetchRestaurants();
 	  },
@@ -34699,7 +34703,6 @@
 	  // _restResults = {};
 	  restaurants.forEach(function (restaurant) {
 	    if (_restResults[restaurant.id] !== undefined) {
-	      // console.log(_restResults[restaurant.id]);
 	      return;
 	    }
 	    _restResults[restaurant.id] = restaurant;
@@ -34908,7 +34911,6 @@
 	
 	  getInitialState: function () {
 	    if (RestResultsStore.all().length === 0) {
-	      console.log("setting initial state to empty strings");
 	      return { restaurantDetails: {
 	          name: "",
 	          hours: "",
@@ -34935,32 +34937,26 @@
 	  },
 	
 	  closeLoginModal: function () {
-	    console.log("closeLoginModal");
 	    if (this.state.currentUser) {
 	      this.setState({ loginModalOpen: false });
 	    }
 	  },
 	
 	  openReviewModal: function () {
-	    console.log("opening review modal");
 	    this.setState({ reviewModalOpen: true });
 	  },
 	
 	  openLoginModal: function () {
-	    console.log("opening login modal");
 	    this.setState({ loginModalOpen: true });
 	  },
 	
 	  componentDidMount: function () {
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
-	    this.userListener = UserStore.addListener(this.closeLoginModal); // this is the line messing things up
 	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
 	
 	  componentWillUnmount: function () {
-	    console.log("RestDetails cwu");
 	    this.restListener.remove();
-	    this.userListener.remove();
 	  },
 	
 	  updateRestaurantInState: function () {
@@ -34988,15 +34984,8 @@
 	    this.setState({ revContent: "" });
 	  },
 	
-	  handleClick: function () {
-	    console.log("RestDetails handleClick");
-	    // NavBar.setState({ modalOpen: true })
-	  },
-	
 	  render: function () {
-	    if (this.state.restaurantDetails === undefined) {
-	      console.log("doesn't have state");
-	    } else if (this.state.restaurantDetails.reviews === undefined) {
+	    if (this.state.restaurantDetails === undefined) {} else if (this.state.restaurantDetails.reviews === undefined) {
 	      var _reviews = [];
 	    } else {
 	      _reviews = this.state.restaurantDetails.reviews;
@@ -35170,7 +35159,6 @@
 	    if (this.state.currentUser !== undefined) {
 	
 	      if (this.state.currentUser.username === this.props.review.username) {
-	        console.log(true);
 	        var mine = "my-review";
 	      } else {
 	        mine = "";

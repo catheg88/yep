@@ -23,7 +23,6 @@ var resetRestaurants = function(restaurants) { // TODO this will keep a restuara
   // _restResults = {};
   restaurants.forEach(function(restaurant) {
     if (_restResults[restaurant.id] !== undefined) {
-      // console.log(_restResults[restaurant.id]);
       return;
     }
     _restResults[restaurant.id] = restaurant;

@@ -19,6 +19,10 @@ var NavBar = React.createClass({
     this.listenerForModal = UserStore.addListener(this.closeModal);
   },
 
+	componentWillUnmount: function() {
+		this.listenerForModal.remove();
+	},
+
   closeModal: function() {
     if (this.state.currentUser) {
       this.setState({ modalOpen: false })

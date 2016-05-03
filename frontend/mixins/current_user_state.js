@@ -11,7 +11,6 @@ var CurrentUserState = {
 	},
 
 	componentDidMount: function(){
-		console.log("current_user_state cdm");
 		this.userListener = UserStore.addListener(this.updateUser);
 		if (typeof UserStore.currentUser() === 'undefined') {
 			UserActions.fetchCurrentUser();
@@ -23,11 +22,13 @@ var CurrentUserState = {
 	},
 
 	updateUser: function(){
-		console.log("current_user_state updateUser");
 		this.setState({
 			currentUser: UserStore.currentUser(),
-			userErrors: UserStore.errors()
+			userErrors: UserStore.errors(),
 		});
+		if (this.state.currentUser !== undefined) {
+			this.setState({ loginModalOpen: false })
+		}
 	}
 
 };

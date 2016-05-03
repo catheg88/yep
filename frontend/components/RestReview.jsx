@@ -15,7 +15,6 @@ var RestReview = React.createClass({
     if(this.state.currentUser !== undefined) {
 
       if(this.state.currentUser.username === this.props.review.username) {
-        console.log(true);
         var mine = "my-review";
       } else {
         mine = "";

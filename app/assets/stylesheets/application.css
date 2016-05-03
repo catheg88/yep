@@ -254,7 +254,7 @@ ul {
 #rest-details {
  height: 100%;
  margin: 60px;
- background-color: rgba(55,133,55,0.94);
+ background-color: white;
  border: 2px solid black;
  display: flex;
  flex-direction: column;
@@ -266,8 +266,8 @@ ul {
  height: 100%;
  width: 100%;
  border-bottom: 2px solid black;
- background-color: rgba(30, 255, 0,0.5);
- color: white;
+ background-color: Gainsboro;
+ color: black;
  font-weight: 700;
  padding: 20px 0px;
  display: flex;
@@ -290,10 +290,9 @@ ul {
 
 .review {
   padding: 8px 20px;
-  margin: 4px 20px 4px -20px;
-  border-radius: 6px;
-  background-color: white;
-  border: 2px solid black;
+  margin: 18px 20px 4px -20px;
+  border-bottom: 2px solid red;
+  border-right: 2px solid red;
 
   display: flex;
   justify-content: space-between;
@@ -320,7 +319,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 15%;
+  width: 7%;
 }
 
 #my-review {
@@ -340,7 +339,7 @@ ul {
 
 #review-button {
   padding: 10px;
-  margin: 0px 0px 4px 20px;
+  margin: 8px 0px 20px 20px;
   width: 230px;
   border-radius: 6px;
   background-color: white;
