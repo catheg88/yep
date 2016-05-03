@@ -2,11 +2,12 @@ var React = require("react");
 var RestResultsStore = require("../stores/rest_results_store.js");
 var ClientRestActions = require("../actions/client_rest_actions.js");
 var RestReview = require("./RestReview.jsx");
+var LoginForm = require('./LoginForm.jsx');
 var CurrentUserState = require("../mixins/current_user_state");
 var Modal = require("react-modal");
 var LoginModalStyle = require("../../app/assets/stylesheets/login_modal_style");
 var ReviewModalStyle = require("../../app/assets/stylesheets/review_modal_style");
-var NavBar = require('./NavBar.jsx');
+var UserStore = require("../stores/user_store.js");
 
 var RestDetails = React.createClass({
   mixins: [CurrentUserState],
@@ -25,7 +26,9 @@ var RestDetails = React.createClass({
       })
     } else {
       return ({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
-                reviewModalOpen: false});
+                reviewModalOpen: false,
+                loginModalOpen: false,
+              });
     }
   },
 
@@ -33,18 +36,36 @@ var RestDetails = React.createClass({
     this.setState({ reviewModalOpen: false });
   },
 
+  onLoginModalClose: function(){
+    this.setState({ loginModalOpen: false });
+  },
+
+  closeLoginModal: function(){
+    console.log("closeLoginModal");
+    if (this.state.currentUser) {
+      this.setState({ loginModalOpen: false })
+    }
+  },
+
   openReviewModal: function(){
     console.log("opening review modal");
     this.setState({ reviewModalOpen: true });
   },
 
+  openLoginModal: function(){
+    console.log("opening login modal");
+    this.setState({ loginModalOpen: true });
+  },
+
   componentDidMount: function() {
     this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
+    this.userListener = UserStore.addListener(this.closeLoginModal);
     ClientRestActions.getRestaurant(this.props.params.id);
   },
 
   componentWillUnmount: function() {
     this.restListener.remove();
+    this.userListener.remove();
   },
 
   updateRestaurantInState: function() {
@@ -88,7 +109,7 @@ var RestDetails = React.createClass({
 
     // _revForm
     if (this.state.currentUser === undefined) {
-      var postReviewLabel = <div id="review-button" onClick={this.handleClick}>Sign in to leave a review</div>
+      var postReviewLabel = <div id="review-button" onClick={this.openLoginModal}>Sign in to leave a review</div>
       var postReviewForm = undefined;
       // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
     } else {
@@ -154,6 +175,13 @@ var RestDetails = React.createClass({
             onRequestClose={this.onReviewModalClose}
             style={ReviewModalStyle}>
             {postReviewForm}
+          </Modal>
+
+          <Modal
+            isOpen={this.state.loginModalOpen}
+            onRequestClose={this.onLoginModalClose}
+            style={LoginModalStyle}>
+            <LoginForm />
           </Modal>
 
         </div>

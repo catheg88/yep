@@ -85,7 +85,7 @@ the API.
 ### Phase 5: Continue Styling; editable Reviews (1 day) Tues
 
 - [ ] add editable review functionality
-- [ ] modalize review form
+- [x] modalize review form
 - [ ] make styling more better
 
 ### Phase 6: Implement Search Bar (2 days) Wed-Thurs

@@ -34543,7 +34543,6 @@
 	  },
 	
 	  handleClick: function () {
-	    console.log("NavBar handleClick");
 	    if (!this.state.currentUser) {
 	      this.setState({ modalOpen: true });
 	    }
@@ -34568,14 +34567,14 @@
 	      var username = "Not logged in";
 	      var authLink = React.createElement(
 	        "div",
-	        { id: "sign-in-sign-up", onClick: this.handleClick },
+	        { className: "sisuso", onClick: this.handleClick },
 	        "Sign In/Up"
 	      );
 	    } else {
 	      var username = "Hello, " + this.state.currentUser.username + "!";
 	      var authLink = React.createElement(
 	        "div",
-	        { id: "sign-out", onClick: this.logout },
+	        { className: "sisuso", onClick: this.logout },
 	        "Sign Out"
 	      );
 	    }
@@ -34892,11 +34891,12 @@
 	var RestResultsStore = __webpack_require__(275);
 	var ClientRestActions = __webpack_require__(278);
 	var RestReview = __webpack_require__(282);
+	var LoginForm = __webpack_require__(245);
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
 	var LoginModalStyle = __webpack_require__(283);
 	var ReviewModalStyle = __webpack_require__(284);
-	var NavBar = __webpack_require__(272);
+	var UserStore = __webpack_require__(249);
 	
 	var RestDetails = React.createClass({
 	  displayName: "RestDetails",
@@ -34917,7 +34917,9 @@
 	      };
 	    } else {
 	      return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
-	        reviewModalOpen: false };
+	        reviewModalOpen: false,
+	        loginModalOpen: false
+	      };
 	    }
 	  },
 	
@@ -34925,18 +34927,36 @@
 	    this.setState({ reviewModalOpen: false });
 	  },
 	
+	  onLoginModalClose: function () {
+	    this.setState({ loginModalOpen: false });
+	  },
+	
+	  closeLoginModal: function () {
+	    console.log("closeLoginModal");
+	    if (this.state.currentUser) {
+	      this.setState({ loginModalOpen: false });
+	    }
+	  },
+	
 	  openReviewModal: function () {
 	    console.log("opening review modal");
 	    this.setState({ reviewModalOpen: true });
 	  },
 	
+	  openLoginModal: function () {
+	    console.log("opening login modal");
+	    this.setState({ loginModalOpen: true });
+	  },
+	
 	  componentDidMount: function () {
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
+	    this.userListener = UserStore.addListener(this.closeLoginModal);
 	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
 	
 	  componentWillUnmount: function () {
 	    this.restListener.remove();
+	    this.userListener.remove();
 	  },
 	
 	  updateRestaurantInState: function () {
@@ -34982,7 +35002,7 @@
 	    if (this.state.currentUser === undefined) {
 	      var postReviewLabel = React.createElement(
 	        "div",
-	        { id: "review-button", onClick: this.handleClick },
+	        { id: "review-button", onClick: this.openLoginModal },
 	        "Sign in to leave a review"
 	      );
 	      var postReviewForm = undefined;
@@ -35103,6 +35123,14 @@
 	            onRequestClose: this.onReviewModalClose,
 	            style: ReviewModalStyle },
 	          postReviewForm
+	        ),
+	        React.createElement(
+	          Modal,
+	          {
+	            isOpen: this.state.loginModalOpen,
+	            onRequestClose: this.onLoginModalClose,
+	            style: LoginModalStyle },
+	          React.createElement(LoginForm, null)
 	        )
 	      )
 	    );

@@ -50,7 +50,8 @@ ul {
  padding: 0;
  background: #f00;
  color: #fff;
- border: 2px solid black;
+ border-top: 2px solid black;
+ border-bottom: 2px solid black;
  display: flex;
  justify-content: space-between;
  width: 100%;
@@ -86,13 +87,20 @@ ul {
  margin: 0;
 }
 
-#sign-in-sign-up {
-  display:flex;
+.sisuso {
+  min-width: 130px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  padding: 0px 5px;
+  align-items: center;
+
   height: 100%;
+  border-left: 2px solid black;
+}
+
+.sisuso:hover {
+  cursor: pointer;
+  background-color: orange;
 }
 
 .header-list > li {
@@ -101,12 +109,8 @@ ul {
  justify-content: center;
  align-content: center;
  padding-left: 30px;
- padding-right: 50px;
+ padding-right: 0px;
  height: 100%;
-}
-
-#sign-in-sign-up:hover{
-  cursor: pointer;
 }
 
 #login-form {

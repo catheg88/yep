@@ -26,7 +26,6 @@ var NavBar = React.createClass({
   },
 
   handleClick: function(){
-		console.log("NavBar handleClick");
     if (!this.state.currentUser) {
       this.setState({ modalOpen: true });
     }
@@ -49,10 +48,10 @@ var NavBar = React.createClass({
 
     if (this.state.currentUser === undefined) {
       var username = "Not logged in"
-      var authLink = <div id="sign-in-sign-up" onClick={this.handleClick}>Sign In/Up</div>
+      var authLink = <div className="sisuso" onClick={this.handleClick}>Sign In/Up</div>
     } else {
       var username = "Hello, " + this.state.currentUser.username + "!"
-      var authLink = <div id="sign-out" onClick={this.logout}>Sign Out</div>
+      var authLink = <div className="sisuso" onClick={this.logout}>Sign Out</div>
     }
 
     return (
