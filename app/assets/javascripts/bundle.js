@@ -34489,6 +34489,7 @@
 		},
 	
 		componentDidMount: function () {
+			console.log("current_user_state cdm");
 			this.userListener = UserStore.addListener(this.updateUser);
 			if (typeof UserStore.currentUser() === 'undefined') {
 				UserActions.fetchCurrentUser();
@@ -34500,6 +34501,7 @@
 		},
 	
 		updateUser: function () {
+			console.log("current_user_state updateUser");
 			this.setState({
 				currentUser: UserStore.currentUser(),
 				userErrors: UserStore.errors()
@@ -34633,6 +34635,7 @@
 	  },
 	
 	  componentDidMount: function () {
+	    console.log("RestResults cdm");
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurants);
 	    ClientRestActions.fetchRestaurants();
 	  },
@@ -34950,11 +34953,12 @@
 	
 	  componentDidMount: function () {
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
-	    this.userListener = UserStore.addListener(this.closeLoginModal);
+	    this.userListener = UserStore.addListener(this.closeLoginModal); // this is the line messing things up
 	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
 	
 	  componentWillUnmount: function () {
+	    console.log("RestDetails cwu");
 	    this.restListener.remove();
 	    this.userListener.remove();
 	  },
@@ -35006,52 +35010,50 @@
 	        "Sign in to leave a review"
 	      );
 	      var postReviewForm = undefined;
-	      // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
 	    } else {
-	        var postReviewLabel = React.createElement(
-	          "div",
-	          { id: "review-button", onClick: this.openReviewModal },
-	          "Leave a review, " + this.state.currentUser.username + "!"
-	        );
-	        var postReviewForm = React.createElement(
-	          "form",
-	          { id: "review-form", onSubmit: this.handleReviewSubmit },
+	      var postReviewLabel = React.createElement(
+	        "div",
+	        { id: "review-button", onClick: this.openReviewModal },
+	        "Leave a review, " + this.state.currentUser.username + "!"
+	      );
+	      var postReviewForm = React.createElement(
+	        "form",
+	        { id: "review-form", onSubmit: this.handleReviewSubmit },
+	        React.createElement("br", null),
+	        React.createElement(
+	          "label",
+	          { id: "rev-content-holder" },
+	          "Review:   ",
 	          React.createElement("br", null),
+	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	        ),
+	        React.createElement("br", null),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "section",
+	          { id: "rev-yepp" },
 	          React.createElement(
 	            "label",
-	            { id: "rev-content-holder" },
-	            "Review:   ",
-	            React.createElement("br", null),
-	            React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
+	            " Yepp!     "
 	          ),
-	          React.createElement("br", null),
-	          React.createElement("br", null),
 	          React.createElement(
-	            "section",
-	            { id: "rev-yepp" },
-	            React.createElement(
-	              "label",
-	              null,
-	              React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
-	              " Yepp!     "
-	            ),
-	            React.createElement(
-	              "label",
-	              null,
-	              React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
-	              " Nope!"
-	            ),
-	            React.createElement("br", null)
+	            "label",
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
+	            " Nope!"
 	          ),
-	          React.createElement("br", null),
-	          React.createElement(
-	            "button",
-	            { id: "login-submit" },
-	            "Submit"
-	          )
-	        );
-	        // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
-	      }
+	          React.createElement("br", null)
+	        ),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "button",
+	          { id: "login-submit" },
+	          "Submit"
+	        )
+	      );
+	    }
 	
 	    return React.createElement(
 	      "div",
@@ -35067,6 +35069,7 @@
 	        React.createElement(
 	          "div",
 	          { id: "detail-hours" },
+	          " Hours:  ",
 	          this.state.restaurantDetails.hours,
 	          " ",
 	          React.createElement("br", null)
@@ -35074,6 +35077,7 @@
 	        React.createElement(
 	          "div",
 	          { id: "detail-cuisine" },
+	          " Cuisine:  ",
 	          this.state.restaurantDetails.cuisine,
 	          " ",
 	          React.createElement("br", null)
@@ -35081,6 +35085,7 @@
 	        React.createElement(
 	          "div",
 	          { id: "detail-address" },
+	          " Address:  ",
 	          this.state.restaurantDetails.address,
 	          " ",
 	          React.createElement("br", null)
@@ -35088,6 +35093,7 @@
 	        React.createElement(
 	          "div",
 	          { id: "detail-phone" },
+	          " Phone:  ",
 	          this.state.restaurantDetails.phone,
 	          " ",
 	          React.createElement("br", null)
@@ -35095,6 +35101,7 @@
 	        React.createElement(
 	          "div",
 	          { id: "detail-description" },
+	          " Description:  ",
 	          this.state.restaurantDetails.description,
 	          " ",
 	          React.createElement("br", null)
@@ -35146,35 +35153,47 @@
 
 	var React = __webpack_require__(24);
 	var RestResultsStore = __webpack_require__(275);
+	var CurrentUserState = __webpack_require__(271);
 	var ClientRestActions = __webpack_require__(278); // TODO why do i have this?
 	
 	var RestReview = React.createClass({
 	  displayName: "RestReview",
 	
-	
+	  mixins: [CurrentUserState],
 	  render: function () {
 	    if (this.props.review.yepp === true) {
 	      var _yepp = "Yepp!";
 	    } else {
 	      _yepp = "Nope!";
 	    }
+	
+	    if (this.state.currentUser !== undefined) {
+	
+	      if (this.state.currentUser.username === this.props.review.username) {
+	        console.log(true);
+	        var mine = "my-review";
+	      } else {
+	        mine = "";
+	      }
+	    }
+	
 	    return React.createElement(
 	      "div",
-	      { className: "review" },
+	      { className: "review", id: mine },
 	      React.createElement(
-	        "li",
-	        null,
+	        "div",
+	        { id: "review-author" },
 	        "Posted by: ",
 	        this.props.review.username
 	      ),
 	      React.createElement(
-	        "li",
-	        null,
+	        "div",
+	        { id: "review-meat" },
 	        this.props.review.rev_content
 	      ),
 	      React.createElement(
-	        "li",
-	        null,
+	        "div",
+	        { id: "review-yepp" },
 	        _yepp
 	      )
 	    );

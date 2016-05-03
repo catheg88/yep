@@ -59,11 +59,12 @@ var RestDetails = React.createClass({
 
   componentDidMount: function() {
     this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
-    this.userListener = UserStore.addListener(this.closeLoginModal);
+    this.userListener = UserStore.addListener(this.closeLoginModal); // this is the line messing things up
     ClientRestActions.getRestaurant(this.props.params.id);
   },
 
   componentWillUnmount: function() {
+    console.log("RestDetails cwu");
     this.restListener.remove();
     this.userListener.remove();
   },
@@ -111,7 +112,6 @@ var RestDetails = React.createClass({
     if (this.state.currentUser === undefined) {
       var postReviewLabel = <div id="review-button" onClick={this.openLoginModal}>Sign in to leave a review</div>
       var postReviewForm = undefined;
-      // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
     } else {
       var postReviewLabel = <div id="review-button" onClick={this.openReviewModal}>{"Leave a review, " + this.state.currentUser.username + "!"}</div>
       var postReviewForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
@@ -136,7 +136,6 @@ var RestDetails = React.createClass({
     				<button id="login-submit">Submit</button>
         </form>
       )
-      // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
     }
 
     return (
@@ -146,19 +145,25 @@ var RestDetails = React.createClass({
           {this.state.restaurantDetails.name}
         </header>
         <content id="rest-detail-content">
-          <div id="detail-hours">
+
+
+
+          <div id="detail-hours">&nbsp;Hours:&nbsp;&nbsp;
             {this.state.restaurantDetails.hours} <br />
           </div>
-          <div id="detail-cuisine">
+
+
+
+          <div id="detail-cuisine">&nbsp;Cuisine:&nbsp;&nbsp;
             {this.state.restaurantDetails.cuisine} <br />
           </div>
-          <div id="detail-address">
+          <div id="detail-address">&nbsp;Address:&nbsp;&nbsp;
             {this.state.restaurantDetails.address} <br />
           </div>
-          <div id="detail-phone">
+          <div id="detail-phone">&nbsp;Phone:&nbsp;&nbsp;
             {this.state.restaurantDetails.phone} <br />
           </div>
-          <div id="detail-description">
+          <div id="detail-description">&nbsp;Description:&nbsp;&nbsp;
             {this.state.restaurantDetails.description} <br />
           </div>
         </content>

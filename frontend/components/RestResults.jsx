@@ -9,6 +9,7 @@ var RestResults = React.createClass({
   },
 
   componentDidMount: function() {
+    console.log("RestResults cdm");
     this.restListener = RestResultsStore.addListener(this.updateRestaurants);
     ClientRestActions.fetchRestaurants();
   },
