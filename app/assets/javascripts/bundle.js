@@ -34793,22 +34793,26 @@
 	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
 	      React.createElement(
 	        "div",
-	        { id: "result-name" },
-	        this.props.restaurant.name
+	        { className: "rest-result-details" },
+	        React.createElement(
+	          "div",
+	          { className: "rest-result-detail" },
+	          this.props.restaurant.name
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "rest-result-detail" },
+	          this.props.restaurant.cuisine
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "rest-result-detail" },
+	          this.props.restaurant.hours
+	        )
 	      ),
 	      React.createElement(
 	        "div",
-	        { id: "result-cuisine" },
-	        this.props.restaurant.cuisine
-	      ),
-	      React.createElement(
-	        "div",
-	        { id: "result-hours" },
-	        this.props.restaurant.hours
-	      ),
-	      React.createElement(
-	        "div",
-	        { id: "result-description" },
+	        { id: "rest-result-detail-description" },
 	        this.props.restaurant.description
 	      )
 	    );
@@ -34989,7 +34993,7 @@
 	        var postReviewLabel = React.createElement(
 	          "div",
 	          null,
-	          "\"Leave a review, \" + this.state.currentUser.username + \"!\""
+	          "Leave a review, " + this.state.currentUser.username + "!"
 	        );
 	        var postReviewForm = React.createElement(
 	          "form",
@@ -35044,35 +35048,35 @@
 	        { id: "rest-detail-content" },
 	        React.createElement(
 	          "div",
-	          { id: "hours" },
+	          { id: "detail-hours" },
 	          this.state.restaurantDetails.hours,
 	          " ",
 	          React.createElement("br", null)
 	        ),
 	        React.createElement(
 	          "div",
-	          { id: "cuisine" },
+	          { id: "detail-cuisine" },
 	          this.state.restaurantDetails.cuisine,
 	          " ",
 	          React.createElement("br", null)
 	        ),
 	        React.createElement(
 	          "div",
-	          { id: "address" },
+	          { id: "detail-address" },
 	          this.state.restaurantDetails.address,
 	          " ",
 	          React.createElement("br", null)
 	        ),
 	        React.createElement(
 	          "div",
-	          { id: "phone" },
+	          { id: "detail-phone" },
 	          this.state.restaurantDetails.phone,
 	          " ",
 	          React.createElement("br", null)
 	        ),
 	        React.createElement(
 	          "div",
-	          { id: "description" },
+	          { id: "detail-description" },
 	          this.state.restaurantDetails.description,
 	          " ",
 	          React.createElement("br", null)

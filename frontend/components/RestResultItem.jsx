@@ -11,18 +11,26 @@ RestResultItem = React.createClass({
   render: function () {
     return(
       <li className="rest-result-item" onClick={this.showDetail} id={this.props.restaurant.id}>
-        <div id="result-name">
-          {this.props.restaurant.name}
+
+        <div className="rest-result-details">
+          <div className="rest-result-detail">
+            {this.props.restaurant.name}
+          </div>
+          <div className="rest-result-detail">
+            {this.props.restaurant.cuisine}
+          </div>
+          <div className="rest-result-detail">
+            {this.props.restaurant.hours}
+          </div>
         </div>
-        <div id="result-cuisine">
-          {this.props.restaurant.cuisine}
-        </div>
-        <div id="result-hours">
-          {this.props.restaurant.hours}
-        </div>
-        <div id="result-description">
+
+
+        <div id="rest-result-detail-description">
           {this.props.restaurant.description}
         </div>
+
+
+
 
       </li>
     );

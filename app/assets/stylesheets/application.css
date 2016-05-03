@@ -186,6 +186,22 @@ ul {
   border-radius: 8px;
   overflow: hidden;
   display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.rest-result-details {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+#rest-result-detail-description {
+  color: black;
+  display: flex;
+  width: 50%;
+  align-content: flex-start;
+  justify-content: flex-start;
 }
 
 .rest-result-item:hover {

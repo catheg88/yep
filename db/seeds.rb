@@ -28,7 +28,7 @@ Restaurant.create({
   address: "1533 11th Ave, San Francisco, CA, 94122",
   phone: "415-123-4567",
   hours: "Daily 8am-8pm",
-  description: "Come enjoy a classic San Francisco pizza!"
+  description: "Come enjoy a classic San Francisco pizza!  This delicious pizza is locally sourced, and free from GMOs, trans fats, gluten, carbs, and dairy."
 })
 
 Restaurant.create({
@@ -96,6 +96,51 @@ Restaurant.create({
 
 Restaurant.create({
   name: "placeholder5",
+  cuisine: "placeholder",
+  address: "placeholder",
+  phone: "placeholder",
+  hours: "placeholder",
+  description: "placeholder"
+})
+
+Restaurant.create({
+  name: "placeholder6",
+  cuisine: "placeholder",
+  address: "placeholder",
+  phone: "placeholder",
+  hours: "placeholder",
+  description: "placeholder"
+})
+
+Restaurant.create({
+  name: "placeholder7",
+  cuisine: "placeholder",
+  address: "placeholder",
+  phone: "placeholder",
+  hours: "placeholder",
+  description: "placeholder"
+})
+
+Restaurant.create({
+  name: "placeholder8",
+  cuisine: "placeholder",
+  address: "placeholder",
+  phone: "placeholder",
+  hours: "placeholder",
+  description: "placeholder"
+})
+
+Restaurant.create({
+  name: "placeholder9",
+  cuisine: "placeholder",
+  address: "placeholder",
+  phone: "placeholder",
+  hours: "placeholder",
+  description: "placeholder"
+})
+
+Restaurant.create({
+  name: "placeholder10",
   cuisine: "placeholder",
   address: "placeholder",
   phone: "placeholder",

@@ -58,7 +58,7 @@ var RestDetails = React.createClass({
       var postReviewForm = undefined;
       // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
     } else {
-      var postReviewLabel = <div>"Leave a review, " + this.state.currentUser.username + "!"</div>
+      var postReviewLabel = <div>{"Leave a review, " + this.state.currentUser.username + "!"}</div>
       var postReviewForm = (<form id="rev-form" onSubmit={this.handleSubmit}>
           	<br />
           	<label id="rev-content-field"> Review:&nbsp;&nbsp;&nbsp;<br />
@@ -90,19 +90,19 @@ var RestDetails = React.createClass({
           {this.state.restaurantDetails.name}
         </header>
         <content id="rest-detail-content">
-          <div id="hours">
+          <div id="detail-hours">
             {this.state.restaurantDetails.hours} <br />
           </div>
-          <div id="cuisine">
+          <div id="detail-cuisine">
             {this.state.restaurantDetails.cuisine} <br />
           </div>
-          <div id="address">
+          <div id="detail-address">
             {this.state.restaurantDetails.address} <br />
           </div>
-          <div id="phone">
+          <div id="detail-phone">
             {this.state.restaurantDetails.phone} <br />
           </div>
-          <div id="description">
+          <div id="detail-description">
             {this.state.restaurantDetails.description} <br />
           </div>
         </content>
