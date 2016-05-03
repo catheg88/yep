@@ -34731,7 +34731,6 @@
 	  // TODO this will keep a restuarant from updating if it's changed in the db
 	  // _restResults = {};
 	  restaurants.forEach(function (restaurant) {
-	    // debugger
 	    if (_restResults[restaurant.id] !== undefined) {
 	      // console.log(_restResults[restaurant.id]);
 	      return;
@@ -34968,6 +34967,7 @@
 	      username: this.state.currentUser.username,
 	      restaurant_id: parseInt(this.props.params.id)
 	    });
+	    this.setState({ revContent: "" });
 	  },
 	
 	  render: function () {
@@ -35083,6 +35083,11 @@
 	        )
 	      ),
 	      React.createElement(
+	        "div",
+	        { id: "review-header" },
+	        "Reviews"
+	      ),
+	      React.createElement(
 	        "ul",
 	        { id: "reviews-index" },
 	        _reviews.map(function (review) {
@@ -35126,6 +35131,7 @@
 	      React.createElement(
 	        "li",
 	        null,
+	        "Posted by: ",
 	        this.props.review.username
 	      ),
 	      React.createElement(

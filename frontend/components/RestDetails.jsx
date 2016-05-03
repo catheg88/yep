@@ -40,6 +40,7 @@ var RestDetails = React.createClass({
       username: this.state.currentUser.username,
       restaurant_id: parseInt(this.props.params.id)
     });
+    this.setState({revContent: ""})
   },
 
   render: function() {
@@ -106,6 +107,7 @@ var RestDetails = React.createClass({
             {this.state.restaurantDetails.description} <br />
           </div>
         </content>
+        <div id="review-header">Reviews</div>
         <ul id="reviews-index">
           {_reviews.map(function (review) {
             return <RestReview key={review.id} review={review} />;

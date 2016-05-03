@@ -1,6 +1,5 @@
 class Api::ReviewsController < ApplicationController
   def create
-    debugger
     user_id = (User.find_by_username(params[:review][:username])).id
     Review.create({
       rev_content: params[:review][:rev_content],

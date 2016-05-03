@@ -12,7 +12,7 @@ var RestReview = React.createClass({
     }
     return (
       <div className="review">
-        <li>{this.props.review.username}</li>
+        <li>Posted by: {this.props.review.username}</li>
         <li>{this.props.review.rev_content}</li>
         <li>{_yepp}</li>
       </div>

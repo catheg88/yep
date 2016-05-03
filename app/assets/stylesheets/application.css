@@ -178,6 +178,7 @@ ul {
 }
 
 .rest-result-item {
+  background-color: rgba(30, 255, 0,0.5);
   color: white;
   padding: 20px;
   border: 2px solid black;
@@ -199,7 +200,7 @@ ul {
 
 #rest-result-detail-description {
   color: black;
-  display: block;
+  display: flex;
   width: 50%;
   align-items: center;
   justify-content: flex-start;
@@ -244,8 +245,18 @@ ul {
 
 .review {
   padding: 20px;
-  border: 2px solid black;
   margin: 6px 46px 6px 0px;
   border-radius: 6px;
-  background-color: yellow;
+  background-color: white;
+}
+
+#review-header {
+  width: 100%;
+  color: white;
+  background-color: red;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 20px 60px 20px 0px;
+  display: flex;
+  justify-content: center;
 }

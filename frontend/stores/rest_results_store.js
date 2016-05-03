@@ -22,7 +22,6 @@ RestResultsStore.__onDispatch = function (payload) {
 var resetRestaurants = function(restaurants) { // TODO this will keep a restuarant from updating if it's changed in the db
   // _restResults = {};
   restaurants.forEach(function(restaurant) {
-    // debugger
     if (_restResults[restaurant.id] !== undefined) {
       // console.log(_restResults[restaurant.id]);
       return;
