@@ -23,13 +23,15 @@
 
 body {
 margin: 0;
+height: 100%;
 }
 
 html {
- height: 100%;
+ /*height: 100%;*/
  background-image: url("background.jpg");
- background-position: center center;
+ background-position: center;
  background-size: cover;
+ background-attachment: fixed;
  font-family: Helvetica, sans-serif;
 }
 
@@ -37,15 +39,11 @@ ul {
  list-style: none;
 }
 
-#Content {
+#content {
  height: 100%;
  width: 100%;
- display: flex;
-}
-
-#App {
- height: 100%;
- width: 100%;
+ position: absolute;
+ top: 54px;
 }
 
 .header {
@@ -56,6 +54,8 @@ ul {
  display: flex;
  justify-content: space-between;
  width: 100%;
+ position: fixed;
+ top: 0px;
 }
 
 .header-logo {
@@ -79,23 +79,34 @@ ul {
 
 .header-list {
  display: flex;
+ align-content: center;
  justify-content: flex-end;
- align-items: center;
+ align-items: flex;
+ height: 50px;
+ margin: 0;
 }
 
-.header a {
- display: flex;
- justify-content: flex-end;
- float: right;
- color: white;
- text-decoration: none;
+#sign-in-sign-up {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 0px 5px;
+  height: 100%;
 }
 
 .header-list > li {
  display: flex;
- justify-content: flex-end;
+ flex-direction: column;
+ justify-content: center;
+ align-content: center;
  padding-left: 30px;
  padding-right: 50px;
+ height: 100%;
+}
+
+#sign-in-sign-up:hover{
+  cursor: pointer;
 }
 
 #login-form {
@@ -131,7 +142,11 @@ ul {
 }
 
 #login-submit {
-  margin: 0px 65px;
+  margin: 0% 30%;
+}
+
+#auth-errors > li {
+  text-align: center;
 }
 
 #restaurant-results {
@@ -141,17 +156,21 @@ ul {
  border: 2px solid black;
  display: flex;
  flex-direction: column;
+ border-radius: 15px;
+ overflow: hidden;
 }
 
 #restaurant-results-header {
  height: 100%;
  width: 100%;
  border-bottom: 2px solid black;
+ color: white;
  background-color: rgba(30, 255, 0,0.5);
  font-weight: 700;
  padding: 20px 0px;
  display: flex;
  justify-content: center;
+ font-size: x-large;
 }
 
 #results-index {
@@ -161,8 +180,12 @@ ul {
 .rest-result-item {
   color: white;
   padding: 20px;
-  border: 1px solid black;
+  border: 2px solid black;
+  margin: 6px;
   cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
 }
 
 .rest-result-item:hover {
@@ -176,6 +199,8 @@ ul {
  border: 2px solid black;
  display: flex;
  flex-direction: column;
+ border-radius: 15px;
+ overflow: hidden;
 }
 
 #restaurant-details-header {
@@ -183,10 +208,12 @@ ul {
  width: 100%;
  border-bottom: 2px solid black;
  background-color: rgba(30, 255, 0,0.5);
+ color: white;
  font-weight: 700;
  padding: 20px 0px;
  display: flex;
  justify-content: center;
+ font-size: x-large;
 }
 
 

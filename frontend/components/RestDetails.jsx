@@ -54,11 +54,11 @@ var RestDetails = React.createClass({
 
     // _revForm
     if (this.state.currentUser === undefined) {
-      var postReviewLabel = "Sign in to leave a review"
+      var postReviewLabel = <div>Sign in to leave a review</div>
       var postReviewForm = undefined;
       // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
     } else {
-      var postReviewLabel = "Leave a review, " + this.state.currentUser.username + "!"
+      var postReviewLabel = <div>"Leave a review, " + this.state.currentUser.username + "!"</div>
       var postReviewForm = (<form id="rev-form" onSubmit={this.handleSubmit}>
           	<br />
           	<label id="rev-content-field"> Review:&nbsp;&nbsp;&nbsp;<br />
@@ -90,11 +90,21 @@ var RestDetails = React.createClass({
           {this.state.restaurantDetails.name}
         </header>
         <content id="rest-detail-content">
-          {this.state.restaurantDetails.hours} <br />
-          {this.state.restaurantDetails.cuisine} <br />
-          {this.state.restaurantDetails.address} <br />
-          {this.state.restaurantDetails.phone} <br />
-          {this.state.restaurantDetails.description} <br />
+          <div id="hours">
+            {this.state.restaurantDetails.hours} <br />
+          </div>
+          <div id="cuisine">
+            {this.state.restaurantDetails.cuisine} <br />
+          </div>
+          <div id="address">
+            {this.state.restaurantDetails.address} <br />
+          </div>
+          <div id="phone">
+            {this.state.restaurantDetails.phone} <br />
+          </div>
+          <div id="description">
+            {this.state.restaurantDetails.description} <br />
+          </div>
         </content>
         <ul id="reviews-index">
           {_reviews.map(function (review) {

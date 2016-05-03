@@ -48,10 +48,10 @@ var NavBar = React.createClass({
 
     if (this.state.currentUser === undefined) {
       var username = "Not logged in"
-      var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
+      var authLink = <div id="sign-in-sign-up" onClick={this._handleClick}>Sign In/Up</div>
     } else {
       var username = "Hello, " + this.state.currentUser.username + "!"
-      var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
+      var authLink = <div id="sign-out" onClick={this.logout}>Sign Out</div>
     }
 
     return (

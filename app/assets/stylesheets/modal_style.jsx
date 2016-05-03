@@ -6,10 +6,10 @@ var style = {
     left            : 0,
     right           : 0,
     bottom          : 0,
-    color            : 'white',
+    color           : 'white',
     backgroundColor : 'rgba(255, 255, 255, 0.75)',
-    padding: 0,
-    "zindex"        : 10
+    padding         : 0,
+    "zindex"        : 10,
   },
   content : {
     position        : 'fixed',
@@ -23,7 +23,7 @@ var style = {
     flexdirection   : 'column',
     alignitems      : 'center',
     justifycontent  : 'center',
-    padding: 0,
+    padding         : 0,
     "zindex"        : 10
   }
 

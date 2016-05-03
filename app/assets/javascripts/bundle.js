@@ -27455,7 +27455,7 @@
 			var self = this;
 			return React.createElement(
 				"ul",
-				null,
+				{ id: "auth-errors" },
 				Object.keys(this.state.userErrors).map(function (key, i) {
 					return React.createElement(
 						"li",
@@ -34566,15 +34566,15 @@
 	    if (this.state.currentUser === undefined) {
 	      var username = "Not logged in";
 	      var authLink = React.createElement(
-	        "a",
-	        { href: "#", id: "sign-in-sign-up" },
+	        "div",
+	        { id: "sign-in-sign-up", onClick: this._handleClick },
 	        "Sign In/Up"
 	      );
 	    } else {
 	      var username = "Hello, " + this.state.currentUser.username + "!";
 	      var authLink = React.createElement(
-	        "a",
-	        { href: "#", id: "sign-out", onClick: this.logout },
+	        "div",
+	        { id: "sign-out", onClick: this.logout },
 	        "Sign Out"
 	      );
 	    }
@@ -34791,10 +34791,26 @@
 	    return React.createElement(
 	      "li",
 	      { className: "rest-result-item", onClick: this.showDetail, id: this.props.restaurant.id },
-	      this.props.restaurant.name,
-	      this.props.restaurant.cuisine,
-	      this.props.restaurant.hours,
-	      this.props.restaurant.description
+	      React.createElement(
+	        "div",
+	        { id: "result-name" },
+	        this.props.restaurant.name
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "result-cuisine" },
+	        this.props.restaurant.cuisine
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "result-hours" },
+	        this.props.restaurant.hours
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "result-description" },
+	        this.props.restaurant.description
+	      )
 	    );
 	  }
 	});
@@ -34962,11 +34978,19 @@
 	
 	    // _revForm
 	    if (this.state.currentUser === undefined) {
-	      var postReviewLabel = "Sign in to leave a review";
+	      var postReviewLabel = React.createElement(
+	        "div",
+	        null,
+	        "Sign in to leave a review"
+	      );
 	      var postReviewForm = undefined;
 	      // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
 	    } else {
-	        var postReviewLabel = "Leave a review, " + this.state.currentUser.username + "!";
+	        var postReviewLabel = React.createElement(
+	          "div",
+	          null,
+	          "\"Leave a review, \" + this.state.currentUser.username + \"!\""
+	        );
 	        var postReviewForm = React.createElement(
 	          "form",
 	          { id: "rev-form", onSubmit: this.handleSubmit },
@@ -35018,21 +35042,41 @@
 	      React.createElement(
 	        "content",
 	        { id: "rest-detail-content" },
-	        this.state.restaurantDetails.hours,
-	        " ",
-	        React.createElement("br", null),
-	        this.state.restaurantDetails.cuisine,
-	        " ",
-	        React.createElement("br", null),
-	        this.state.restaurantDetails.address,
-	        " ",
-	        React.createElement("br", null),
-	        this.state.restaurantDetails.phone,
-	        " ",
-	        React.createElement("br", null),
-	        this.state.restaurantDetails.description,
-	        " ",
-	        React.createElement("br", null)
+	        React.createElement(
+	          "div",
+	          { id: "hours" },
+	          this.state.restaurantDetails.hours,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "cuisine" },
+	          this.state.restaurantDetails.cuisine,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "address" },
+	          this.state.restaurantDetails.address,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "phone" },
+	          this.state.restaurantDetails.phone,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "description" },
+	          this.state.restaurantDetails.description,
+	          " ",
+	          React.createElement("br", null)
+	        )
 	      ),
 	      React.createElement(
 	        "ul",
