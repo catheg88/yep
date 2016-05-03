@@ -27,8 +27,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [x] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Search for restaurants by name or category, with auto-completion and dynamic search results (MVP)
 - [ ] Create, read, edit, and delete reviews (MVP)
-- [ ] Expand and collapse restaurant details in search results (MVP)
-- [ ] View all of a user's reviews (expected feature, but not MVP)
+- [ ] View restaurant details and reviews (MVP)
 
 ## Design Docs
 * [View Wireframes][views]
@@ -67,13 +66,14 @@ the API.
 - [x] setup `APIUtil` to interact with the API
 - [x] test out API interaction in the console.
 
-### Phase 3: Flux Architecture and Router (2 days) Fri-Sat
+### Phase 3: Reviews (2 day) Fri, Sat
 
-**Objective:** Restaurants can be returned using a dynamic search feature.
-- [ ] setup the SearchBar
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
-- [ ] implement the dynamic search component, building out the flux loop as needed.
+**Objective:** Reviews belong to both users and restaurants.
+
+- build out API, Flux loop, and components for:
+  - [ ] Review CRUD
+- Use CSS to style new views
+
 
 ### Phase 4: Start Styling (1 day) Sun
 
@@ -83,13 +83,15 @@ the API.
 - [ ] position elements on the page
 - [ ] add basic colors & styles
 
-### Phase 5: Reviews (2 day) Mon, Tues
+### Phase 3: Implement Search Bar (2 days) Fri-Sat
 
-**Objective:** Reviews belong to both users and restaurants.
+**Objective:** Restaurants can be returned using a dynamic search feature.
+- [ ] setup the SearchBar
+- [ ] setup the flux loop with skeleton files
+- [ ] setup React Router
+- [ ] implement the dynamic search component, building out the flux loop as needed.
 
-- build out API, Flux loop, and components for:
-  - [ ] Review CRUD
-- Use CSS to style new views
+
 
 
 ### Phase 6: Bonus - add view review by users functionality (2 days) Wed, Thurs

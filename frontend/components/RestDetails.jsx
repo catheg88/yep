@@ -3,12 +3,39 @@ var RestResultsStore = require("../stores/rest_results_store.js");
 var ClientRestActions = require("../actions/client_rest_actions.js");
 var RestReview = require("./RestReview.jsx");
 var CurrentUserState = require("../mixins/current_user_state");
+var Modal = require("react-modal");
+var LoginModalStyle = require("../../app/assets/stylesheets/login_modal_style");
+var ReviewModalStyle = require("../../app/assets/stylesheets/review_modal_style");
+var NavBar = require('./NavBar.jsx');
 
 var RestDetails = React.createClass({
   mixins: [CurrentUserState],
 
   getInitialState: function() {
-    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id))};
+    if (RestResultsStore.all().length === 0) {
+      console.log("setting initial state to empty strings");
+      return ({ restaurantDetails: {
+          name: "",
+          hours: "",
+          cuisine: "",
+          address: "",
+          phone: "",
+          description: ""
+        }
+      })
+    } else {
+      return ({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
+                reviewModalOpen: false});
+    }
+  },
+
+  onReviewModalClose: function(){
+    this.setState({ reviewModalOpen: false });
+  },
+
+  openReviewModal: function(){
+    console.log("opening review modal");
+    this.setState({ reviewModalOpen: true });
   },
 
   componentDidMount: function() {
@@ -28,11 +55,12 @@ var RestDetails = React.createClass({
     this.setState({ yepp: e.currentTarget.value });
   },
 
-  revContentChange: function(e) {
+  revContentChange: function(e) {  // TODO move to form
     this.setState({ revContent: e.currentTarget.value });
   },
 
-  handleSubmit: function(e) {
+  handleReviewSubmit: function(e) {
+    this.setState({ reviewModalOpen: false });
     e.preventDefault();
     ClientRestActions.addReview({
       rev_content: this.state.revContent,
@@ -43,10 +71,15 @@ var RestDetails = React.createClass({
     this.setState({revContent: ""})
   },
 
+  handleClick: function() {
+		console.log("RestDetails handleClick");
+    // NavBar.setState({ modalOpen: true })
+  },
+
   render: function() {
-    // if (this.state.restaurantDetails === undefined) {
-    //   console.log("this.state.restaurantDetails === undefined");
-    // } else
+    if (this.state.restaurantDetails === undefined) {
+      console.log("doesn't have state");
+    } else
     if (this.state.restaurantDetails.reviews === undefined) {
       var _reviews = [];
     } else {
@@ -55,37 +88,38 @@ var RestDetails = React.createClass({
 
     // _revForm
     if (this.state.currentUser === undefined) {
-      var postReviewLabel = <div>Sign in to leave a review</div>
+      var postReviewLabel = <div id="review-button" onClick={this.handleClick}>Sign in to leave a review</div>
       var postReviewForm = undefined;
       // var authLink = <a href="#" id="sign-in-sign-up">Sign In/Up</a>
     } else {
-      var postReviewLabel = <div>{"Leave a review, " + this.state.currentUser.username + "!"}</div>
-      var postReviewForm = (<form id="rev-form" onSubmit={this.handleSubmit}>
+      var postReviewLabel = <div id="review-button" onClick={this.openReviewModal}>{"Leave a review, " + this.state.currentUser.username + "!"}</div>
+      var postReviewForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
           	<br />
-          	<label id="rev-content-field"> Review:&nbsp;&nbsp;&nbsp;<br />
-          		<textarea value={this.state.revContent} onChange={this.revContentChange}/>
+          	<label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
+          		<textarea id="rev-textbox" value={this.state.revContent} onChange={this.revContentChange}/>
           	</label>
           	<br />
           	<br />
         		<section id="rev-yepp">
         			<label>
         				<input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
-        				&nbsp;Yepp!&nbsp;&nbsp;
+        				&nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         			</label>
         			<label>
         				<input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
-        				&nbsp;Nope!&nbsp;&nbsp;
+        				&nbsp;Nope!
         			</label>
         			<br />
         		</section>
         		<br />
-    				<button>Submit</button>
+    				<button id="login-submit">Submit</button>
         </form>
       )
       // var authLink = <a href="#" id="sign-out" onClick={this.logout}>Sign Out</a>
     }
 
     return (
+
       <div id="rest-details">
         <header id="restaurant-details-header">
           {this.state.restaurantDetails.name}
@@ -115,7 +149,13 @@ var RestDetails = React.createClass({
         </ul>
         <div id="rev-form-container">
           {postReviewLabel}
-          {postReviewForm}
+          <Modal
+            isOpen={this.state.reviewModalOpen}
+            onRequestClose={this.onReviewModalClose}
+            style={ReviewModalStyle}>
+            {postReviewForm}
+          </Modal>
+
         </div>
       </div>
     );

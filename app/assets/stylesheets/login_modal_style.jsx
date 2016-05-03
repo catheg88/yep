@@ -29,4 +29,4 @@ var style = {
 
 };
 
-module.exports = style
+module.exports = style;

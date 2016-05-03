@@ -34519,7 +34519,7 @@
 	var UserActions = __webpack_require__(246);
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
-	var ModalStyle = __webpack_require__(273);
+	var LoginModalStyle = __webpack_require__(283);
 	var LoginForm = __webpack_require__(245);
 	var UserStore = __webpack_require__(249);
 	
@@ -34542,7 +34542,8 @@
 	    }
 	  },
 	
-	  _handleClick: function () {
+	  handleClick: function () {
+	    console.log("NavBar handleClick");
 	    if (!this.state.currentUser) {
 	      this.setState({ modalOpen: true });
 	    }
@@ -34567,7 +34568,7 @@
 	      var username = "Not logged in";
 	      var authLink = React.createElement(
 	        "div",
-	        { id: "sign-in-sign-up", onClick: this._handleClick },
+	        { id: "sign-in-sign-up", onClick: this.handleClick },
 	        "Sign In/Up"
 	      );
 	    } else {
@@ -34597,7 +34598,7 @@
 	        ),
 	        React.createElement(
 	          "li",
-	          { onClick: this._handleClick },
+	          { onClick: this.handleClick },
 	          authLink
 	        )
 	      ),
@@ -34606,7 +34607,7 @@
 	        {
 	          isOpen: this.state.modalOpen,
 	          onRequestClose: this.onModalClose,
-	          style: ModalStyle },
+	          style: LoginModalStyle },
 	        React.createElement(LoginForm, null)
 	      )
 	    );
@@ -34616,43 +34617,7 @@
 	module.exports = NavBar;
 
 /***/ },
-/* 273 */
-/***/ function(module, exports) {
-
-	var style = {
-	
-	  overlay: {
-	    position: 'fixed',
-	    top: 0,
-	    left: 0,
-	    right: 0,
-	    bottom: 0,
-	    color: 'white',
-	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
-	    padding: 0,
-	    "zindex": 10
-	  },
-	  content: {
-	    position: 'fixed',
-	    top: '200px',
-	    left: '200px',
-	    right: '200px',
-	    bottom: '200px',
-	    border: '1px solid #ccc',
-	    padding: '20px',
-	    display: 'flex',
-	    flexdirection: 'column',
-	    alignitems: 'center',
-	    justifycontent: 'center',
-	    padding: 0,
-	    "zindex": 10
-	  }
-	
-	};
-	
-	module.exports = style;
-
-/***/ },
+/* 273 */,
 /* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -34928,6 +34893,10 @@
 	var ClientRestActions = __webpack_require__(278);
 	var RestReview = __webpack_require__(282);
 	var CurrentUserState = __webpack_require__(271);
+	var Modal = __webpack_require__(225);
+	var LoginModalStyle = __webpack_require__(283);
+	var ReviewModalStyle = __webpack_require__(284);
+	var NavBar = __webpack_require__(272);
 	
 	var RestDetails = React.createClass({
 	  displayName: "RestDetails",
@@ -34935,7 +34904,30 @@
 	  mixins: [CurrentUserState],
 	
 	  getInitialState: function () {
-	    return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) };
+	    if (RestResultsStore.all().length === 0) {
+	      console.log("setting initial state to empty strings");
+	      return { restaurantDetails: {
+	          name: "",
+	          hours: "",
+	          cuisine: "",
+	          address: "",
+	          phone: "",
+	          description: ""
+	        }
+	      };
+	    } else {
+	      return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
+	        reviewModalOpen: false };
+	    }
+	  },
+	
+	  onReviewModalClose: function () {
+	    this.setState({ reviewModalOpen: false });
+	  },
+	
+	  openReviewModal: function () {
+	    console.log("opening review modal");
+	    this.setState({ reviewModalOpen: true });
 	  },
 	
 	  componentDidMount: function () {
@@ -34956,10 +34948,12 @@
 	  },
 	
 	  revContentChange: function (e) {
+	    // TODO move to form
 	    this.setState({ revContent: e.currentTarget.value });
 	  },
 	
-	  handleSubmit: function (e) {
+	  handleReviewSubmit: function (e) {
+	    this.setState({ reviewModalOpen: false });
 	    e.preventDefault();
 	    ClientRestActions.addReview({
 	      rev_content: this.state.revContent,
@@ -34970,11 +34964,15 @@
 	    this.setState({ revContent: "" });
 	  },
 	
+	  handleClick: function () {
+	    console.log("RestDetails handleClick");
+	    // NavBar.setState({ modalOpen: true })
+	  },
+	
 	  render: function () {
-	    // if (this.state.restaurantDetails === undefined) {
-	    //   console.log("this.state.restaurantDetails === undefined");
-	    // } else
-	    if (this.state.restaurantDetails.reviews === undefined) {
+	    if (this.state.restaurantDetails === undefined) {
+	      console.log("doesn't have state");
+	    } else if (this.state.restaurantDetails.reviews === undefined) {
 	      var _reviews = [];
 	    } else {
 	      _reviews = this.state.restaurantDetails.reviews;
@@ -34984,7 +34982,7 @@
 	    if (this.state.currentUser === undefined) {
 	      var postReviewLabel = React.createElement(
 	        "div",
-	        null,
+	        { id: "review-button", onClick: this.handleClick },
 	        "Sign in to leave a review"
 	      );
 	      var postReviewForm = undefined;
@@ -34992,19 +34990,19 @@
 	    } else {
 	        var postReviewLabel = React.createElement(
 	          "div",
-	          null,
+	          { id: "review-button", onClick: this.openReviewModal },
 	          "Leave a review, " + this.state.currentUser.username + "!"
 	        );
 	        var postReviewForm = React.createElement(
 	          "form",
-	          { id: "rev-form", onSubmit: this.handleSubmit },
+	          { id: "review-form", onSubmit: this.handleReviewSubmit },
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
-	            { id: "rev-content-field" },
-	            " Review:   ",
+	            { id: "rev-content-holder" },
+	            "Review:   ",
 	            React.createElement("br", null),
-	            React.createElement("textarea", { value: this.state.revContent, onChange: this.revContentChange })
+	            React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
 	          ),
 	          React.createElement("br", null),
 	          React.createElement("br", null),
@@ -35015,20 +35013,20 @@
 	              "label",
 	              null,
 	              React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
-	              " Yepp!  "
+	              " Yepp!     "
 	            ),
 	            React.createElement(
 	              "label",
 	              null,
 	              React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
-	              " Nope!  "
+	              " Nope!"
 	            ),
 	            React.createElement("br", null)
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "button",
-	            null,
+	            { id: "login-submit" },
 	            "Submit"
 	          )
 	        );
@@ -35098,7 +35096,14 @@
 	        "div",
 	        { id: "rev-form-container" },
 	        postReviewLabel,
-	        postReviewForm
+	        React.createElement(
+	          Modal,
+	          {
+	            isOpen: this.state.reviewModalOpen,
+	            onRequestClose: this.onReviewModalClose,
+	            style: ReviewModalStyle },
+	          postReviewForm
+	        )
 	      )
 	    );
 	  }
@@ -35153,6 +35158,80 @@
 	// <li className="rest-review" id={this.props.restaurant.id}>
 	//   {this.props.restaurant.name}
 	// </li>
+
+/***/ },
+/* 283 */
+/***/ function(module, exports) {
+
+	var style = {
+	
+	  overlay: {
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    color: 'white',
+	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
+	    "zindex": 10
+	  },
+	  content: {
+	    position: 'fixed',
+	    top: '200px',
+	    left: '200px',
+	    right: '200px',
+	    bottom: '200px',
+	    border: '1px solid #ccc',
+	    padding: '20px',
+	    display: 'flex',
+	    flexdirection: 'column',
+	    alignitems: 'center',
+	    justifycontent: 'center',
+	    padding: 0,
+	    "zindex": 10
+	  }
+	
+	};
+	
+	module.exports = style;
+
+/***/ },
+/* 284 */
+/***/ function(module, exports) {
+
+	var style = {
+	
+	  overlay: {
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    color: 'white',
+	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
+	    "zindex": 10
+	  },
+	  content: {
+	    position: 'fixed',
+	    top: '200px',
+	    left: '200px',
+	    right: '200px',
+	    bottom: '200px',
+	    border: '1px solid #ccc',
+	    padding: '20px',
+	    display: 'flex',
+	    flexdirection: 'column',
+	    alignitems: 'center',
+	    justifycontent: 'center',
+	    padding: 0,
+	    "zindex": 10
+	  }
+	
+	};
+	
+	module.exports = style;
 
 /***/ }
 /******/ ]);

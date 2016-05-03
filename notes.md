@@ -66,11 +66,9 @@ KNOWN ISSUES/TODOS:
 -benchBnB front-end auth makes several GET requests always, so when you
  refresh the page the screen flickers from the login form to logged in
   -solution:  style the header so that before it loads, it's "LOADING"
--add validation to the review form
+-add validation to the review form, and error handling
 -refreshing always takes you to home screen.
+
+
+done:
 -signing in to add a review takes you to home screen
-
-
-
-questions:
--

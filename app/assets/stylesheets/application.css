@@ -120,6 +120,40 @@ ul {
  padding: 0;
 }
 
+#review-form {
+ height: 100%;
+ width: 100%;
+ background-color: red;
+ display: flex;
+ flex-direction: column;
+ align-content: center;
+ justify-content: center;
+ padding: 0;
+}
+
+#rev-content-holder {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: 0% 15%;
+}
+
+#rev-textbox {
+  height: 91px;
+}
+
+#rev-yepp {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+#login-submit {
+  margin: 0% 30%;
+}
+
 #actual-login-form {
   display: flex;
   flex-direction: column;
@@ -243,14 +277,15 @@ ul {
   background-color: yellow;
   color: black;
   padding: 20px;
-  margin: 6px 46px;
-  border-radius: 6px;
-  border: 2px solid black;
+}
+
+#reviews-index {
+  margin: 16px 0px 0px 0px;
 }
 
 .review {
-  padding: 20px;
-  margin: 6px 46px 6px 0px;
+  padding: 8px 20px;
+  margin: 4px 20px 4px -20px;
   border-radius: 6px;
   background-color: white;
   border: 2px solid black;
@@ -265,4 +300,21 @@ ul {
   padding: 10px 60px 10px 0px;
   display: flex;
   justify-content: center;
+}
+
+#review-button {
+  padding: 20px;
+  margin: 0px 0px 4px 20px;
+  width: 230px;
+  border-radius: 6px;
+  background-color: white;
+  border: 2px solid black;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#review-button:hover {
+  background-color: red;
+  cursor: pointer;
 }

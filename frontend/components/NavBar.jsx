@@ -3,7 +3,7 @@ var hashHistory = require('react-router').hashHistory;
 var UserActions = require("../actions/user_actions");
 var CurrentUserState = require("../mixins/current_user_state");
 var Modal = require("react-modal");
-var ModalStyle = require("../../app/assets/stylesheets/modal_style");
+var LoginModalStyle = require("../../app/assets/stylesheets/login_modal_style");
 var LoginForm = require('./LoginForm.jsx');
 var UserStore = require("../stores/user_store.js");
 
@@ -25,7 +25,8 @@ var NavBar = React.createClass({
     }
   },
 
-  _handleClick: function(){
+  handleClick: function(){
+		console.log("NavBar handleClick");
     if (!this.state.currentUser) {
       this.setState({ modalOpen: true });
     }
@@ -48,7 +49,7 @@ var NavBar = React.createClass({
 
     if (this.state.currentUser === undefined) {
       var username = "Not logged in"
-      var authLink = <div id="sign-in-sign-up" onClick={this._handleClick}>Sign In/Up</div>
+      var authLink = <div id="sign-in-sign-up" onClick={this.handleClick}>Sign In/Up</div>
     } else {
       var username = "Hello, " + this.state.currentUser.username + "!"
       var authLink = <div id="sign-out" onClick={this.logout}>Sign Out</div>
@@ -63,13 +64,13 @@ var NavBar = React.createClass({
 
         <ul className="header-list">
           <li>{username}</li>
-          <li onClick={this._handleClick}>{authLink}</li>
+          <li onClick={this.handleClick}>{authLink}</li>
         </ul>
 
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.onModalClose}
-          style={ModalStyle}>
+          style={LoginModalStyle}>
           <LoginForm />
         </Modal>
 
