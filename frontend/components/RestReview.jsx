@@ -11,8 +11,8 @@ var RestReview = React.createClass({
       _yepp = "Nope!"
     }
     return (
-      <div>
-        <li>{this.props.review.user_id}</li>
+      <div className="review">
+        <li>{this.props.review.username}</li>
         <li>{this.props.review.rev_content}</li>
         <li>{_yepp}</li>
       </div>

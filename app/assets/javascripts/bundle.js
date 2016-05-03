@@ -35122,11 +35122,11 @@
 	    }
 	    return React.createElement(
 	      "div",
-	      null,
+	      { className: "review" },
 	      React.createElement(
 	        "li",
 	        null,
-	        this.props.review.user_id
+	        this.props.review.username
 	      ),
 	      React.createElement(
 	        "li",

@@ -193,15 +193,19 @@ ul {
 .rest-result-details {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 50%;
 }
 
 #rest-result-detail-description {
   color: black;
-  display: flex;
+  display: block;
   width: 50%;
-  align-content: flex-start;
+  align-items: center;
   justify-content: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .rest-result-item:hover {
@@ -236,4 +240,12 @@ ul {
 #rest-detail-content {
   color: white;
   padding: 20px;
+}
+
+.review {
+  padding: 20px;
+  border: 2px solid black;
+  margin: 6px 46px 6px 0px;
+  border-radius: 6px;
+  background-color: yellow;
 }
