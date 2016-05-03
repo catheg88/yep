@@ -58,6 +58,14 @@ Restaurant.create({
   description: ""
 })
 
+Restaurant.create({name: "Carr's",
+                   cuisine: "American",
+                   address: "1 First St, San Francisco, CA 94118",
+                   phone: "666-666-6666",
+                   hours: "098-765-4321",
+                   description: "Serving up an American heritage cow"
+})
+
 Restaurant.create({
   name: "placeholder",
   cuisine: "placeholder",
