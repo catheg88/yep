@@ -66,7 +66,7 @@ the API.
 - [x] setup `APIUtil` to interact with the API
 - [x] test out API interaction in the console.
 
-### Phase 3: Reviews (2 day) Fri, Sat
+### Phase 3: Create Reviews (2 day) Fri, Sat
 
 **Objective:** Reviews belong to both users and restaurants.
 
@@ -74,8 +74,7 @@ the API.
   - [ ] Review CRUD
 - Use CSS to style new views
 
-
-### Phase 4: Start Styling (1 day) Sun
+### Phase 4: Start Styling (1 day) Mon
 
 **Objective:** Existing pages (including singup/signin) will look good.
 
@@ -83,25 +82,19 @@ the API.
 - [ ] position elements on the page
 - [ ] add basic colors & styles
 
-### Phase 3: Implement Search Bar (2 days) Fri-Sat
+### Phase 5: Continue Styling; editable Reviews (1 day) Tues
+
+- [ ] add editable review functionality
+- [ ] modalize review form
+- [ ] make styling more better
+
+### Phase 6: Implement Search Bar (2 days) Wed-Thurs
 
 **Objective:** Restaurants can be returned using a dynamic search feature.
 - [ ] setup the SearchBar
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router
 - [ ] implement the dynamic search component, building out the flux loop as needed.
-
-
-
-
-### Phase 6: Bonus - add view review by users functionality (2 days) Wed, Thurs
-
-**Objective:** make model and introduce new view
-
-- [ ] create new API & user views to view reviews by user
-- build out API, Flux loop, and components for:
-  - [ ] showing information about user
-  - [ ] showing user's reviews
 
 ### Phase 7:  Styling Cleanup and Seeding (1 day) Fri
 
