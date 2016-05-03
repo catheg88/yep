@@ -31,27 +31,34 @@ var RestDetails = React.createClass({
     }
   },
 
+
+// Review Modal
+  openReviewModal: function(){
+    this.setState({ reviewModalOpen: true });
+  },
   onReviewModalClose: function(){
     this.setState({ reviewModalOpen: false });
   },
 
-  onLoginModalClose: function(){
-    this.setState({ loginModalOpen: false });
-  },
 
+// Login Modal
+  openLoginModal: function(){
+    this.setState({ loginModalOpen: true });
+  },
   closeLoginModal: function(){
     if (this.state.currentUser) {
       this.setState({ loginModalOpen: false })
     }
   },
-
-  openReviewModal: function(){
-    this.setState({ reviewModalOpen: true });
+  onLoginModalClose: function(){
+    this.setState({ loginModalOpen: false });
   },
 
-  openLoginModal: function(){
-    this.setState({ loginModalOpen: true });
-  },
+
+
+
+
+
 
   componentDidMount: function() {
     this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
@@ -99,8 +106,11 @@ var RestDetails = React.createClass({
     if (this.state.currentUser === undefined) {
       var postReviewLabel = <div id="review-button" onClick={this.openLoginModal}>Sign in to leave a review</div>
       var postReviewForm = undefined;
+    } else if {
+      var postReviewLabel = <div id="review-button" onClick={this.openEditModal}>Edit my review</div>
+      var postReviewForm = asdfjkl;
     } else {
-      var postReviewLabel = <div id="review-button" onClick={this.openReviewModal}>{"Leave a review, " + this.state.currentUser.username + "!"}</div>
+      var postReviewLabel = <div id="review-button" onClick={this.openReviewModal}>{"Leave a review, " + this.state.currentUser.username}</div>
       var postReviewForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
           	<br />
           	<label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />

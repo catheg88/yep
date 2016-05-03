@@ -13,13 +13,11 @@ var RestReview = React.createClass({
     }
 
     if(this.state.currentUser !== undefined) {
-
       if(this.state.currentUser.username === this.props.review.username) {
         var mine = "my-review";
       } else {
         mine = "";
       }
-
     }
 
     return (
@@ -33,10 +31,3 @@ var RestReview = React.createClass({
 });
 
 module.exports = RestReview;
-
-
-
-
-// <li className="rest-review" id={this.props.restaurant.id}>
-//   {this.props.restaurant.name}
-// </li>
