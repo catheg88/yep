@@ -35046,9 +35046,6 @@
 	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp, checked: true }) };
 	    }
 	
-	    console.log(revEditFormText);
-	    console.log(revEditYepp);
-	
 	    // action button logic
 	    if (this.state.currentUser === undefined) {
 	      // signed out; show sign in button

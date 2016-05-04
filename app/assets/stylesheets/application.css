@@ -24,6 +24,7 @@
 body {
 margin: 0;
 height: 100%;
+border: 1px
 }
 
 html {
@@ -338,7 +339,7 @@ ul {
 }
 
 #my-review {
-  background-color: lightblue;
+  background-color: mistyrose;
 }
 
 #review-header {

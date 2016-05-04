@@ -163,9 +163,6 @@ var RestDetails = React.createClass({
       nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYepp} checked/> }
     }
 
-console.log(revEditFormText);
-console.log(revEditYepp);
-
     // action button logic
     if (this.state.currentUser === undefined) {  // signed out; show sign in button
       var postReviewLabel = <div id="review-button" onClick={this.openLoginModal}>Sign in to leave a review</div>
