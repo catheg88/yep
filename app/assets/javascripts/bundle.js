@@ -34912,6 +34912,7 @@
 	
 	  getInitialState: function () {
 	    if (RestResultsStore.all().length === 0) {
+	      // no restaurants in store, just for loading
 	      return { restaurantDetails: {
 	          name: "",
 	          hours: "",
@@ -34921,12 +34922,16 @@
 	          description: ""
 	        }
 	      };
+	      // } else if () { // have reviewed restuarant
+	      //   return
 	    } else {
-	      return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
-	        reviewModalOpen: false,
-	        loginModalOpen: false
-	      };
-	    }
+	        var restFromStore = RestResultsStore.find(parseInt(this.props.params.id));
+	        return { restaurantDetails: restFromStore,
+	          reviewModalOpen: false,
+	          loginModalOpen: false,
+	          editFormData: ""
+	        };
+	      }
 	  },
 	
 	  // Review Modal
@@ -34950,6 +34955,12 @@
 	    this.setState({ loginModalOpen: false });
 	  },
 	
+	  sendMyRevToState: function (myReview) {
+	    console.log(myReview);
+	    this.setState({ editModalOpen: true });
+	    this.setState({ editFormData: myReview });
+	    this.openEditModal();
+	  },
 	  // Edit Modal
 	  openEditModal: function () {
 	    // set the state of RestDetails to reflect the information from the review
@@ -34963,27 +34974,24 @@
 	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
 	    ClientRestActions.getRestaurant(this.props.params.id);
 	  },
-	
-	  componentWillUnmount: function () {
-	    this.restListener.remove();
-	  },
-	
 	  updateRestaurantInState: function () {
 	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) });
 	  },
 	
-	  setYepp: function (e) {
-	    this.setState({ yepp: e.currentTarget.value });
+	  componentWillUnmount: function () {
+	    this.restListener.remove();
 	  },
 	
 	  revContentChange: function (e) {
 	    // TODO move to form
 	    this.setState({ revContent: e.currentTarget.value });
 	  },
-	
+	  setYepp: function (e) {
+	    this.setState({ yepp: e.currentTarget.value });
+	  },
 	  handleReviewSubmit: function (e) {
-	    this.setState({ reviewModalOpen: false });
 	    e.preventDefault();
+	    this.setState({ reviewModalOpen: false });
 	    ClientRestActions.addReview({
 	      rev_content: this.state.revContent,
 	      yepp: this.state.yepp,
@@ -34994,12 +35002,9 @@
 	  },
 	
 	  handleReviewEdit: function (e) {
+	    // TODO doesn't catch the errors
 	    this.setState({ editModalOpen: false });
 	  },
-	
-	  // deleteReview: function() {
-	  //   console.log("deleting review")
-	  // },
 	
 	  render: function () {
 	    if (this.state.restaurantDetails === undefined) {} else if (this.state.restaurantDetails.reviews === undefined) {
@@ -35010,37 +35015,55 @@
 	
 	    var _myReview = undefined;
 	    var _currentUser = undefined;
+	    var revEditFormText = undefined;
+	    var revEditYepp = undefined;
+	    var yeppButton = undefined;
+	    var nopeButton = undefined;
 	
 	    if (this.state.currentUser !== undefined) {
 	      _currentUser = this.state.currentUser.username;
 	    }
-	
 	    if (this.state.currentUser !== undefined) {
+	      var tsrdr = this.state.restaurantDetails.reviews;
 	      _reviews.forEach(function (review) {
 	        if (review.username === _currentUser) {
 	          _myReview = review;
+	          tsrdr.forEach(function (review) {
+	            if (review.username === _currentUser) {
+	              revEditFormText = review.rev_content;
+	              revEditYepp = review.yepp;
+	            }
+	          });
 	        }
 	      });
 	    }
 	
-	    if (_myReview !== undefined) {
-	      console.log("_myReview.username: " + _myReview.username);
-	      console.log(_myReview.id);
-	      console.log("_currentUser: " + _currentUser);
+	    if (revEditYepp === true) {
+	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp, checked: true }) };
+	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }) };
+	    } else {
+	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }) };
+	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp, checked: true }) };
 	    }
-	    // _revForm
+	
+	    console.log(revEditFormText);
+	    console.log(revEditYepp);
+	
+	    // action button logic
 	    if (this.state.currentUser === undefined) {
+	      // signed out; show sign in button
 	      var postReviewLabel = React.createElement(
 	        "div",
 	        { id: "review-button", onClick: this.openLoginModal },
 	        "Sign in to leave a review"
 	      );
 	      var reviewButtonForm = undefined;
-	    } else if (false) {
+	    } else if (_myReview !== undefined) {
+	      // signed in; has reviewed; show edit
 	      var postReviewLabel = React.createElement(
 	        "div",
-	        { id: "review-button", onClick: this.openEditModal },
-	        "Edit my review"
+	        { id: "review-button", onClick: this.sendMyRevToState.bind(this, _myReview) },
+	        "Edit/Delete my review"
 	      );
 	      var reviewButtonForm = React.createElement(
 	        "form",
@@ -35051,7 +35074,7 @@
 	          { id: "rev-content-holder" },
 	          "Review:   ",
 	          React.createElement("br", null),
-	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	          React.createElement("textarea", { id: "rev-textbox", value: revEditFormText, onChange: this.revContentChange })
 	        ),
 	        React.createElement("br", null),
 	        React.createElement("br", null),
@@ -35061,13 +35084,13 @@
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
+	            yeppButton.element,
 	            " Yepp!     "
 	          ),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
+	            nopeButton.element,
 	            " Nope!"
 	          ),
 	          React.createElement("br", null)
@@ -35085,6 +35108,7 @@
 	        )
 	      );
 	    } else {
+	      // signed in; hasn't reviewed; show create review
 	      var postReviewLabel = React.createElement(
 	        "div",
 	        { id: "review-button", onClick: this.openReviewModal },
