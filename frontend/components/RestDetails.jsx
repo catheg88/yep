@@ -90,10 +90,10 @@ var RestDetails = React.createClass({
   },
 
   revContentChange: function(e) {  // TODO move to form
-    this.setState({ editFormData: {rev_content: e.currentTarget.value }});
+    this.setState({ editFormData: {rev_content: e.currentTarget.value, yepp: this.state.editFormData.yepp }});
   },
   setYepp: function(e) {
-    this.setState({ editFormData: {yepp: e.currentTarget.value }});
+    this.setState({ editFormData: {rev_content: this.state.editFormData.rev_content, yepp: e.currentTarget.value }});
   },
 
   handleReviewSubmit: function(e) {
@@ -111,12 +111,15 @@ var RestDetails = React.createClass({
 
 
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
-    this.setState({ editModalOpen: false })
-
+    e.preventDefault();
+    this.setState({ editModalOpen: false });
+    // ClientRestActions.editReview(this.state.editFormData);
   },
 
 
+
   render: function() {
+
     if (this.state.restaurantDetails === undefined) {
     } else
     if (this.state.restaurantDetails.reviews === undefined) {
