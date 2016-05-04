@@ -15,6 +15,10 @@ var ClientRestActions = {
 
   editReview: function(review) {
     ClientRestApiUtil.editReview(review);
+  },
+
+  deleteReview: function(id) {
+    ClientRestApiUtil.deleteReview(id);
   }
 
 };

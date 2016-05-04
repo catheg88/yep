@@ -17,7 +17,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     @restaurant = Restaurant.find(params[:review][:restaurant_id])
-    puts @restaurant.name
     render :show
   end
 
@@ -45,5 +44,11 @@ class Api::ReviewsController < ApplicationController
     render :show
   end
 
+  def destroy
+    review = Review.find((params[:id]).to_i)
+    @restaurant = Restaurant.find(review.restaurant_id)
+    review.destroy
+    render :show
+  end
 
 end

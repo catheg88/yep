@@ -11,8 +11,6 @@ var ServerRestActions = {
   },
 
   receiveRestaurant: function (restaurant) {
-    console.log("receiving restaurant");
-    console.log(restaurant);
     Dispatcher.dispatch({
       actionType: RestaurantConstants.RESTAURANT_RECEIVED,
       restaurant: restaurant

@@ -27521,8 +27521,8 @@
 				),
 				React.createElement("br", null),
 				React.createElement(
-					"button",
-					{ id: "login-submit" },
+					"div",
+					{ className: "form-button", onClick: this.handleSubmit },
 					"Submit"
 				)
 			);
@@ -34815,6 +34815,10 @@
 	
 	  editReview: function (review) {
 	    ClientRestApiUtil.editReview(review);
+	  },
+	
+	  deleteReview: function (id) {
+	    ClientRestApiUtil.deleteReview(id);
 	  }
 	
 	};
@@ -34863,7 +34867,6 @@
 	  },
 	
 	  editReview: function (review) {
-	    console.log(review.restaurant_id);
 	    $.ajax({
 	      url: "api/reviews/" + review.id,
 	      type: "PATCH",
@@ -34873,6 +34876,17 @@
 	          restaurant_id: review.restaurant_id
 	        }
 	      },
+	      success: function (restaurant) {
+	        console.log(restaurant);
+	        ServerRestActions.receiveRestaurant(restaurant);
+	      }
+	    });
+	  },
+	
+	  deleteReview: function (id) {
+	    $.ajax({
+	      url: "api/reviews/" + id,
+	      type: "DELETE",
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
 	      }
@@ -34900,8 +34914,6 @@
 	  },
 	
 	  receiveRestaurant: function (restaurant) {
-	    console.log("receiving restaurant");
-	    console.log(restaurant);
 	    Dispatcher.dispatch({
 	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
 	      restaurant: restaurant
@@ -34988,7 +35000,7 @@
 	    this.setState({ editModalOpen: true });
 	  },
 	  onEditModalClose: function () {
-	    this.setState({ loginModalOpen: false });
+	    this.setState({ editModalOpen: false });
 	  },
 	
 	  componentDidMount: function () {
@@ -35009,6 +35021,11 @@
 	  },
 	  setYeppEdit: function (e) {
 	    this.setState({ editFormData: { rev_content: this.state.editFormData.rev_content, yepp: e.currentTarget.value } });
+	  },
+	  deleteReview: function () {
+	    rev_id: this.state.editFormData.id;
+	    ClientRestActions.deleteReview(rev_id);
+	    this.setState({ editModalOpen: false });
 	  },
 	
 	  revPostContentChange: function (e) {
@@ -35034,6 +35051,7 @@
 	  handleReviewEdit: function (e) {
 	    // TODO doesn't catch the errors
 	    e.preventDefault();
+	    console.log("handleReviewEdit");
 	    this.setState({ editModalOpen: false });
 	    var restId = parseInt(this.props.params.id);
 	    ClientRestActions.editReview({
@@ -35062,7 +35080,6 @@
 	
 	    var that = this;
 	    if (this.state.editFormData.revContent !== undefined) {
-	      console.log(1);
 	      revEditFormText = this.state.editFormData.revContent;
 	      revEditYepp = this.state.yepp;
 	    } else {
@@ -35076,14 +35093,10 @@
 	            _myReview = review;
 	            tsrdr.forEach(function (review) {
 	              if (review.username === _currentUser) {
-	                console.log(2);
-	                // debugger
 	                revEditFormText = review.rev_content;
 	                revEditYepp = review.yepp;
 	              }
 	              if (that.state.editFormData !== undefined) {
-	                // console.log(3);
-	                // debugger
 	                revEditFormText = that.state.editFormData.rev_content;
 	                revEditYepp = that.state.editFormData.yepp;
 	              }
@@ -35094,11 +35107,9 @@
 	    }
 	
 	    if (revEditYepp === true || revEditYepp === "true") {
-	      console.log("ever?");
 	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppEdit, checked: true }) };
 	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYeppEdit }) };
 	    } else {
-	      console.log("always");
 	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppEdit }) };
 	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYeppEdit, checked: true }) };
 	    }
@@ -35126,7 +35137,7 @@
 	        React.createElement(
 	          "label",
 	          { id: "rev-content-holder" },
-	          "Review:   ",
+	          "Edit:   ",
 	          React.createElement("br", null),
 	          React.createElement("textarea", { id: "rev-textbox", value: revEditFormText, onChange: this.revEditContentChange })
 	        ),
@@ -35151,13 +35162,13 @@
 	        ),
 	        React.createElement("br", null),
 	        React.createElement(
-	          "button",
-	          { id: "login-submit" },
-	          "Submit"
+	          "div",
+	          { className: "form-button", onClick: this.handleReviewEdit },
+	          "Edit review"
 	        ),
 	        React.createElement(
-	          "button",
-	          { id: "delete", onClick: this.deleteReview },
+	          "div",
+	          { className: "form-button", onClick: this.deleteReview },
 	          "Delete"
 	        )
 	      );
@@ -35200,8 +35211,8 @@
 	        ),
 	        React.createElement("br", null),
 	        React.createElement(
-	          "button",
-	          { id: "login-submit" },
+	          "div",
+	          { className: "form-button", onClick: this.handleReviewSubmit },
 	          "Submit"
 	        )
 	      );

@@ -84,7 +84,7 @@ var LoginForm = React.createClass({
 					</label>
 				</section>
 				<br />
-				<button id="login-submit">Submit</button>
+				<div className="form-button" onClick={this.handleSubmit}>Submit</div>
 			</form>
 		);
 	},

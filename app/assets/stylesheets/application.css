@@ -70,7 +70,7 @@ ul {
 }
 
 .header-logo:hover {
-  background-color: orange;
+  background-color: dodgerblue;
   cursor: pointer;
 }
 
@@ -101,7 +101,7 @@ ul {
 
 .sisuso:hover {
   cursor: pointer;
-  background-color: orange;
+  background-color: dodgerblue;
 }
 
 .header-list > li {
@@ -201,6 +201,8 @@ ul {
 
 #auth-errors > li {
   text-align: center;
+  padding-top: 5px;
+  margin-left: -8%;
 }
 
 #restaurant-results {
@@ -340,7 +342,7 @@ ul {
 }
 
 #my-review {
-  background-color: mistyrose;
+  background-color: tomato;
 }
 
 #review-header {
@@ -359,7 +361,7 @@ ul {
   margin: 8px 0px 20px 20px;
   width: 230px;
   border-radius: 6px;
-  background-color: white;
+  background-color: tomato;
   border: 2px solid black;
   display: flex;
   align-content: center;
@@ -369,4 +371,20 @@ ul {
 #review-button:hover {
   background-color: red;
   cursor: pointer;
+}
+
+.form-button {
+  padding: 5px 0px;
+  margin: 10px 30%;
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.form-button:hover {
+  background-color: dodgerblue;
 }

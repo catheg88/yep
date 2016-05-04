@@ -36,7 +36,6 @@ var ClientRestApiUtil = {
   },
 
   editReview: function(review) {
-    console.log(review.restaurant_id);
     $.ajax({
       url: "api/reviews/" + review.id,
       type: "PATCH",
@@ -46,6 +45,17 @@ var ClientRestApiUtil = {
                       restaurant_id: review.restaurant_id
                     }
                   },
+      success: function (restaurant) {
+        console.log(restaurant);
+        ServerRestActions.receiveRestaurant(restaurant);
+      },
+    });
+  },
+
+  deleteReview: function(id) {
+    $.ajax({
+      url: "api/reviews/" + id,
+      type: "DELETE",
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
       }

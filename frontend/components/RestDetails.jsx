@@ -72,7 +72,7 @@ var RestDetails = React.createClass({
     this.setState({ editModalOpen: true });
   },
   onEditModalClose: function(){
-    this.setState({ loginModalOpen: false });
+    this.setState({ editModalOpen: false });
   },
 
 
@@ -96,7 +96,11 @@ var RestDetails = React.createClass({
   setYeppEdit: function(e) {
     this.setState({ editFormData: {rev_content: this.state.editFormData.rev_content, yepp: e.currentTarget.value }});
   },
-
+  deleteReview: function() {
+    rev_id: this.state.editFormData.id;
+    ClientRestActions.deleteReview(rev_id);
+    this.setState({ editModalOpen: false })
+  },
 
 
   revPostContentChange: function(e) {  // TODO move to form
@@ -124,6 +128,7 @@ var RestDetails = React.createClass({
 
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
     e.preventDefault();
+    console.log("handleReviewEdit");
     this.setState({ editModalOpen: false });
     var restId = parseInt(this.props.params.id)
     ClientRestActions.editReview({
@@ -158,7 +163,6 @@ var RestDetails = React.createClass({
 
     var that = this;
     if (this.state.editFormData.revContent !== undefined) {
-      console.log(1);
       revEditFormText = this.state.editFormData.revContent;
       revEditYepp = this.state.yepp;
     } else {
@@ -172,14 +176,10 @@ var RestDetails = React.createClass({
             _myReview = review;
             tsrdr.forEach(function(review) {
               if (review.username === _currentUser) {
-                console.log(2);
-                // debugger
                 revEditFormText = review.rev_content;
                 revEditYepp = review.yepp;
               }
               if (that.state.editFormData !== undefined) {
-                // console.log(3);
-                // debugger
                 revEditFormText = that.state.editFormData.rev_content;
                 revEditYepp = that.state.editFormData.yepp;
               }
@@ -193,11 +193,9 @@ var RestDetails = React.createClass({
 
 
     if (revEditYepp === true || revEditYepp === "true") {
-      console.log("ever?");
       yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYeppEdit} checked/> }
       nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYeppEdit}/> }
     } else {
-      console.log("always");
       yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYeppEdit}/> }
       nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYeppEdit} checked/> }
     }
@@ -211,7 +209,7 @@ var RestDetails = React.createClass({
       var postReviewLabel = <div id="review-button" onClick={this.sendMyRevToState.bind(this, _myReview)}>Edit/Delete my review</div>
       var reviewButtonForm = (<form id="edit-form" onSubmit={this.handleReviewEdit}>
           <br />
-          <label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
+          <label id="rev-content-holder">Edit:&nbsp;&nbsp;&nbsp;<br />
             <textarea id="rev-textbox" value={revEditFormText} onChange={this.revEditContentChange}/>
           </label>
           <br />
@@ -228,8 +226,8 @@ var RestDetails = React.createClass({
             <br />
           </section>
           <br />
-          <button id="login-submit">Submit</button>
-          <button id="delete" onClick={this.deleteReview}>Delete</button>
+          <div className="form-button" onClick={this.handleReviewEdit}>Edit review</div>
+          <div className="form-button" onClick={this.deleteReview}>Delete</div>
         </form>
       )
     } else { // signed in; hasn't reviewed; show create review
@@ -254,7 +252,7 @@ var RestDetails = React.createClass({
               <br />
             </section>
             <br />
-            <button id="login-submit">Submit</button>
+            <div className="form-button" onClick={this.handleReviewSubmit}>Submit</div>
         </form>
       )
     }
