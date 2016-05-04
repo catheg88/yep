@@ -3,6 +3,18 @@
 <head>
   <title>YEPP</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Open+Sans:400,700,300:greek,greek-ext,latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
   <%= javascript_include_tag 'application' %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>

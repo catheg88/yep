@@ -33,7 +33,7 @@ html {
  background-position: center;
  background-size: cover;
  background-attachment: fixed;
- font-family: Helvetica, sans-serif;
+ font-family: 'Open Sans', sans-serif;
 }
 
 ul {
@@ -206,7 +206,7 @@ ul {
 #restaurant-results {
  height: 100%;
  margin: 60px;
- background-color: rgba(55,133,55,0.94);
+ background-color: rgba(255,255,255,0.92);
  border: 2px solid black;
  display: flex;
  flex-direction: column;
@@ -218,8 +218,8 @@ ul {
  height: 100%;
  width: 100%;
  border-bottom: 2px solid black;
- color: white;
- background-color: rgba(30, 255, 0,0.5);
+ color: black;
+ background-color: rgba(238, 224, 201, 0.5);
  font-weight: 700;
  padding: 20px 0px;
  display: flex;
@@ -232,7 +232,7 @@ ul {
 }
 
 .rest-result-item {
-  background-color: rgba(30, 255, 0,0.5);
+  background-color: gainsboro;
   color: white;
   padding: 10px;
   border: 2px solid black;
@@ -250,6 +250,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   width: 50%;
+  color: black;
 }
 
 #rest-result-detail-description {
@@ -274,7 +275,7 @@ ul {
  border: 2px solid black;
  display: flex;
  flex-direction: column;
- border-radius: 15px;
+ border-radius: 8px;
  overflow: hidden;
 }
 
@@ -282,7 +283,7 @@ ul {
  height: 100%;
  width: 100%;
  border-bottom: 2px solid black;
- background-color: Gainsboro;
+ background-color: linen;
  color: black;
  font-weight: 700;
  padding: 20px 0px;
@@ -295,9 +296,9 @@ ul {
 #rest-detail-content {
   display: flex;
   flex-direction: column;
-  background-color: yellow;
+  background-color: white;
   color: black;
-  padding: 0px 20px;
+  padding: 20px 20px;
 }
 
 #reviews-index {

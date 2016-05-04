@@ -34922,16 +34922,14 @@
 	          description: ""
 	        }
 	      };
-	      // } else if () { // have reviewed restuarant
-	      //   return
 	    } else {
-	        var restFromStore = RestResultsStore.find(parseInt(this.props.params.id));
-	        return { restaurantDetails: restFromStore,
-	          reviewModalOpen: false,
-	          loginModalOpen: false,
-	          editFormData: ""
-	        };
-	      }
+	      var restFromStore = RestResultsStore.find(parseInt(this.props.params.id));
+	      return { restaurantDetails: restFromStore,
+	        reviewModalOpen: false,
+	        loginModalOpen: false,
+	        editFormData: ""
+	      };
+	    }
 	  },
 	
 	  // Review Modal
@@ -34956,7 +34954,6 @@
 	  },
 	
 	  sendMyRevToState: function (myReview) {
-	    console.log(myReview);
 	    this.setState({ editModalOpen: true });
 	    this.setState({ editFormData: myReview });
 	    this.openEditModal();
@@ -34984,11 +34981,12 @@
 	
 	  revContentChange: function (e) {
 	    // TODO move to form
-	    this.setState({ revContent: e.currentTarget.value });
+	    this.setState({ editFormData: { rev_content: e.currentTarget.value } });
 	  },
 	  setYepp: function (e) {
-	    this.setState({ yepp: e.currentTarget.value });
+	    this.setState({ editFormData: { yepp: e.currentTarget.value } });
 	  },
+	
 	  handleReviewSubmit: function (e) {
 	    e.preventDefault();
 	    this.setState({ reviewModalOpen: false });
@@ -35020,25 +35018,35 @@
 	    var yeppButton = undefined;
 	    var nopeButton = undefined;
 	
-	    if (this.state.currentUser !== undefined) {
-	      _currentUser = this.state.currentUser.username;
-	    }
-	    if (this.state.currentUser !== undefined) {
-	      var tsrdr = this.state.restaurantDetails.reviews;
-	      _reviews.forEach(function (review) {
-	        if (review.username === _currentUser) {
-	          _myReview = review;
-	          tsrdr.forEach(function (review) {
-	            if (review.username === _currentUser) {
-	              revEditFormText = review.rev_content;
-	              revEditYepp = review.yepp;
-	            }
-	          });
-	        }
-	      });
+	    var that = this;
+	    if (this.state.editFormData.revContent !== undefined) {
+	      revEditFormText = this.state.editFormData.revContent;
+	      revEditYepp = this.state.yepp;
+	    } else {
+	      if (this.state.currentUser !== undefined) {
+	        _currentUser = this.state.currentUser.username;
+	      }
+	      if (this.state.currentUser !== undefined) {
+	        var tsrdr = this.state.restaurantDetails.reviews;
+	        _reviews.forEach(function (review) {
+	          if (review.username === _currentUser) {
+	            _myReview = review;
+	            tsrdr.forEach(function (review) {
+	              if (review.username === _currentUser) {
+	                revEditFormText = review.rev_content;
+	                revEditYepp = review.yepp;
+	              }
+	              if (that.state.editFormData !== undefined) {
+	                revEditFormText = that.state.editFormData.rev_content;
+	                revEditYepp = that.state.editFormData.yepp;
+	              }
+	            });
+	          }
+	        });
+	      }
 	    }
 	
-	    if (revEditYepp === true) {
+	    if (revEditYepp === "true") {
 	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp, checked: true }) };
 	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }) };
 	    } else {
