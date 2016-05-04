@@ -135,6 +135,17 @@ ul {
  padding: 0;
 }
 
+#edit-form {
+ height: 100%;
+ width: 100%;
+ background-color: red;
+ display: flex;
+ flex-direction: column;
+ align-content: center;
+ justify-content: center;
+ padding: 0;
+}
+
 #rev-content-holder {
   display: flex;
   flex-direction: column;
@@ -155,6 +166,10 @@ ul {
 }
 
 #login-submit {
+  margin: 0% 30%;
+}
+
+#delete {
   margin: 0% 30%;
 }
 
@@ -323,7 +338,7 @@ ul {
 }
 
 #my-review {
-  background-color: tan;
+  background-color: lightblue;
 }
 
 #review-header {

@@ -7,6 +7,7 @@ var CurrentUserState = require("../mixins/current_user_state");
 var Modal = require("react-modal");
 var LoginModalStyle = require("../../app/assets/stylesheets/login_modal_style");
 var ReviewModalStyle = require("../../app/assets/stylesheets/review_modal_style");
+var EditModalStyle = require("../../app/assets/stylesheets/edit_modal_style");
 var UserStore = require("../stores/user_store.js");
 
 var RestDetails = React.createClass({
@@ -55,7 +56,14 @@ var RestDetails = React.createClass({
   },
 
 
-
+// Edit Modal
+  openEditModal: function(){
+    // set the state of RestDetails to reflect the information from the review
+    this.setState({ editModalOpen: true });
+  },
+  onEditModalClose: function(){
+    this.setState({ loginModalOpen: false });
+  },
 
 
 
@@ -93,6 +101,14 @@ var RestDetails = React.createClass({
     this.setState({revContent: ""})
   },
 
+  handleReviewEdit: function(e) {
+    this.setState({ editModalOpen: false })
+  },
+
+  // deleteReview: function() {
+  //   console.log("deleting review")
+  // },
+
   render: function() {
     if (this.state.restaurantDetails === undefined) {
     } else
@@ -102,41 +118,85 @@ var RestDetails = React.createClass({
       _reviews = this.state.restaurantDetails.reviews;
     }
 
+
+
+
+    var _myReview = undefined;
+    var _currentUser = undefined;
+
+    if (this.state.currentUser !== undefined) {
+      _currentUser = this.state.currentUser.username;
+    }
+
+    if (this.state.currentUser !== undefined) {
+      _reviews.forEach(function(review) {
+        if (review.username === _currentUser) {
+          _myReview = review;
+        }
+      });
+    }
+
+    if (_myReview !== undefined) {
+      console.log("_myReview.username: " + _myReview.username);
+      console.log(_myReview.id);
+      console.log("_currentUser: " + _currentUser);
+    }
     // _revForm
     if (this.state.currentUser === undefined) {
       var postReviewLabel = <div id="review-button" onClick={this.openLoginModal}>Sign in to leave a review</div>
-      var postReviewForm = undefined;
-    } else if {
+      var reviewButtonForm = undefined;
+    } else if (false) {
       var postReviewLabel = <div id="review-button" onClick={this.openEditModal}>Edit my review</div>
-      var postReviewForm = asdfjkl;
+      var reviewButtonForm = (<form id="edit-form" onSubmit={this.handleReviewEdit}>
+          <br />
+          <label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
+            <textarea id="rev-textbox" value={this.state.revContent} onChange={this.revContentChange}/>
+          </label>
+          <br />
+          <br />
+          <section id="rev-yepp">
+            <label>
+              <input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
+              &nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <label>
+              <input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
+              &nbsp;Nope!
+            </label>
+            <br />
+          </section>
+          <br />
+          <button id="login-submit">Submit</button>
+          <button id="delete" onClick={this.deleteReview}>Delete</button>
+        </form>
+      )
     } else {
       var postReviewLabel = <div id="review-button" onClick={this.openReviewModal}>{"Leave a review, " + this.state.currentUser.username}</div>
-      var postReviewForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
-          	<br />
-          	<label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
-          		<textarea id="rev-textbox" value={this.state.revContent} onChange={this.revContentChange}/>
-          	</label>
-          	<br />
-          	<br />
-        		<section id="rev-yepp">
-        			<label>
-        				<input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
-        				&nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        			</label>
-        			<label>
-        				<input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
-        				&nbsp;Nope!
-        			</label>
-        			<br />
-        		</section>
-        		<br />
-    				<button id="login-submit">Submit</button>
+      var reviewButtonForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
+            <br />
+            <label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
+              <textarea id="rev-textbox" value={this.state.revContent} onChange={this.revContentChange}/>
+            </label>
+            <br />
+            <br />
+            <section id="rev-yepp">
+              <label>
+                <input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
+                &nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+              <label>
+                <input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
+                &nbsp;Nope!
+              </label>
+              <br />
+            </section>
+            <br />
+            <button id="login-submit">Submit</button>
         </form>
       )
     }
-
+    
     return (
-
       <div id="rest-details">
         <header id="restaurant-details-header">
           {this.state.restaurantDetails.name}
@@ -176,7 +236,7 @@ var RestDetails = React.createClass({
             isOpen={this.state.reviewModalOpen}
             onRequestClose={this.onReviewModalClose}
             style={ReviewModalStyle}>
-            {postReviewForm}
+            {reviewButtonForm}
           </Modal>
 
           <Modal
@@ -186,8 +246,16 @@ var RestDetails = React.createClass({
             <LoginForm />
           </Modal>
 
+          <Modal
+            isOpen={this.state.editModalOpen}
+            onRequestClose={this.onEditModalClose}
+            style={EditModalStyle}>
+            {reviewButtonForm}
+          </Modal>
+
         </div>
       </div>
+
     );
   }
 

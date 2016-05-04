@@ -57,7 +57,7 @@
 	var LoginForm = __webpack_require__(245);
 	var NavBar = __webpack_require__(272);
 	var RestResults = __webpack_require__(274);
-	var RestDetails = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/RestDetails.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var RestDetails = __webpack_require__(281);
 	
 	var CurrentUserState = __webpack_require__(271);
 	
@@ -34890,9 +34890,474 @@
 	module.exports = ServerRestActions;
 
 /***/ },
-/* 281 */,
-/* 282 */,
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	var RestResultsStore = __webpack_require__(275);
+	var ClientRestActions = __webpack_require__(278);
+	var RestReview = __webpack_require__(282);
+	var LoginForm = __webpack_require__(245);
+	var CurrentUserState = __webpack_require__(271);
+	var Modal = __webpack_require__(225);
+	var LoginModalStyle = __webpack_require__(283);
+	var ReviewModalStyle = __webpack_require__(284);
+	var EditModalStyle = __webpack_require__(285);
+	var UserStore = __webpack_require__(249);
+	
+	var RestDetails = React.createClass({
+	  displayName: "RestDetails",
+	
+	  mixins: [CurrentUserState],
+	
+	  getInitialState: function () {
+	    if (RestResultsStore.all().length === 0) {
+	      return { restaurantDetails: {
+	          name: "",
+	          hours: "",
+	          cuisine: "",
+	          address: "",
+	          phone: "",
+	          description: ""
+	        }
+	      };
+	    } else {
+	      return { restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)),
+	        reviewModalOpen: false,
+	        loginModalOpen: false
+	      };
+	    }
+	  },
+	
+	  // Review Modal
+	  openReviewModal: function () {
+	    this.setState({ reviewModalOpen: true });
+	  },
+	  onReviewModalClose: function () {
+	    this.setState({ reviewModalOpen: false });
+	  },
+	
+	  // Login Modal
+	  openLoginModal: function () {
+	    this.setState({ loginModalOpen: true });
+	  },
+	  closeLoginModal: function () {
+	    if (this.state.currentUser) {
+	      this.setState({ loginModalOpen: false });
+	    }
+	  },
+	  onLoginModalClose: function () {
+	    this.setState({ loginModalOpen: false });
+	  },
+	
+	  // Edit Modal
+	  openEditModal: function () {
+	    // set the state of RestDetails to reflect the information from the review
+	    this.setState({ editModalOpen: true });
+	  },
+	  onEditModalClose: function () {
+	    this.setState({ loginModalOpen: false });
+	  },
+	
+	  componentDidMount: function () {
+	    this.restListener = RestResultsStore.addListener(this.updateRestaurantInState);
+	    ClientRestActions.getRestaurant(this.props.params.id);
+	  },
+	
+	  componentWillUnmount: function () {
+	    this.restListener.remove();
+	  },
+	
+	  updateRestaurantInState: function () {
+	    this.setState({ restaurantDetails: RestResultsStore.find(parseInt(this.props.params.id)) });
+	  },
+	
+	  setYepp: function (e) {
+	    this.setState({ yepp: e.currentTarget.value });
+	  },
+	
+	  revContentChange: function (e) {
+	    // TODO move to form
+	    this.setState({ revContent: e.currentTarget.value });
+	  },
+	
+	  handleReviewSubmit: function (e) {
+	    this.setState({ reviewModalOpen: false });
+	    e.preventDefault();
+	    ClientRestActions.addReview({
+	      rev_content: this.state.revContent,
+	      yepp: this.state.yepp,
+	      username: this.state.currentUser.username,
+	      restaurant_id: parseInt(this.props.params.id)
+	    });
+	    this.setState({ revContent: "" });
+	  },
+	
+	  handleReviewEdit: function (e) {
+	    this.setState({ editModalOpen: false });
+	  },
+	
+	  // deleteReview: function() {
+	  //   console.log("deleting review")
+	  // },
+	
+	  render: function () {
+	    if (this.state.restaurantDetails === undefined) {} else if (this.state.restaurantDetails.reviews === undefined) {
+	      var _reviews = [];
+	    } else {
+	      _reviews = this.state.restaurantDetails.reviews;
+	    }
+	
+	    var _myReview = undefined;
+	    var _currentUser = undefined;
+	
+	    if (this.state.currentUser !== undefined) {
+	      _currentUser = this.state.currentUser.username;
+	    }
+	
+	    if (this.state.currentUser !== undefined) {
+	      _reviews.forEach(function (review) {
+	        if (review.username === _currentUser) {
+	          _myReview = review;
+	        }
+	      });
+	    }
+	
+	    if (_myReview !== undefined) {
+	      console.log("_myReview.username: " + _myReview.username);
+	      console.log(_myReview.id);
+	      console.log("_currentUser: " + _currentUser);
+	    }
+	    // _revForm
+	    if (this.state.currentUser === undefined) {
+	      var postReviewLabel = React.createElement(
+	        "div",
+	        { id: "review-button", onClick: this.openLoginModal },
+	        "Sign in to leave a review"
+	      );
+	      var reviewButtonForm = undefined;
+	    } else if (false) {
+	      var postReviewLabel = React.createElement(
+	        "div",
+	        { id: "review-button", onClick: this.openEditModal },
+	        "Edit my review"
+	      );
+	      var reviewButtonForm = React.createElement(
+	        "form",
+	        { id: "edit-form", onSubmit: this.handleReviewEdit },
+	        React.createElement("br", null),
+	        React.createElement(
+	          "label",
+	          { id: "rev-content-holder" },
+	          "Review:   ",
+	          React.createElement("br", null),
+	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	        ),
+	        React.createElement("br", null),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "section",
+	          { id: "rev-yepp" },
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
+	            " Yepp!     "
+	          ),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
+	            " Nope!"
+	          ),
+	          React.createElement("br", null)
+	        ),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "button",
+	          { id: "login-submit" },
+	          "Submit"
+	        ),
+	        React.createElement(
+	          "button",
+	          { id: "delete", onClick: this.deleteReview },
+	          "Delete"
+	        )
+	      );
+	    } else {
+	      var postReviewLabel = React.createElement(
+	        "div",
+	        { id: "review-button", onClick: this.openReviewModal },
+	        "Leave a review, " + this.state.currentUser.username
+	      );
+	      var reviewButtonForm = React.createElement(
+	        "form",
+	        { id: "review-form", onSubmit: this.handleReviewSubmit },
+	        React.createElement("br", null),
+	        React.createElement(
+	          "label",
+	          { id: "rev-content-holder" },
+	          "Review:   ",
+	          React.createElement("br", null),
+	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	        ),
+	        React.createElement("br", null),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "section",
+	          { id: "rev-yepp" },
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
+	            " Yepp!     "
+	          ),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
+	            " Nope!"
+	          ),
+	          React.createElement("br", null)
+	        ),
+	        React.createElement("br", null),
+	        React.createElement(
+	          "button",
+	          { id: "login-submit" },
+	          "Submit"
+	        )
+	      );
+	    }
+	
+	    return React.createElement(
+	      "div",
+	      { id: "rest-details" },
+	      React.createElement(
+	        "header",
+	        { id: "restaurant-details-header" },
+	        this.state.restaurantDetails.name
+	      ),
+	      React.createElement(
+	        "content",
+	        { id: "rest-detail-content" },
+	        React.createElement(
+	          "div",
+	          { id: "detail-hours" },
+	          " Hours:  ",
+	          this.state.restaurantDetails.hours,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "detail-cuisine" },
+	          " Cuisine:  ",
+	          this.state.restaurantDetails.cuisine,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "detail-address" },
+	          " Address:  ",
+	          this.state.restaurantDetails.address,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "detail-phone" },
+	          " Phone:  ",
+	          this.state.restaurantDetails.phone,
+	          " ",
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "detail-description" },
+	          " Description:  ",
+	          this.state.restaurantDetails.description,
+	          " ",
+	          React.createElement("br", null)
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "review-header" },
+	        "Reviews"
+	      ),
+	      React.createElement(
+	        "ul",
+	        { id: "reviews-index" },
+	        _reviews.map(function (review) {
+	          return React.createElement(RestReview, { key: review.id, review: review });
+	        })
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "rev-form-container" },
+	        postReviewLabel,
+	        React.createElement(
+	          Modal,
+	          {
+	            isOpen: this.state.reviewModalOpen,
+	            onRequestClose: this.onReviewModalClose,
+	            style: ReviewModalStyle },
+	          reviewButtonForm
+	        ),
+	        React.createElement(
+	          Modal,
+	          {
+	            isOpen: this.state.loginModalOpen,
+	            onRequestClose: this.onLoginModalClose,
+	            style: LoginModalStyle },
+	          React.createElement(LoginForm, null)
+	        ),
+	        React.createElement(
+	          Modal,
+	          {
+	            isOpen: this.state.editModalOpen,
+	            onRequestClose: this.onEditModalClose,
+	            style: EditModalStyle },
+	          reviewButtonForm
+	        )
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = RestDetails;
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(24);
+	var RestResultsStore = __webpack_require__(275);
+	var CurrentUserState = __webpack_require__(271);
+	var ClientRestActions = __webpack_require__(278); // TODO why do i have this?
+	
+	var RestReview = React.createClass({
+	  displayName: "RestReview",
+	
+	  mixins: [CurrentUserState],
+	  render: function () {
+	    if (this.props.review.yepp === true) {
+	      var _yepp = "Yepp!";
+	    } else {
+	      _yepp = "Nope!";
+	    }
+	
+	    if (this.state.currentUser !== undefined) {
+	      if (this.state.currentUser.username === this.props.review.username) {
+	        var mine = "my-review";
+	      } else {
+	        mine = "";
+	      }
+	    }
+	
+	    return React.createElement(
+	      "div",
+	      { className: "review", id: mine },
+	      React.createElement(
+	        "div",
+	        { id: "review-author" },
+	        "Posted by: ",
+	        this.props.review.username
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "review-meat" },
+	        this.props.review.rev_content
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "review-yepp" },
+	        _yepp
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = RestReview;
+
+/***/ },
 /* 283 */
+/***/ function(module, exports) {
+
+	var style = {
+	
+	  overlay: {
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    color: 'white',
+	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
+	    "zindex": 10
+	  },
+	  content: {
+	    position: 'fixed',
+	    top: '200px',
+	    left: '200px',
+	    right: '200px',
+	    bottom: '200px',
+	    border: '1px solid #ccc',
+	    padding: '20px',
+	    display: 'flex',
+	    flexdirection: 'column',
+	    alignitems: 'center',
+	    justifycontent: 'center',
+	    padding: 0,
+	    "zindex": 10
+	  }
+	
+	};
+	
+	module.exports = style;
+
+/***/ },
+/* 284 */
+/***/ function(module, exports) {
+
+	var style = {
+	
+	  overlay: {
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    color: 'white',
+	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
+	    "zindex": 10
+	  },
+	  content: {
+	    position: 'fixed',
+	    top: '200px',
+	    left: '200px',
+	    right: '200px',
+	    bottom: '200px',
+	    border: '1px solid #ccc',
+	    padding: '20px',
+	    display: 'flex',
+	    flexdirection: 'column',
+	    alignitems: 'center',
+	    justifycontent: 'center',
+	    padding: 0,
+	    "zindex": 10
+	  }
+	
+	};
+	
+	module.exports = style;
+
+/***/ },
+/* 285 */
 /***/ function(module, exports) {
 
 	var style = {
