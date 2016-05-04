@@ -11,6 +11,10 @@ var ClientRestActions = {
 
   addReview: function(review) {
     ClientRestApiUtil.addReview(review);
+  },
+
+  editReview: function(review) {
+    ClientRestApiUtil.editReview(review);
   }
 
 };

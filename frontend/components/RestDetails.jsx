@@ -61,6 +61,7 @@ var RestDetails = React.createClass({
 
 
   sendMyRevToState: function(myReview){
+    rev_id = myReview.id;
     this.setState({ editModalOpen: true });
     this.setState({ editFormData: myReview });
     this.openEditModal();
@@ -113,7 +114,14 @@ var RestDetails = React.createClass({
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
     e.preventDefault();
     this.setState({ editModalOpen: false });
-    // ClientRestActions.editReview(this.state.editFormData);
+    var restId = parseInt(this.props.params.id)
+    ClientRestActions.editReview({
+      id: rev_id,
+      rev_content: this.state.editFormData.rev_content,
+      yepp: this.state.editFormData.yepp,
+      username: this.state.currentUser.username,
+      restaurant_id: restId
+    });
   },
 
 
@@ -165,6 +173,7 @@ var RestDetails = React.createClass({
         });
       }
     }
+
 
 
     if (revEditYepp === "true") {

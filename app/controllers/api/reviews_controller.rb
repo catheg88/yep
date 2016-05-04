@@ -1,4 +1,5 @@
 class Api::ReviewsController < ApplicationController
+
   def create
     user_id = (User.find_by_username(params[:review][:username])).id
     Review.create({
@@ -11,5 +12,23 @@ class Api::ReviewsController < ApplicationController
     @restaurant = Restaurant.find(params[:review][:restaurant_id])
     render :show
   end
+
+  def update
+    user_id = (User.find_by_username(params[:review][:username])).id
+    rev_id = (params[:id]).to_i
+    review = Review.find(rev_id)
+
+    review.update_attributes({
+      rev_content: params[:review][:rev_content],
+      yepp: params[:review][:yepp],
+      user_id: user_id,
+      restaurant_id: rev_id,
+      username: params[:review][:username]
+    })
+
+    @restaurant = Restaurant.find(params[:review][:restaurant_id])
+    render :show
+  end
+
 
 end

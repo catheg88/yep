@@ -72,3 +72,8 @@ KNOWN ISSUES/TODOS:
 
 done:
 -signing in to add a review takes you to home screen
+
+
+bugs:
+-edit form: nope button selected by default (i think always), but won't change a yep to a nope unless clicked (even tho it looks like it's not doing anything)
+-error validation on form and controller for update

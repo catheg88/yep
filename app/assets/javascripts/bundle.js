@@ -34811,6 +34811,10 @@
 	
 	  addReview: function (review) {
 	    ClientRestApiUtil.addReview(review);
+	  },
+	
+	  editReview: function (review) {
+	    ClientRestApiUtil.editReview(review);
 	  }
 	
 	};
@@ -34846,6 +34850,22 @@
 	    $.ajax({
 	      url: "api/reviews",
 	      type: "POST",
+	      data: { review: { rev_content: review.rev_content,
+	          yepp: review.yepp,
+	          username: review.username,
+	          restaurant_id: review.restaurant_id
+	        }
+	      },
+	      success: function (restaurant) {
+	        ServerRestActions.receiveRestaurant(restaurant);
+	      }
+	    });
+	  },
+	
+	  editReview: function (review) {
+	    $.ajax({
+	      url: "api/reviews/" + review.id,
+	      type: "PATCH",
 	      data: { review: { rev_content: review.rev_content,
 	          yepp: review.yepp,
 	          username: review.username,
@@ -34954,6 +34974,7 @@
 	  },
 	
 	  sendMyRevToState: function (myReview) {
+	    rev_id = myReview.id;
 	    this.setState({ editModalOpen: true });
 	    this.setState({ editFormData: myReview });
 	    this.openEditModal();
@@ -35003,7 +35024,14 @@
 	    // TODO doesn't catch the errors
 	    e.preventDefault();
 	    this.setState({ editModalOpen: false });
-	    // ClientRestActions.editReview(this.state.editFormData);
+	    var restId = parseInt(this.props.params.id);
+	    ClientRestActions.editReview({
+	      id: rev_id,
+	      rev_content: this.state.editFormData.rev_content,
+	      yepp: this.state.editFormData.yepp,
+	      username: this.state.currentUser.username,
+	      restaurant_id: restId
+	    });
 	  },
 	
 	  render: function () {

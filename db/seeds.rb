@@ -171,3 +171,59 @@ Review.create({
   restaurant_id: 1,
   username: "atheg"
 })
+
+Review.create({
+  rev_content: "oooo!",
+  yepp: true,
+  user_id: 2,
+  restaurant_id: 1,
+  username: "asdf"
+})
+
+Review.create({
+  rev_content: "They served me green breadsticks!",
+  yepp: false,
+  user_id: 2,
+  restaurant_id: 2,
+  username: "atheg"
+})
+
+Review.create({
+  rev_content: "The best pizza in town.",
+  yepp: true,
+  user_id: 2,
+  restaurant_id: 2,
+  username: "Guest"
+})
+
+Review.create({
+  rev_content: "jkl;!",
+  yepp: false,
+  user_id: 2,
+  restaurant_id: 2,
+  username: "asdf"
+})
+
+Review.create({
+  rev_content: "Yum!",
+  yepp: true,
+  user_id: 2,
+  restaurant_id: 3,
+  username: "atheg"
+})
+
+Review.create({
+  rev_content: "Yuck!",
+  yepp: false,
+  user_id: 2,
+  restaurant_id: 3,
+  username: "Guest"
+})
+
+Review.create({
+  rev_content: "BLARGLE!",
+  yepp: false,
+  user_id: 2,
+  restaurant_id: 3,
+  username: "asdf"
+})
