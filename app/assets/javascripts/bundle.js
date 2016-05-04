@@ -34863,6 +34863,7 @@
 	  },
 	
 	  editReview: function (review) {
+	    console.log(review.restaurant_id);
 	    $.ajax({
 	      url: "api/reviews/" + review.id,
 	      type: "PATCH",
@@ -34899,6 +34900,8 @@
 	  },
 	
 	  receiveRestaurant: function (restaurant) {
+	    console.log("receiving restaurant");
+	    console.log(restaurant);
 	    Dispatcher.dispatch({
 	      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
 	      restaurant: restaurant
@@ -35000,12 +35003,20 @@
 	    this.restListener.remove();
 	  },
 	
-	  revContentChange: function (e) {
+	  revEditContentChange: function (e) {
 	    // TODO move to form
 	    this.setState({ editFormData: { rev_content: e.currentTarget.value, yepp: this.state.editFormData.yepp } });
 	  },
-	  setYepp: function (e) {
+	  setYeppEdit: function (e) {
 	    this.setState({ editFormData: { rev_content: this.state.editFormData.rev_content, yepp: e.currentTarget.value } });
+	  },
+	
+	  revPostContentChange: function (e) {
+	    // TODO move to form
+	    this.setState({ revContent: e.currentTarget.value });
+	  },
+	  setYeppPost: function (e) {
+	    this.setState({ yepp: e.currentTarget.value });
 	  },
 	
 	  handleReviewSubmit: function (e) {
@@ -35051,6 +35062,7 @@
 	
 	    var that = this;
 	    if (this.state.editFormData.revContent !== undefined) {
+	      console.log(1);
 	      revEditFormText = this.state.editFormData.revContent;
 	      revEditYepp = this.state.yepp;
 	    } else {
@@ -35064,10 +35076,14 @@
 	            _myReview = review;
 	            tsrdr.forEach(function (review) {
 	              if (review.username === _currentUser) {
+	                console.log(2);
+	                // debugger
 	                revEditFormText = review.rev_content;
 	                revEditYepp = review.yepp;
 	              }
 	              if (that.state.editFormData !== undefined) {
+	                // console.log(3);
+	                // debugger
 	                revEditFormText = that.state.editFormData.rev_content;
 	                revEditYepp = that.state.editFormData.yepp;
 	              }
@@ -35077,12 +35093,14 @@
 	      }
 	    }
 	
-	    if (revEditYepp === "true") {
-	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp, checked: true }) };
-	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }) };
+	    if (revEditYepp === true || revEditYepp === "true") {
+	      console.log("ever?");
+	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppEdit, checked: true }) };
+	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYeppEdit }) };
 	    } else {
-	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }) };
-	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp, checked: true }) };
+	      console.log("always");
+	      yeppButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppEdit }) };
+	      nopeButton = { element: React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYeppEdit, checked: true }) };
 	    }
 	
 	    // action button logic
@@ -35110,7 +35128,7 @@
 	          { id: "rev-content-holder" },
 	          "Review:   ",
 	          React.createElement("br", null),
-	          React.createElement("textarea", { id: "rev-textbox", value: revEditFormText, onChange: this.revContentChange })
+	          React.createElement("textarea", { id: "rev-textbox", value: revEditFormText, onChange: this.revEditContentChange })
 	        ),
 	        React.createElement("br", null),
 	        React.createElement("br", null),
@@ -35159,7 +35177,7 @@
 	          { id: "rev-content-holder" },
 	          "Review:   ",
 	          React.createElement("br", null),
-	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revContentChange })
+	          React.createElement("textarea", { id: "rev-textbox", value: this.state.revContent, onChange: this.revPostContentChange })
 	        ),
 	        React.createElement("br", null),
 	        React.createElement("br", null),
@@ -35169,13 +35187,13 @@
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYepp }),
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppPost }),
 	            " Yepp!     "
 	          ),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYepp }),
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "false", onChange: this.setYeppPost }),
 	            " Nope!"
 	          ),
 	          React.createElement("br", null)

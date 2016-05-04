@@ -36,6 +36,7 @@ var ClientRestApiUtil = {
   },
 
   editReview: function(review) {
+    console.log(review.restaurant_id);
     $.ajax({
       url: "api/reviews/" + review.id,
       type: "PATCH",

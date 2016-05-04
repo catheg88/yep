@@ -72,8 +72,13 @@ KNOWN ISSUES/TODOS:
 
 done:
 -signing in to add a review takes you to home screen
+-i'd been using rev id in place of rest id to create the damn database entry
+  -PATCH sends the right data, but for some reason the new review gets dropped from the store
+  -POST doesn't send the right data
+-edit form: nope button selected by default (i think always), but won't change a yep to a nope unless clicked (even tho it looks like it's not doing anything)
+  -solution: i was setting the initial value of radio to true or false, but when pulling the value from current target on change, returning "true" as a string
 
 
 bugs:
--edit form: nope button selected by default (i think always), but won't change a yep to a nope unless clicked (even tho it looks like it's not doing anything)
 -error validation on form and controller for update
+-update form: starts out with the correct yepp/nope toggled, but if you click into the field, it always changes to nope

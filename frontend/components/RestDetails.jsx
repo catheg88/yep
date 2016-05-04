@@ -90,12 +90,23 @@ var RestDetails = React.createClass({
     this.restListener.remove();
   },
 
-  revContentChange: function(e) {  // TODO move to form
+  revEditContentChange: function(e) {  // TODO move to form
     this.setState({ editFormData: {rev_content: e.currentTarget.value, yepp: this.state.editFormData.yepp }});
   },
-  setYepp: function(e) {
+  setYeppEdit: function(e) {
     this.setState({ editFormData: {rev_content: this.state.editFormData.rev_content, yepp: e.currentTarget.value }});
   },
+
+
+
+  revPostContentChange: function(e) {  // TODO move to form
+    this.setState({ revContent: e.currentTarget.value });
+  },
+  setYeppPost: function(e) {
+    this.setState({ yepp: e.currentTarget.value });
+  },
+
+
 
   handleReviewSubmit: function(e) {
     e.preventDefault();
@@ -147,6 +158,7 @@ var RestDetails = React.createClass({
 
     var that = this;
     if (this.state.editFormData.revContent !== undefined) {
+      console.log(1);
       revEditFormText = this.state.editFormData.revContent;
       revEditYepp = this.state.yepp;
     } else {
@@ -160,10 +172,14 @@ var RestDetails = React.createClass({
             _myReview = review;
             tsrdr.forEach(function(review) {
               if (review.username === _currentUser) {
+                console.log(2);
+                // debugger
                 revEditFormText = review.rev_content;
                 revEditYepp = review.yepp;
               }
               if (that.state.editFormData !== undefined) {
+                // console.log(3);
+                // debugger
                 revEditFormText = that.state.editFormData.rev_content;
                 revEditYepp = that.state.editFormData.yepp;
               }
@@ -176,12 +192,14 @@ var RestDetails = React.createClass({
 
 
 
-    if (revEditYepp === "true") {
-      yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYepp} checked/> }
-      nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYepp}/> }
+    if (revEditYepp === true || revEditYepp === "true") {
+      console.log("ever?");
+      yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYeppEdit} checked/> }
+      nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYeppEdit}/> }
     } else {
-      yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYepp}/> }
-      nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYepp} checked/> }
+      console.log("always");
+      yeppButton = { element: <input type="Radio" name="yepp" value="true" onChange={this.setYeppEdit}/> }
+      nopeButton = { element: <input type="Radio" name="yepp" value="false" onChange={this.setYeppEdit} checked/> }
     }
 
 
@@ -194,7 +212,7 @@ var RestDetails = React.createClass({
       var reviewButtonForm = (<form id="edit-form" onSubmit={this.handleReviewEdit}>
           <br />
           <label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
-            <textarea id="rev-textbox" value={revEditFormText} onChange={this.revContentChange}/>
+            <textarea id="rev-textbox" value={revEditFormText} onChange={this.revEditContentChange}/>
           </label>
           <br />
           <br />
@@ -219,18 +237,18 @@ var RestDetails = React.createClass({
       var reviewButtonForm = (<form id="review-form" onSubmit={this.handleReviewSubmit}>
             <br />
             <label id="rev-content-holder">Review:&nbsp;&nbsp;&nbsp;<br />
-              <textarea id="rev-textbox" value={this.state.revContent} onChange={this.revContentChange}/>
+              <textarea id="rev-textbox" value={this.state.revContent} onChange={this.revPostContentChange}/>
             </label>
             <br />
             <br />
             <section id="rev-yepp">
               <label>
 
-                <input type="Radio" name="yepp" value="true" onChange={this.setYepp}/>
+                <input type="Radio" name="yepp" value="true" onChange={this.setYeppPost}/>
                 &nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </label>
               <label>
-                <input type="Radio" name="yepp" value="false" onChange={this.setYepp}/>
+                <input type="Radio" name="yepp" value="false" onChange={this.setYeppPost}/>
                 &nbsp;Nope!
               </label>
               <br />
