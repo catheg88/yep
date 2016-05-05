@@ -46,7 +46,6 @@ var ClientRestApiUtil = {
                     }
                   },
       success: function (restaurant) {
-        console.log(restaurant);
         ServerRestActions.receiveRestaurant(restaurant);
       },
     });

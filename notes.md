@@ -82,3 +82,4 @@ done:
 bugs:
 -error validation on form and controller for update
 -update form: starts out with the correct yepp/nope toggled, but if you click into the field, it always changes to nope
+-change the nav bar to remove the search by cuisine stuff

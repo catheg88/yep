@@ -60,9 +60,13 @@ ul {
  top: 0px;
 }
 
+.left-header {
+  display: flex;
+}
+
 .header-logo {
  display: flex;
- justify-content: flex-start;
+ justify-content: center;
  align-items: center;
  border-right: 2px solid black;
  font-weight: 700;
@@ -73,6 +77,32 @@ ul {
   background-color: dodgerblue;
   cursor: pointer;
 }
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 0;
+  padding: 0 30px;
+  border-right: 2px solid black;
+}
+
+.filter-list {
+  display: none;
+}
+
+.filter-button:hover .filter-list {
+  display: block;
+  position: absolute;
+}
+
+.filter-button:hover {
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+
 
 #logo-link {
   text-decoration: none;

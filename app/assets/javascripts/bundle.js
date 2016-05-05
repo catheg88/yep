@@ -34591,8 +34591,31 @@
 	      { className: "header" },
 	      React.createElement(
 	        "div",
-	        { className: "header-logo", onClick: this.goHome },
-	        "YEPP"
+	        { className: "left-header" },
+	        React.createElement(
+	          "div",
+	          { className: "header-logo", onClick: this.goHome },
+	          "YEPP"
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "filter-button" },
+	          "Search by Cuisine"
+	        ),
+	        React.createElement(
+	          "ul",
+	          { className: "filter-list" },
+	          React.createElement(
+	            "li",
+	            null,
+	            "sup"
+	          ),
+	          React.createElement(
+	            "li",
+	            null,
+	            "dawg"
+	          )
+	        )
 	      ),
 	      React.createElement(
 	        "ul",
@@ -34877,7 +34900,6 @@
 	        }
 	      },
 	      success: function (restaurant) {
-	        console.log(restaurant);
 	        ServerRestActions.receiveRestaurant(restaurant);
 	      }
 	    });
@@ -35051,7 +35073,6 @@
 	  handleReviewEdit: function (e) {
 	    // TODO doesn't catch the errors
 	    e.preventDefault();
-	    console.log("handleReviewEdit");
 	    this.setState({ editModalOpen: false });
 	    var restId = parseInt(this.props.params.id);
 	    ClientRestActions.editReview({

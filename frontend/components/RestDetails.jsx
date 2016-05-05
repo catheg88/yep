@@ -128,7 +128,6 @@ var RestDetails = React.createClass({
 
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
     e.preventDefault();
-    console.log("handleReviewEdit");
     this.setState({ editModalOpen: false });
     var restId = parseInt(this.props.params.id)
     ClientRestActions.editReview({
