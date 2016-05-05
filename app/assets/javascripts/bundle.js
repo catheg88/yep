@@ -34703,13 +34703,48 @@
 	      this.setState({ cuisines: cuisinesFromState });
 	    }
 	    console.log(this.state.cuisines);
+	    ClientRestActions.handleCuisineChange(this.state.cuisines);
 	  },
 	
 	  selectAll: function () {
-	    // this.setState({ })
+	    this.setState({
+	      cuisines: { "American": true,
+	        "Bars": true,
+	        "Chinese": true,
+	        "CoffeeandTea": true,
+	        "Indian": true,
+	        "Korean": true,
+	        "LatinAmerican": true,
+	        "Pizza": true,
+	        "Ramen": true,
+	        "Sandwiches": true,
+	        "Seafood": true,
+	        "Sushi": true,
+	        "Thai": true,
+	        "Vietnamese": true
+	      }
+	    });
 	  },
 	
-	  uncheckAll: function () {},
+	  uncheckAll: function () {
+	    this.setState({
+	      cuisines: { "American": false,
+	        "Bars": false,
+	        "Chinese": false,
+	        "CoffeeandTea": false,
+	        "Indian": false,
+	        "Korean": false,
+	        "LatinAmerican": false,
+	        "Pizza": false,
+	        "Ramen": false,
+	        "Sandwiches": false,
+	        "Seafood": false,
+	        "Sushi": false,
+	        "Thai": false,
+	        "Vietnamese": false
+	      }
+	    });
+	  },
 	
 	  render: function () {
 	
@@ -34735,49 +34770,49 @@
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "American", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "American", onChange: this.handleCuisineChange, checked: this.state.cuisines["American"] }),
 	            " American"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Bars", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Bars", onChange: this.handleCuisineChange, checked: this.state.cuisines["Bars"] }),
 	            " Bars"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Chinese", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Chinese", onChange: this.handleCuisineChange, checked: this.state.cuisines["Chinese"] }),
 	            " Chinese"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "CoffeeandTea", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "CoffeeandTea", onChange: this.handleCuisineChange, checked: this.state.cuisines["CoffeeandTea"] }),
 	            " Coffee and Tea"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Indian", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Indian", onChange: this.handleCuisineChange, checked: this.state.cuisines["Indian"] }),
 	            " Indian"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Korean", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Korean", onChange: this.handleCuisineChange, checked: this.state.cuisines["Korean"] }),
 	            " Korean"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "LatinAmerican", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "LatinAmerican", onChange: this.handleCuisineChange, checked: this.state.cuisines["LatinAmerican"] }),
 	            " Latin American"
 	          ),
 	          React.createElement("br", null)
@@ -34788,49 +34823,49 @@
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Pizza", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Pizza", onChange: this.handleCuisineChange, checked: this.state.cuisines["Pizza"] }),
 	            " Pizza"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Ramen", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Ramen", onChange: this.handleCuisineChange, checked: this.state.cuisines["Ramen"] }),
 	            " Ramen"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Sandwiches", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Sandwiches", onChange: this.handleCuisineChange, checked: this.state.cuisines["Sandwiches"] }),
 	            " Sandwiches"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Seafood", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Seafood", onChange: this.handleCuisineChange, checked: this.state.cuisines["Seafood"] }),
 	            " Seafood"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Sushi", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Sushi", onChange: this.handleCuisineChange, checked: this.state.cuisines["Sushi"] }),
 	            " Sushi"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Thai", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Thai", onChange: this.handleCuisineChange, checked: this.state.cuisines["Thai"] }),
 	            " Thai"
 	          ),
 	          React.createElement("br", null),
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "checkbox", value: "Vietnamese", onChange: this.handleCuisineChange }),
+	            React.createElement("input", { type: "checkbox", value: "Vietnamese", onChange: this.handleCuisineChange, checked: this.state.cuisines["Vietnamese"] }),
 	            " Vietnamese"
 	          ),
 	          React.createElement("br", null)
@@ -34859,7 +34894,7 @@
 	            ),
 	            React.createElement(
 	              "div",
-	              { className: "filter-button", onClick: this.selectAll },
+	              { className: "filter-button", onClick: this.uncheckAll },
 	              "Uncheck all"
 	            )
 	          )
@@ -35008,6 +35043,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ClientRestApiUtil = __webpack_require__(279);
+	var Dispatcher = __webpack_require__(250);
 	
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
@@ -35028,6 +35064,13 @@
 	
 	  deleteReview: function (id) {
 	    ClientRestApiUtil.deleteReview(id);
+	  },
+	
+	  handleCuisineChange: function (cuisines) {
+	    Dispatcher.dispatch({
+	      actionType: "CUISINE_CHANGE",
+	      cuisines: cuisines
+	    });
 	  }
 	
 	};

@@ -314,6 +314,7 @@ ul {
 
 .filter-button:hover {
   font-weight: bold;
+  cursor: pointer;
 }
 
 #restaurant-results-header {

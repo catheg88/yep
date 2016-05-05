@@ -49,13 +49,47 @@ var RestResults = React.createClass({
       this.setState({ cuisines: cuisinesFromState })
     }
     console.log(this.state.cuisines);
+    ClientRestActions.handleCuisineChange(this.state.cuisines)
   },
 
   selectAll: function() {
-    // this.setState({ })
+    this.setState({
+      cuisines: {"American": true,
+      "Bars": true,
+      "Chinese": true,
+      "CoffeeandTea": true,
+      "Indian": true,
+      "Korean": true,
+      "LatinAmerican": true,
+      "Pizza": true,
+      "Ramen": true,
+      "Sandwiches": true,
+      "Seafood": true,
+      "Sushi": true,
+      "Thai": true,
+      "Vietnamese": true
+      }
+    })
   },
 
   uncheckAll: function() {
+    this.setState({
+      cuisines: {"American": false,
+      "Bars": false,
+      "Chinese": false,
+      "CoffeeandTea": false,
+      "Indian": false,
+      "Korean": false,
+      "LatinAmerican": false,
+      "Pizza": false,
+      "Ramen": false,
+      "Sandwiches": false,
+      "Seafood": false,
+      "Sushi": false,
+      "Thai": false,
+      "Vietnamese": false
+      }
+    })
   },
 
 
@@ -71,22 +105,22 @@ var RestResults = React.createClass({
     var filter = (<form id="filter" onSubmit={this.handleSubmit}>
       <div id="filter-column-holder">
         <div className="filter-column" id="col-i">
-          <label><input type="checkbox" value="American" onChange={this.handleCuisineChange} />&nbsp;American</label><br />
-          <label><input type="checkbox" value="Bars" onChange={this.handleCuisineChange} />&nbsp;Bars</label><br />
-          <label><input type="checkbox" value="Chinese" onChange={this.handleCuisineChange} />&nbsp;Chinese</label><br />
-          <label><input type="checkbox" value="CoffeeandTea" onChange={this.handleCuisineChange} />&nbsp;Coffee and Tea</label><br />
-          <label><input type="checkbox" value="Indian" onChange={this.handleCuisineChange} />&nbsp;Indian</label><br />
-          <label><input type="checkbox" value="Korean" onChange={this.handleCuisineChange} />&nbsp;Korean</label><br />
-          <label><input type="checkbox" value="LatinAmerican" onChange={this.handleCuisineChange} />&nbsp;Latin American</label><br />
+          <label><input type="checkbox" value="American" onChange={this.handleCuisineChange} checked={this.state.cuisines["American"]} />&nbsp;American</label><br />
+          <label><input type="checkbox" value="Bars" onChange={this.handleCuisineChange} checked={this.state.cuisines["Bars"]} />&nbsp;Bars</label><br />
+          <label><input type="checkbox" value="Chinese" onChange={this.handleCuisineChange} checked={this.state.cuisines["Chinese"]} />&nbsp;Chinese</label><br />
+          <label><input type="checkbox" value="CoffeeandTea" onChange={this.handleCuisineChange} checked={this.state.cuisines["CoffeeandTea"]} />&nbsp;Coffee and Tea</label><br />
+          <label><input type="checkbox" value="Indian" onChange={this.handleCuisineChange} checked={this.state.cuisines["Indian"]} />&nbsp;Indian</label><br />
+          <label><input type="checkbox" value="Korean" onChange={this.handleCuisineChange} checked={this.state.cuisines["Korean"]} />&nbsp;Korean</label><br />
+          <label><input type="checkbox" value="LatinAmerican" onChange={this.handleCuisineChange} checked={this.state.cuisines["LatinAmerican"]} />&nbsp;Latin American</label><br />
         </div>
         <div className="filter-column">
-          <label><input type="checkbox" value="Pizza" onChange={this.handleCuisineChange} />&nbsp;Pizza</label><br />
-          <label><input type="checkbox" value="Ramen" onChange={this.handleCuisineChange} />&nbsp;Ramen</label><br />
-          <label><input type="checkbox" value="Sandwiches" onChange={this.handleCuisineChange} />&nbsp;Sandwiches</label><br />
-          <label><input type="checkbox" value="Seafood" onChange={this.handleCuisineChange} />&nbsp;Seafood</label><br />
-          <label><input type="checkbox" value="Sushi" onChange={this.handleCuisineChange} />&nbsp;Sushi</label><br />
-          <label><input type="checkbox" value="Thai" onChange={this.handleCuisineChange} />&nbsp;Thai</label><br />
-          <label><input type="checkbox" value="Vietnamese" onChange={this.handleCuisineChange} />&nbsp;Vietnamese</label><br />
+          <label><input type="checkbox" value="Pizza" onChange={this.handleCuisineChange} checked={this.state.cuisines["Pizza"]} />&nbsp;Pizza</label><br />
+          <label><input type="checkbox" value="Ramen" onChange={this.handleCuisineChange} checked={this.state.cuisines["Ramen"]} />&nbsp;Ramen</label><br />
+          <label><input type="checkbox" value="Sandwiches" onChange={this.handleCuisineChange} checked={this.state.cuisines["Sandwiches"]} />&nbsp;Sandwiches</label><br />
+          <label><input type="checkbox" value="Seafood" onChange={this.handleCuisineChange} checked={this.state.cuisines["Seafood"]} />&nbsp;Seafood</label><br />
+          <label><input type="checkbox" value="Sushi" onChange={this.handleCuisineChange} checked={this.state.cuisines["Sushi"]} />&nbsp;Sushi</label><br />
+          <label><input type="checkbox" value="Thai" onChange={this.handleCuisineChange} checked={this.state.cuisines["Thai"]} />&nbsp;Thai</label><br />
+          <label><input type="checkbox" value="Vietnamese" onChange={this.handleCuisineChange} checked={this.state.cuisines["Vietnamese"]} />&nbsp;Vietnamese</label><br />
         </div>
       </div>
     </form>)
@@ -100,7 +134,7 @@ var RestResults = React.createClass({
             {filter}
             <div id="filter-button-holder">
               <div className="filter-button" onClick={this.selectAll}>Select all</div>
-              <div className="filter-button" onClick={this.selectAll}>Uncheck all</div>
+              <div className="filter-button" onClick={this.uncheckAll}>Uncheck all</div>
             </div>
           </div>
         </section>

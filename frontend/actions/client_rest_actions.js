@@ -1,4 +1,5 @@
 var ClientRestApiUtil = require("../util/client_rest_api_util.js");
+var Dispatcher = require('../dispatcher/dispatcher.js');
 
 var ClientRestActions = {
   fetchRestaurants: function() {
@@ -19,6 +20,13 @@ var ClientRestActions = {
 
   deleteReview: function(id) {
     ClientRestApiUtil.deleteReview(id);
+  },
+
+  handleCuisineChange: function(cuisines) {
+    Dispatcher.dispatch({
+      actionType: "CUISINE_CHANGE",
+      cuisines: cuisines
+    });
   }
 
 };
