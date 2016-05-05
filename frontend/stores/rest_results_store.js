@@ -5,7 +5,7 @@ var RestaurantConstants = require("../constants/restaurant_constants");
 var RestResultsStore = new Store(AppDispatcher);
 
 var _restResults = window._restResults = {}; // TODO
-
+var _selectedRestaurants = [];
 
 RestResultsStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
@@ -14,6 +14,9 @@ RestResultsStore.__onDispatch = function (payload) {
     break;
   case RestaurantConstants.RESTAURANT_RECEIVED:
     setRestaurant(payload.restaurant);
+    break;
+  case "CUISINE_CHANGE":
+    setSelectedCuisines(payload.cuisines);
     break;
   }
   RestResultsStore.__emitChange();
@@ -46,6 +49,22 @@ RestResultsStore.all = function () {
 RestResultsStore.find = function(id) {
   return _restResults[id];
 };
+
+var setSelectedCuisines = function(cuisines) {
+  Object.keys(cuisines).forEach(function(cuisine) {
+    // console.log(cuisine);
+    if (cuisines[cuisine] === true) {
+      console.log("select " + cuisine);
+    } else {
+      console.log("do not select " + cuisine);
+    }
+
+
+  });
+};
+
+
+
 
 module.exports = RestResultsStore;
 

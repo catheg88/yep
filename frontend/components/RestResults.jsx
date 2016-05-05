@@ -48,13 +48,12 @@ var RestResults = React.createClass({
       cuisinesFromState[e.currentTarget.value] = true;
       this.setState({ cuisines: cuisinesFromState })
     }
-    console.log(this.state.cuisines);
     ClientRestActions.handleCuisineChange(this.state.cuisines)
   },
 
   selectAll: function() {
-    this.setState({
-      cuisines: {"American": true,
+    var cuisinesForState = {
+      "American": true,
       "Bars": true,
       "Chinese": true,
       "CoffeeandTea": true,
@@ -68,13 +67,15 @@ var RestResults = React.createClass({
       "Sushi": true,
       "Thai": true,
       "Vietnamese": true
-      }
-    })
+    }
+    this.setState({ cuisines: cuisinesForState }, function() {
+      ClientRestActions.handleCuisineChange(this.state.cuisines)
+    });
   },
 
   uncheckAll: function() {
-    this.setState({
-      cuisines: {"American": false,
+    var cuisinesForState = {
+      "American": false,
       "Bars": false,
       "Chinese": false,
       "CoffeeandTea": false,
@@ -88,13 +89,16 @@ var RestResults = React.createClass({
       "Sushi": false,
       "Thai": false,
       "Vietnamese": false
-      }
-    })
+    }
+    this.setState({ cuisines: cuisinesForState }, function() {
+      ClientRestActions.handleCuisineChange(this.state.cuisines)
+    });
   },
 
 
-  render: function() {
 
+
+  render: function() {
 
     var yeppInfo = (
       <section id="yepp-info">

@@ -34702,47 +34702,50 @@
 	      cuisinesFromState[e.currentTarget.value] = true;
 	      this.setState({ cuisines: cuisinesFromState });
 	    }
-	    console.log(this.state.cuisines);
 	    ClientRestActions.handleCuisineChange(this.state.cuisines);
 	  },
 	
 	  selectAll: function () {
-	    this.setState({
-	      cuisines: { "American": true,
-	        "Bars": true,
-	        "Chinese": true,
-	        "CoffeeandTea": true,
-	        "Indian": true,
-	        "Korean": true,
-	        "LatinAmerican": true,
-	        "Pizza": true,
-	        "Ramen": true,
-	        "Sandwiches": true,
-	        "Seafood": true,
-	        "Sushi": true,
-	        "Thai": true,
-	        "Vietnamese": true
-	      }
+	    var cuisinesForState = {
+	      "American": true,
+	      "Bars": true,
+	      "Chinese": true,
+	      "CoffeeandTea": true,
+	      "Indian": true,
+	      "Korean": true,
+	      "LatinAmerican": true,
+	      "Pizza": true,
+	      "Ramen": true,
+	      "Sandwiches": true,
+	      "Seafood": true,
+	      "Sushi": true,
+	      "Thai": true,
+	      "Vietnamese": true
+	    };
+	    this.setState({ cuisines: cuisinesForState }, function () {
+	      ClientRestActions.handleCuisineChange(this.state.cuisines);
 	    });
 	  },
 	
 	  uncheckAll: function () {
-	    this.setState({
-	      cuisines: { "American": false,
-	        "Bars": false,
-	        "Chinese": false,
-	        "CoffeeandTea": false,
-	        "Indian": false,
-	        "Korean": false,
-	        "LatinAmerican": false,
-	        "Pizza": false,
-	        "Ramen": false,
-	        "Sandwiches": false,
-	        "Seafood": false,
-	        "Sushi": false,
-	        "Thai": false,
-	        "Vietnamese": false
-	      }
+	    var cuisinesForState = {
+	      "American": false,
+	      "Bars": false,
+	      "Chinese": false,
+	      "CoffeeandTea": false,
+	      "Indian": false,
+	      "Korean": false,
+	      "LatinAmerican": false,
+	      "Pizza": false,
+	      "Ramen": false,
+	      "Sandwiches": false,
+	      "Seafood": false,
+	      "Sushi": false,
+	      "Thai": false,
+	      "Vietnamese": false
+	    };
+	    this.setState({ cuisines: cuisinesForState }, function () {
+	      ClientRestActions.handleCuisineChange(this.state.cuisines);
 	    });
 	  },
 	
@@ -34929,6 +34932,7 @@
 	var RestResultsStore = new Store(AppDispatcher);
 	
 	var _restResults = window._restResults = {}; // TODO
+	var _selectedRestaurants = [];
 	
 	RestResultsStore.__onDispatch = function (payload) {
 	  switch (payload.actionType) {
@@ -34937,6 +34941,9 @@
 	      break;
 	    case RestaurantConstants.RESTAURANT_RECEIVED:
 	      setRestaurant(payload.restaurant);
+	      break;
+	    case "CUISINE_CHANGE":
+	      setSelectedCuisines(payload.cuisines);
 	      break;
 	  }
 	  RestResultsStore.__emitChange();
@@ -34969,6 +34976,17 @@
 	
 	RestResultsStore.find = function (id) {
 	  return _restResults[id];
+	};
+	
+	var setSelectedCuisines = function (cuisines) {
+	  Object.keys(cuisines).forEach(function (cuisine) {
+	    // console.log(cuisine);
+	    if (cuisines[cuisine] === true) {
+	      console.log("select " + cuisine);
+	    } else {
+	      console.log("do not select " + cuisine);
+	    }
+	  });
 	};
 	
 	module.exports = RestResultsStore;
