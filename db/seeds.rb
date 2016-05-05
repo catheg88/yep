@@ -19,7 +19,7 @@ Restaurant.create({
   address: "123 Grant St.",
   phone: "415-867-5309",
   hours: "9am - 8pm Daily",
-  description: "Hello, welcome to CityWok!"
+  description: "Hello, welcome to Wok 'n' Roll!"
 })
 
 Restaurant.create({
