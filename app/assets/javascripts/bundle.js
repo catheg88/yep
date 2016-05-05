@@ -34599,12 +34599,12 @@
 	        ),
 	        React.createElement(
 	          "div",
-	          { className: "filter-button" },
+	          { className: "filter-header-button" },
 	          "Search by Cuisine"
 	        ),
 	        React.createElement(
 	          "ul",
-	          { className: "filter-list" },
+	          { className: "filter-header-list" },
 	          React.createElement(
 	            "li",
 	            null,
@@ -34659,7 +34659,23 @@
 	  displayName: "RestResults",
 	
 	  getInitialState: function () {
-	    return { restaurants: RestResultsStore.all() };
+	    return { restaurants: RestResultsStore.all(),
+	      cuisines: { "American": true,
+	        "Bars": true,
+	        "Chinese": true,
+	        "CoffeeandTea": true,
+	        "Indian": true,
+	        "Korean": true,
+	        "LatinAmerican": true,
+	        "Pizza": true,
+	        "Ramen": true,
+	        "Sandwiches": true,
+	        "Seafood": true,
+	        "Sushi": true,
+	        "Thai": true,
+	        "Vietnamese": true
+	      }
+	    };
 	  },
 	
 	  componentDidMount: function () {
@@ -34675,10 +34691,180 @@
 	    this.setState({ restaurants: RestResultsStore.all() });
 	  },
 	
+	  handleSubmit: function () {},
+	
+	  handleCuisineChange: function (e) {
+	    var cuisinesFromState = this.state.cuisines;
+	    if (this.state.cuisines[e.currentTarget.value]) {
+	      cuisinesFromState[e.currentTarget.value] = false;
+	      this.setState({ cuisines: cuisinesFromState });
+	    } else {
+	      cuisinesFromState[e.currentTarget.value] = true;
+	      this.setState({ cuisines: cuisinesFromState });
+	    }
+	    console.log(this.state.cuisines);
+	  },
+	
+	  selectAll: function () {
+	    // this.setState({ })
+	  },
+	
+	  uncheckAll: function () {},
+	
 	  render: function () {
+	
+	    var yeppInfo = React.createElement(
+	      "section",
+	      { id: "yepp-info" },
+	      React.createElement(
+	        "p",
+	        null,
+	        "YEPP stuff here"
+	      )
+	    );
+	
+	    var filter = React.createElement(
+	      "form",
+	      { id: "filter", onSubmit: this.handleSubmit },
+	      React.createElement(
+	        "div",
+	        { id: "filter-column-holder" },
+	        React.createElement(
+	          "div",
+	          { className: "filter-column", id: "col-i" },
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "American", onChange: this.handleCuisineChange }),
+	            " American"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Bars", onChange: this.handleCuisineChange }),
+	            " Bars"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Chinese", onChange: this.handleCuisineChange }),
+	            " Chinese"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "CoffeeandTea", onChange: this.handleCuisineChange }),
+	            " Coffee and Tea"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Indian", onChange: this.handleCuisineChange }),
+	            " Indian"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Korean", onChange: this.handleCuisineChange }),
+	            " Korean"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "LatinAmerican", onChange: this.handleCuisineChange }),
+	            " Latin American"
+	          ),
+	          React.createElement("br", null)
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "filter-column" },
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Pizza", onChange: this.handleCuisineChange }),
+	            " Pizza"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Ramen", onChange: this.handleCuisineChange }),
+	            " Ramen"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Sandwiches", onChange: this.handleCuisineChange }),
+	            " Sandwiches"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Seafood", onChange: this.handleCuisineChange }),
+	            " Seafood"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Sushi", onChange: this.handleCuisineChange }),
+	            " Sushi"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Thai", onChange: this.handleCuisineChange }),
+	            " Thai"
+	          ),
+	          React.createElement("br", null),
+	          React.createElement(
+	            "label",
+	            null,
+	            React.createElement("input", { type: "checkbox", value: "Vietnamese", onChange: this.handleCuisineChange }),
+	            " Vietnamese"
+	          ),
+	          React.createElement("br", null)
+	        )
+	      )
+	    );
+	
 	    return React.createElement(
 	      "div",
 	      { id: "restaurant-results" },
+	      React.createElement(
+	        "section",
+	        { id: "filter-and-info" },
+	        yeppInfo,
+	        React.createElement(
+	          "div",
+	          { id: "filter-holder" },
+	          filter,
+	          React.createElement(
+	            "div",
+	            { id: "filter-button-holder" },
+	            React.createElement(
+	              "div",
+	              { className: "filter-button", onClick: this.selectAll },
+	              "Select all"
+	            ),
+	            React.createElement(
+	              "div",
+	              { className: "filter-button", onClick: this.selectAll },
+	              "Uncheck all"
+	            )
+	          )
+	        )
+	      ),
 	      React.createElement(
 	        "header",
 	        { id: "restaurant-results-header" },

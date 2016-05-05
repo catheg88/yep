@@ -65,8 +65,8 @@ var NavBar = React.createClass({
 						YEPP
 	        </div>
 
-					<div className="filter-button">Search by Cuisine</div>
-					<ul className="filter-list">
+					<div className="filter-header-button">Search by Cuisine</div>
+					<ul className="filter-header-list">
 						<li>sup</li>
 						<li>dawg</li>
 					</ul>

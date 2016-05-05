@@ -78,7 +78,7 @@ ul {
   cursor: pointer;
 }
 
-.filter-button {
+.filter-header-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,16 +88,16 @@ ul {
   border-right: 2px solid black;
 }
 
-.filter-list {
+.filter-header-list {
   display: none;
 }
 
-.filter-button:hover .filter-list {
+.filter-header-button:hover .filter-list {
   display: block;
   position: absolute;
 }
 
-.filter-button:hover {
+.filter-header-button:hover {
   background-color: dodgerblue;
   cursor: pointer;
 }
@@ -235,15 +235,85 @@ ul {
   margin-left: -8%;
 }
 
+
+
+
 #restaurant-results {
  height: 100%;
  margin: 60px;
- background-color: rgba(255,255,255,0.92);
+ background-color: rgba(255,255,255,0.96);
  border: 2px solid black;
  display: flex;
  flex-direction: column;
  border-radius: 15px;
  overflow: hidden;
+}
+
+#filter-and-info {
+  display: flex;
+  border-bottom: 2px solid black;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+#yepp-info {
+  width: 100%;
+}
+
+#form-holder {
+  width: 60%;
+}
+
+#filter-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 300px;
+  border-left: 2px solid black;
+}
+
+#filter {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+
+#filter-column-holder {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 300px;
+}
+
+.filter-column {
+  padding: 0 16px;
+  width: 50%;
+  min-width: 134px;
+  font-weight: 300;
+}
+
+#col-i {
+  padding-left: 30px;
+}
+
+#filter-button-holder {
+  display: flex;
+  justify-content: center;
+  width: 100%
+}
+
+.filter-button {
+  width: 100px;
+  padding: 0px 8px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter-button:hover {
+  font-weight: bold;
 }
 
 #restaurant-results-header {
@@ -342,7 +412,7 @@ ul {
   margin: 18px 20px 4px -20px;
   border-bottom: 2px solid red;
   border-right: 2px solid red;
-
+  /*box-shadow: 2px 2px 5px red;*/
   display: flex;
   justify-content: space-between;
 }
