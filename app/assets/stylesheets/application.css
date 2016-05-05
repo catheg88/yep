@@ -207,6 +207,7 @@ ul {
 
 #restaurant-results {
  height: 100%;
+ min-height: 407px;
  margin: 30px;
  background-color: rgba(255,255,255,1);
  border: 2px solid black;
@@ -225,7 +226,6 @@ ul {
 
 #yepp-info {
   width: 100%;
-  background-color: red;
   color: white;
 
   text-shadow:
@@ -334,6 +334,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-content: flex-start;
+  z-index: 2;
 }
 
 .rest-result-details {
