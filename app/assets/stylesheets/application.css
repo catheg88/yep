@@ -29,7 +29,7 @@ border: 1px
 
 html {
  /*height: 100%;*/
- background-image: url("background.jpg");
+ /*background-image: url("background.jpg");*/
  background-position: center;
  background-size: cover;
  background-attachment: fixed;
@@ -60,10 +60,6 @@ ul {
  top: 0px;
 }
 
-.left-header {
-  display: flex;
-}
-
 .header-logo {
  display: flex;
  justify-content: center;
@@ -77,32 +73,6 @@ ul {
   background-color: dodgerblue;
   cursor: pointer;
 }
-
-.filter-header-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  margin: 0;
-  padding: 0 30px;
-  border-right: 2px solid black;
-}
-
-.filter-header-list {
-  display: none;
-}
-
-.filter-header-button:hover .filter-list {
-  display: block;
-  position: absolute;
-}
-
-.filter-header-button:hover {
-  background-color: dodgerblue;
-  cursor: pointer;
-}
-
-
 
 #logo-link {
   text-decoration: none;
@@ -240,12 +210,12 @@ ul {
 
 #restaurant-results {
  height: 100%;
- margin: 60px;
- background-color: rgba(255,255,255,0.96);
+ margin: 30px;
+ background-color: rgba(255,255,255,1);
  border: 2px solid black;
  display: flex;
  flex-direction: column;
- border-radius: 15px;
+ border-radius: 8px;
  overflow: hidden;
 }
 
@@ -258,6 +228,18 @@ ul {
 
 #yepp-info {
   width: 100%;
+  background-color: red;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#yepp-info-logo {
+  font-size: 50px;
+  font-weight: 700;
+  text-emphasis: bold;
 }
 
 #form-holder {
@@ -322,7 +304,7 @@ ul {
  width: 100%;
  border-bottom: 2px solid black;
  color: black;
- background-color: rgba(238, 224, 201, 0.5);
+ background-color: rgba(238, 224, 201, 1);
  font-weight: 700;
  padding: 20px 0px;
  display: flex;
@@ -373,7 +355,7 @@ ul {
 
 #rest-details {
  height: 100%;
- margin: 60px;
+ margin: 30px;
  background-color: white;
  border: 2px solid black;
  display: flex;

@@ -34591,31 +34591,8 @@
 	      { className: "header" },
 	      React.createElement(
 	        "div",
-	        { className: "left-header" },
-	        React.createElement(
-	          "div",
-	          { className: "header-logo", onClick: this.goHome },
-	          "YEPP"
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "filter-header-button" },
-	          "Search by Cuisine"
-	        ),
-	        React.createElement(
-	          "ul",
-	          { className: "filter-header-list" },
-	          React.createElement(
-	            "li",
-	            null,
-	            "sup"
-	          ),
-	          React.createElement(
-	            "li",
-	            null,
-	            "dawg"
-	          )
-	        )
+	        { className: "header-logo", onClick: this.goHome },
+	        "YEPP"
 	      ),
 	      React.createElement(
 	        "ul",
@@ -34755,9 +34732,20 @@
 	      "section",
 	      { id: "yepp-info" },
 	      React.createElement(
-	        "p",
+	        "div",
+	        { id: "yepp-info-logo" },
+	        "YEPP"
+	      ),
+	      React.createElement(
+	        "div",
 	        null,
-	        "YEPP stuff here"
+	        "Discover eats in San Francisco..."
+	      ),
+	      React.createElement("br", null),
+	      React.createElement(
+	        "div",
+	        null,
+	        "...then RENDER JUDGEMENT!"
 	      )
 	    );
 	

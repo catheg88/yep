@@ -60,20 +60,9 @@ var NavBar = React.createClass({
 
     return (
       <header className="header">
-				<div className="left-header">
-	        <div className="header-logo" onClick={this.goHome}>
-						YEPP
-	        </div>
-
-					<div className="filter-header-button">Search by Cuisine</div>
-					<ul className="filter-header-list">
-						<li>sup</li>
-						<li>dawg</li>
-					</ul>
-
-
+				<div className="header-logo" onClick={this.goHome}>
+					YEPP
 				</div>
-
 
         <ul className="header-list">
           <li>{username}</li>

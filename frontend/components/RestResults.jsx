@@ -102,7 +102,10 @@ var RestResults = React.createClass({
 
     var yeppInfo = (
       <section id="yepp-info">
-        <p>YEPP stuff here</p>
+        <div id="yepp-info-logo">YEPP</div>
+        <div>Discover eats in San Francisco...</div>
+        <br />
+        <div>...then RENDER JUDGEMENT!</div>
       </section>
     )
 
