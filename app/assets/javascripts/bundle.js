@@ -34951,11 +34951,11 @@
 	
 	var resetRestaurants = function (restaurants) {
 	  // TODO this will keep a restuarant from updating if it's changed in the db
-	  // _restResults = {};
+	  _restResults = {};
 	  restaurants.forEach(function (restaurant) {
-	    if (_restResults[restaurant.id] !== undefined) {
-	      return;
-	    }
+	    // if (_restResults[restaurant.id]) {
+	    //   return;
+	    // }
 	    _restResults[restaurant.id] = restaurant;
 	    window._restResults[restaurant.id] = restaurant; // TODO
 	  });
@@ -34979,20 +34979,32 @@
 	};
 	
 	var setSelectedCuisines = function (cuisines) {
+	  for (var restaurant in _unselectedRestaurants) {
+	    _restResults[restaurant] = _unselectedRestaurants[restaurant];
+	  }
+	
+	  _unselectedRestaurants = {};
+	
 	  Object.keys(cuisines).forEach(function (cuisine) {
 	    // for each selected cuisine
-	    if (cuisines[cuisine] === true) {
-	      // console.log("select " + cuisine);
+	    if (cuisines[cuisine] === false) {
 	
 	      Object.keys(_restResults).forEach(function (_restResultKey) {
-	        // console.log(_restResults[_restResultKey].cuisine);
-	        if (_restResults[_restResultKey].cuisine === cuisine) {
-	          console.log(_restResults[_restResultKey]); // this is the same restaurant as store
+	        var restaurant = _restResults[_restResultKey]; // for each restaurant in the store,
+	        if (restaurant.cuisine === cuisine) {
+	          // if it doesn't match the cuisine type,
+	          _unselectedRestaurants[restaurant.id] = restaurant; // copy it to unselected store
+	          delete _restResults[restaurant.id]; // then remove it from the store
 	        }
 	      });
+	
+	      console.log("_restResults");
+	      console.log(_restResults);
+	      console.log("_unselectedRestaurants");
+	      console.log(_unselectedRestaurants);
 	    } else {
-	        return;
-	      }
+	      return;
+	    }
 	  });
 	};
 	
