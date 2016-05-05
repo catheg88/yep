@@ -77,9 +77,12 @@ done:
   -POST doesn't send the right data
 -edit form: nope button selected by default (i think always), but won't change a yep to a nope unless clicked (even tho it looks like it's not doing anything)
   -solution: i was setting the initial value of radio to true or false, but when pulling the value from current target on change, returning "true" as a string
+  -update form: starts out with the correct yepp/nope toggled, but if you click into the field, it always changes to nope
+  -change the nav bar to remove the search by cuisine stuff
 
 
 bugs:
 -error validation on form and controller for update
--update form: starts out with the correct yepp/nope toggled, but if you click into the field, it always changes to nope
--change the nav bar to remove the search by cuisine stuff
+
+
+0.14.8

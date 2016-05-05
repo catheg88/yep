@@ -27465,6 +27465,7 @@
 				})
 			);
 		},
+	
 		form: function () {
 			if (this.state.currentUser) {
 				return;
@@ -27533,7 +27534,11 @@
 				"div",
 				{ id: "login-form" },
 				this.form(),
-				this.errors()
+				React.createElement(
+					"div",
+					{ id: "login-errors" },
+					this.errors()
+				)
 			);
 		}
 	});
@@ -34739,13 +34744,13 @@
 	      React.createElement(
 	        "div",
 	        null,
-	        "Discover eats in San Francisco..."
+	        "1. Discover eats in San Francisco..."
 	      ),
 	      React.createElement("br", null),
 	      React.createElement(
 	        "div",
 	        null,
-	        "...then RENDER JUDGEMENT!"
+	        "2. RENDER JUDGEMENT!"
 	      )
 	    );
 	
@@ -34902,6 +34907,11 @@
 	        this.state.restaurants.map(function (restaurant) {
 	          return React.createElement(RestResultItem, { key: restaurant.id, restaurant: restaurant });
 	        })
+	      ),
+	      React.createElement(
+	        "div",
+	        { id: "no-results-msg" },
+	        "No results. Pick some cuisines!  Or not... :("
 	      )
 	    );
 	  }
@@ -35664,13 +35674,14 @@
 	    "zindex": 10
 	  },
 	  content: {
-	    position: 'fixed',
-	    top: '200px',
-	    left: '200px',
-	    right: '200px',
-	    bottom: '200px',
+	    position: 'absolute',
+	    top: '50%',
+	    left: '50%',
+	    transform: 'translate(-50%, -50%)',
+	
+	    height: '350px',
+	    width: '400px',
 	    border: '1px solid #ccc',
-	    padding: '20px',
 	    display: 'flex',
 	    flexdirection: 'column',
 	    alignitems: 'center',
@@ -35701,13 +35712,14 @@
 	    "zindex": 10
 	  },
 	  content: {
-	    position: 'fixed',
-	    top: '200px',
-	    left: '200px',
-	    right: '200px',
-	    bottom: '200px',
+	    position: 'absolute',
+	    top: '50%',
+	    left: '50%',
+	    transform: 'translate(-50%, -50%)',
+	
+	    height: '350px',
+	    width: '400px',
 	    border: '1px solid #ccc',
-	    padding: '20px',
 	    display: 'flex',
 	    flexdirection: 'column',
 	    alignitems: 'center',
@@ -35738,13 +35750,14 @@
 	    "zindex": 10
 	  },
 	  content: {
-	    position: 'fixed',
-	    top: '200px',
-	    left: '200px',
-	    right: '200px',
-	    bottom: '200px',
+	    position: 'absolute',
+	    top: '50%',
+	    left: '50%',
+	    transform: 'translate(-50%, -50%)',
+	
+	    height: '350px',
+	    width: '400px',
 	    border: '1px solid #ccc',
-	    padding: '20px',
 	    display: 'flex',
 	    flexdirection: 'column',
 	    alignitems: 'center',
