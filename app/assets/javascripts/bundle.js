@@ -34982,17 +34982,17 @@
 	  Object.keys(cuisines).forEach(function (cuisine) {
 	    // for each selected cuisine
 	    if (cuisines[cuisine] === true) {
-	      console.log("select " + cuisine);
+	      // console.log("select " + cuisine);
 	
 	      Object.keys(_restResults).forEach(function (_restResultKey) {
 	        // console.log(_restResults[_restResultKey].cuisine);
 	        if (_restResults[_restResultKey].cuisine === cuisine) {
-	          console.log(_restResults[_restResultKey].name);
+	          console.log(_restResults[_restResultKey]); // this is the same restaurant as store
 	        }
 	      });
 	    } else {
-	      return;
-	    }
+	        return;
+	      }
 	  });
 	};
 	
