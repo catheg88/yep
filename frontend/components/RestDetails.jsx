@@ -124,8 +124,6 @@ var RestDetails = React.createClass({
     this.setState({revContent: ""})
   },
 
-
-
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
     e.preventDefault();
     this.setState({ editModalOpen: false });
@@ -139,6 +137,7 @@ var RestDetails = React.createClass({
     });
   },
 
+  
 
 
   render: function() {

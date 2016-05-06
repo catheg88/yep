@@ -9,15 +9,21 @@ class Api::ReviewsController < ApplicationController
       restaurant_id: params[:review][:restaurant_id],
       username: params[:review][:username]
     })
+    puts review
+    puts "0101010101010101010101010101010101010101010101010101010101010101010101"
 
     if review.save
-      # puts "saved to db"
+      byebug
+      puts "savesavesavesavesavesavesavesavesavesavesavesavesavesavesavesave"
+      @restaurant = Restaurant.find(params[:review][:restaurant_id])
+      render :show
     else
-      # puts "didn't save to db"
+      byebug
+      puts "didntsavedidntsavedidntsavedidntsavedidntsavedidntsavedidntsavedidntsave"
+      # @errors = review.errors.full_messages
+      # puts @errors
     end
 
-    @restaurant = Restaurant.find(params[:review][:restaurant_id])
-    render :show
   end
 
   def update

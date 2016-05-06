@@ -17,9 +17,6 @@ RestResultItem = React.createClass({
             {this.props.restaurant.name}
           </div>
           <div className="rest-result-detail">
-            {this.props.restaurant.cuisine}
-          </div>
-          <div className="rest-result-detail">
             {this.props.restaurant.hours}
           </div>
         </div>

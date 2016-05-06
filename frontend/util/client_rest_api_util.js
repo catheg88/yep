@@ -1,4 +1,6 @@
 var ServerRestActions = require("../actions/server_rest_actions");
+var ClientRestActions = require("../actions/client_rest_actions");
+
 
 var ClientRestApiUtil = {
   fetchRestaurants: function(){
@@ -19,7 +21,7 @@ var ClientRestApiUtil = {
     });
   },
 
-  addReview: function(review) {
+  addReview: function(review) { // y
     $.ajax({
       url: "api/reviews",
       type: "POST",
@@ -31,7 +33,8 @@ var ClientRestApiUtil = {
       },
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
-      }
+      },
+      error: ClientRestApiUtil.handleError
     });
   },
 
@@ -48,6 +51,7 @@ var ClientRestApiUtil = {
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
       },
+      error: ClientRestActions.handleError
     });
   },
 

@@ -35040,11 +35040,6 @@
 	        React.createElement(
 	          "div",
 	          { className: "rest-result-detail" },
-	          this.props.restaurant.cuisine
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "rest-result-detail" },
 	          this.props.restaurant.hours
 	        )
 	      ),
@@ -35096,6 +35091,14 @@
 	      actionType: "CUISINE_CHANGE",
 	      cuisines: cuisines
 	    });
+	  },
+	
+	  handleError: function () {
+	    debugger;
+	    // Dispatcher.dispatch({
+	    //   actionType: UserConstants.ERROR,
+	    //   errors: error.responseJSON.errors
+	    // });
 	  }
 	
 	};
@@ -35107,6 +35110,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ServerRestActions = __webpack_require__(280);
+	var ClientRestActions = __webpack_require__(278);
 	
 	var ClientRestApiUtil = {
 	  fetchRestaurants: function () {
@@ -35128,6 +35132,7 @@
 	  },
 	
 	  addReview: function (review) {
+	    // y
 	    $.ajax({
 	      url: "api/reviews",
 	      type: "POST",
@@ -35139,7 +35144,8 @@
 	      },
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
-	      }
+	      },
+	      error: ClientRestApiUtil.handleError
 	    });
 	  },
 	
@@ -35155,7 +35161,8 @@
 	      },
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
-	      }
+	      },
+	      error: ClientRestActions.handleError
 	    });
 	  },
 	

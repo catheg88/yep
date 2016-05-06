@@ -27,6 +27,14 @@ var ClientRestActions = {
       actionType: "CUISINE_CHANGE",
       cuisines: cuisines
     });
+  },
+
+  handleError: function() {
+    debugger
+    // Dispatcher.dispatch({
+    //   actionType: UserConstants.ERROR,
+    //   errors: error.responseJSON.errors
+    // });
   }
 
 };
