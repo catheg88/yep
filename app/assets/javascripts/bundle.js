@@ -35086,7 +35086,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ClientRestApiUtil = __webpack_require__(279);
-	// var Dispatcher = require('../dispatcher/dispatcher.js');
+	var Dispatcher = __webpack_require__(250);
 	
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
