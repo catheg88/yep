@@ -70,7 +70,12 @@
 	      'div',
 	      { id: 'App' },
 	      React.createElement(NavBar, null),
-	      this.props.children
+	      this.props.children,
+	      React.createElement(
+	        'a',
+	        { id: 'gh-link', href: 'https://github.com/catheg88/yep' },
+	        'Visit catheg88\'s GitHub'
+	      )
 	    );
 	  }
 	});

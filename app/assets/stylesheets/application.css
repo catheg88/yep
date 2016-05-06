@@ -208,7 +208,7 @@ ul {
 #restaurant-results {
  height: 100%;
  min-height: 407px;
- margin: 30px;
+ margin: 30px 30px 8px 30px;
  background-color: rgba(255,255,255,1);
  border: 2px solid black;
  display: flex;
@@ -488,4 +488,8 @@ ul {
 
 .form-button:hover {
   background-color: dodgerblue;
+}
+
+#gh-link {
+  margin-left: 45px;
 }
