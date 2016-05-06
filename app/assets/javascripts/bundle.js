@@ -34743,13 +34743,13 @@
 	      ),
 	      React.createElement(
 	        "div",
-	        null,
+	        { className: "subtitle" },
 	        "1. Discover eats in San Francisco..."
 	      ),
 	      React.createElement("br", null),
 	      React.createElement(
 	        "div",
-	        null,
+	        { className: "subtitle" },
 	        "2. RENDER JUDGEMENT!"
 	      )
 	    );
@@ -34907,11 +34907,6 @@
 	        this.state.restaurants.map(function (restaurant) {
 	          return React.createElement(RestResultItem, { key: restaurant.id, restaurant: restaurant });
 	        })
-	      ),
-	      React.createElement(
-	        "div",
-	        { id: "no-results-msg" },
-	        "No results. Pick some cuisines!  Or not... :("
 	      )
 	    );
 	  }
@@ -34995,14 +34990,9 @@
 	          delete _restResults[restaurant.id]; // then remove it from the store
 	        }
 	      });
-	
-	      console.log("_restResults");
-	      console.log(_restResults);
-	      console.log("_unselectedRestaurants");
-	      console.log(_unselectedRestaurants);
 	    } else {
-	      return;
-	    }
+	        return;
+	      }
 	  });
 	};
 	

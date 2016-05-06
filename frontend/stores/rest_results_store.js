@@ -68,13 +68,6 @@ var setSelectedCuisines = function(cuisines) {
         }
       });
 
-      console.log("_restResults");
-      console.log(_restResults);
-      console.log("_unselectedRestaurants");
-      console.log(_unselectedRestaurants);
-
-
-
     } else {
       return;
     }

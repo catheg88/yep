@@ -103,9 +103,9 @@ var RestResults = React.createClass({
     var yeppInfo = (
       <section id="yepp-info">
         <div id="yepp-info-logo">YEPP</div>
-        <div>1. Discover eats in San Francisco...</div>
+        <div className="subtitle">1. Discover eats in San Francisco...</div>
         <br />
-        <div>2. RENDER JUDGEMENT!</div>
+        <div className="subtitle">2. RENDER JUDGEMENT!</div>
       </section>
     )
 
@@ -153,7 +153,6 @@ var RestResults = React.createClass({
             return <RestResultItem key={restaurant.id} restaurant={restaurant} />;
           })}
         </ul>
-        <div id="no-results-msg">No results. Pick some cuisines!  Or not... :(</div>
       </div>
     )
   }
