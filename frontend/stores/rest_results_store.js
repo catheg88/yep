@@ -6,6 +6,7 @@ var RestResultsStore = new Store(AppDispatcher);
 
 var _restResults = window._restResults = {}; // TODO
 var _unselectedRestaurants = {};
+var _errors;
 
 RestResultsStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
@@ -18,12 +19,17 @@ RestResultsStore.__onDispatch = function (payload) {
   case "CUISINE_CHANGE":
     setSelectedCuisines(payload.cuisines);
     break;
+  case "REV_ERROR":
+    RestResultsStore.setErrors(payload.errors);
+    break;
   }
   RestResultsStore.__emitChange();
 };
 
 var resetRestaurants = function(restaurants) { // TODO this will keep a restuarant from updating if it's changed in the db
   _restResults = {};
+  _errors = null; // candidate
+
   restaurants.forEach(function(restaurant) {
     // if (_restResults[restaurant.id]) {
     //   return;
@@ -34,11 +40,15 @@ var resetRestaurants = function(restaurants) { // TODO this will keep a restuara
 };
 
 var setRestaurant = function(restaurant) {
+  _errors = null; // candidate
+
   _restResults[restaurant.id] = restaurant;
   window._restResults[restaurant.id] = restaurant; // TODO
 };
 
 RestResultsStore.all = function () {
+  _errors = null; // candidate
+
   var restaurants = [];
   for (var id in _restResults) {
     restaurants.push(_restResults[id]);
@@ -47,7 +57,20 @@ RestResultsStore.all = function () {
 };
 
 RestResultsStore.find = function(id) {
+  _errors = null; // candidate
+
   return _restResults[id];
+};
+
+RestResultsStore.setErrors = function(errors) {
+  _errors = errors;
+  console.log(_errors);
+};
+
+RestResultsStore.errors = function() {
+  if (_errors) {
+    return [].slice.call(_errors);
+  }
 };
 
 var setSelectedCuisines = function(cuisines) {

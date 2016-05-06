@@ -9,19 +9,13 @@ class Api::ReviewsController < ApplicationController
       restaurant_id: params[:review][:restaurant_id],
       username: params[:review][:username]
     })
-    puts review
-    puts "0101010101010101010101010101010101010101010101010101010101010101010101"
 
     if review.save
-      byebug
-      puts "savesavesavesavesavesavesavesavesavesavesavesavesavesavesavesave"
       @restaurant = Restaurant.find(params[:review][:restaurant_id])
       render :show
     else
-      byebug
-      puts "didntsavedidntsavedidntsavedidntsavedidntsavedidntsavedidntsavedidntsave"
-      # @errors = review.errors.full_messages
-      # puts @errors
+      @errors = review.errors.full_messages
+      render "api/shared/error", status: 422
     end
 
   end

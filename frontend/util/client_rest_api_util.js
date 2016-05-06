@@ -1,6 +1,5 @@
 var ServerRestActions = require("../actions/server_rest_actions");
-var ClientRestActions = require("../actions/client_rest_actions");
-
+var Dispatcher = require('../dispatcher/dispatcher.js');
 
 var ClientRestApiUtil = {
   fetchRestaurants: function(){
@@ -50,8 +49,8 @@ var ClientRestApiUtil = {
                   },
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
-      },
-      error: ClientRestActions.handleError
+      }
+      // error: ClientRestActions.handleError
     });
   },
 
@@ -62,6 +61,13 @@ var ClientRestApiUtil = {
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
       }
+    });
+  },
+
+  handleError: function(error) {
+    Dispatcher.dispatch({
+      actionType: "REV_ERROR",
+      errors: error.responseJSON.errors
     });
   }
 

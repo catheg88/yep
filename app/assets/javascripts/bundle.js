@@ -34926,6 +34926,7 @@
 	
 	var _restResults = window._restResults = {}; // TODO
 	var _unselectedRestaurants = {};
+	var _errors;
 	
 	RestResultsStore.__onDispatch = function (payload) {
 	  switch (payload.actionType) {
@@ -34938,6 +34939,9 @@
 	    case "CUISINE_CHANGE":
 	      setSelectedCuisines(payload.cuisines);
 	      break;
+	    case "REV_ERROR":
+	      RestResultsStore.setErrors(payload.errors);
+	      break;
 	  }
 	  RestResultsStore.__emitChange();
 	};
@@ -34945,6 +34949,8 @@
 	var resetRestaurants = function (restaurants) {
 	  // TODO this will keep a restuarant from updating if it's changed in the db
 	  _restResults = {};
+	  _errors = null; // candidate
+	
 	  restaurants.forEach(function (restaurant) {
 	    // if (_restResults[restaurant.id]) {
 	    //   return;
@@ -34955,11 +34961,15 @@
 	};
 	
 	var setRestaurant = function (restaurant) {
+	  _errors = null; // candidate
+	
 	  _restResults[restaurant.id] = restaurant;
 	  window._restResults[restaurant.id] = restaurant; // TODO
 	};
 	
 	RestResultsStore.all = function () {
+	  _errors = null; // candidate
+	
 	  var restaurants = [];
 	  for (var id in _restResults) {
 	    restaurants.push(_restResults[id]);
@@ -34968,7 +34978,20 @@
 	};
 	
 	RestResultsStore.find = function (id) {
+	  _errors = null; // candidate
+	
 	  return _restResults[id];
+	};
+	
+	RestResultsStore.setErrors = function (errors) {
+	  _errors = errors;
+	  console.log(_errors);
+	};
+	
+	RestResultsStore.errors = function () {
+	  if (_errors) {
+	    return [].slice.call(_errors);
+	  }
 	};
 	
 	var setSelectedCuisines = function (cuisines) {
@@ -35094,7 +35117,7 @@
 	  },
 	
 	  handleError: function () {
-	    debugger;
+	    console.log("handleerrorhandleerrorhandleerrorhandleerrorhandleerrorhandleerror");
 	    // Dispatcher.dispatch({
 	    //   actionType: UserConstants.ERROR,
 	    //   errors: error.responseJSON.errors
@@ -35110,7 +35133,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ServerRestActions = __webpack_require__(280);
-	var ClientRestActions = __webpack_require__(278);
+	var Dispatcher = __webpack_require__(250);
 	
 	var ClientRestApiUtil = {
 	  fetchRestaurants: function () {
@@ -35161,8 +35184,8 @@
 	      },
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
-	      },
-	      error: ClientRestActions.handleError
+	      }
+	      // error: ClientRestActions.handleError
 	    });
 	  },
 	
@@ -35173,6 +35196,13 @@
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
 	      }
+	    });
+	  },
+	
+	  handleError: function (error) {
+	    Dispatcher.dispatch({
+	      actionType: "REV_ERROR",
+	      errors: error.responseJSON.errors
 	    });
 	  }
 	
@@ -35238,14 +35268,16 @@
 	          address: "",
 	          phone: "",
 	          description: ""
-	        }
+	        },
+	        reviewErrors: RestResultsStore.errors()
 	      };
 	    } else {
 	      var restFromStore = RestResultsStore.find(parseInt(this.props.params.id));
 	      return { restaurantDetails: restFromStore,
 	        reviewModalOpen: false,
 	        loginModalOpen: false,
-	        editFormData: ""
+	        editFormData: "",
+	        reviewErrors: RestResultsStore.errors()
 	      };
 	    }
 	  },
@@ -35345,8 +35377,26 @@
 	    });
 	  },
 	
-	  render: function () {
+	  errors: function () {
+	    if (!this.state.reviewErrors) {
+	      return;
+	    }
+	    var self = this;
+	    return React.createElement(
+	      "ul",
+	      { id: "rev-errors" },
+	      Object.keys(this.state.reviewErrors).map(function (key, i) {
+	        return React.createElement(
+	          "li",
+	          { key: i },
+	          self.state.reviewErrors[key]
+	        );
+	      })
+	    );
+	  },
 	
+	  render: function () {
+	    console.log(RestResultsStore.errors());
 	    if (this.state.restaurantDetails === undefined) {} else if (this.state.restaurantDetails.reviews === undefined) {
 	      var _reviews = [];
 	    } else {
@@ -35496,6 +35546,11 @@
 	          "div",
 	          { className: "form-button", onClick: this.handleReviewSubmit },
 	          "Submit"
+	        ),
+	        React.createElement(
+	          "div",
+	          { id: "rev-errors" },
+	          this.errors()
 	        )
 	      );
 	    }

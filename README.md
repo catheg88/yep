@@ -1,106 +1,54 @@
-# Yep
+# YEPP
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[YEPP][heroku]
 
 [heroku]: https://yepp.herokuapp.com
 
-## Minimum Viable Product
+YEPP is a web application inspired by Yelp, using Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.
 
-Yep is a web application inspired by Yelp that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+## Features & Implementation
 
-- [x] New account creation, login, and guest/demo login
-- [ ] Smooth, bug-free navigation
-- [ ] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for a Yelp-inspired site: the ability to search for restaurants, view their details, and read and write reviews.
-- [x] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README (**NB**: check out the [sample production README](https://github.com/appacademy/sample-project-proposal/blob/master/docs/production_readme.md) -- you'll write this later)
+### Single-Page Design
 
-## Product Goals and Priorities
+This web application is built with a single static page design.  All content is rendered into a single "content" div:
 
-Yep will allow users to do the following:
+`<div id="content"></div>`
 
-<!-- This is a Markdown checklist. Use it to keep track of your
-progress. Put an x between the brackets for a checkmark: [x] -->
+Decisions about what React components to render are handled by the React router. It always serves up an `App` component, and changes to displayed content are achieved by rendering its children.
 
-- [x] Create an account (MVP)
-- [x] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Search for restaurants by name or category, with auto-completion and dynamic search results (MVP)
-- [ ] Create, read, edit, and delete reviews (MVP)
-- [ ] View restaurant details and reviews (MVP)
+"""
+<Router history={hashHistory}>
+  <Route path="/" component={App}>
+    <IndexRoute component={RestResults} />
+    <Route path="restaurants" component={RestResults} />
+    <Route path="restaurants/:id" component={RestDetails} />
+  </Route>
+</Router>
+"""
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+YEPP utilizes a PostgreSQL database.  The Rails application has the following tables:
 
-[views]: ./docs/views.md
-[components]: ./docs/components.md
-[flux-cycles]: ./docs/flux-cycles.md
-[api-endpoints]: ./docs/api-endpoints.md
-[schema]: ./docs/schema.md
+* Users, which stores username, hashed passwords, and session tokens
+* Restaurants, which holds name, cuisine type, address, phone number, hours, and a description
+* Reviews, which contains review text, review "Yepps" ("Yepp!" or "Nope!" as a boolean), and restaurant and user ids to join the restaurants, reviewers, and reviews through ActiveRecord associations.
 
-## Implementation Timeline
+### Restaurant Viewing
 
-### Phase 1: Backend setup and User Authentication (1 day) Tues
+A restaurant store holds and updates information on the restaurants to display.  The initial request to the database, made by the home page, fetches the minimum restaurant information required to display in the restaurant index.  Clicking on a restaurant makes an additional request to fetch the full restaurant information, including reviews, for display on the details view.  Once the restaurant store fetches full information on a restaurant, subsequent views of the same details page rely on the stored restaurant information and do not make fresh server requests for restaurant details.  New server requests to retrieve a restaurant's information from the database are triggered only by events that change the restaurant in the database (e.g., leaving a review).
 
-**Objective:** Functioning rails project with Authentication, and live on Heroku
+### Filtering by Cuisine Type
 
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] running on Heroku
+The filter controls on the home page allow a user to select specific cuisine types for display.  The filter checkboxes listen to the restaurant store for changes.  Their status (checked or unchecked) is linked to the component's state.  Updating the filters updates the component's state, which triggers a filter action in the restaurant store.  Restaurants not matching the current filter criteria are removed from the store, and added to a separate local store of unselected restaurants.  When the filter is expanded to include more restaurants, the app uses both stores to find all restaurant information, again avoiding additional unnecessary server requests for information the store has already received.
 
-### Phase 2: Create Restaurant and Review models, API, and basic APIUtil (2 days) Wed-Thurs
+### Posting, Editing, and Deleting Reviews
 
-**Objective:**  can be created, read, edited and destroyed through
-the API.
+Users can leave reviews and see them rendered into the restaurant details in real time. Users are allowed one review only; once a review is submitted, the app identifies and highlights the user's review (through the detail component's state).  User's own reviews are editable and deletable at will, with an edit form that pre-populates with the user's review information.
 
-- [x] create `Restaurant` model
-- [x] seed the database with a small amount of test data
-- [x] jBuilder views for restaurants
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
+### Future Development:
 
-### Phase 3: Create Reviews (2 day) Fri, Sat
+I continue to actively develop this project to expand its features and functionality.  Future features for development include:
 
-**Objective:** Reviews belong to both users and restaurants.
-
-- build out API, Flux loop, and components for:
-  - [ ] Review CRUD
-- Use CSS to style new views
-
-### Phase 4: Start Styling (1 day) Mon
-
-**Objective:** Existing pages (including singup/signin) will look good.
-
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
-
-### Phase 5: Continue Styling; editable Reviews (1 day) Tues
-
-- [ ] add editable review functionality
-- [x] modalize review form
-- [ ] make styling more better
-
-### Phase 6: Implement Search Bar (2 days) Wed-Thurs
-
-**Objective:** Restaurants can be returned using a dynamic search feature.
-- [ ] setup the SearchBar
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
-- [ ] implement the dynamic search component, building out the flux loop as needed.
-
-### Phase 7:  Styling Cleanup and Seeding (1 day) Fri
-
-**objective:** Make the site feel more cohesive and awesome.
-
-- [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
+* Additional restaurant sorting, with dynamic text search
+* Review sorting, by date created and positive/negative review sentiment
+* Restaurant scoring, to display a "Yepp" percentage
+* User Profiles, to view reviews by user

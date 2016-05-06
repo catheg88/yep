@@ -30,7 +30,7 @@ var ClientRestActions = {
   },
 
   handleError: function() {
-    debugger
+    console.log("handleerrorhandleerrorhandleerrorhandleerrorhandleerrorhandleerror");
     // Dispatcher.dispatch({
     //   actionType: UserConstants.ERROR,
     //   errors: error.responseJSON.errors

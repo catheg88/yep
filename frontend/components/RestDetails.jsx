@@ -22,7 +22,8 @@ var RestDetails = React.createClass({
           address: "",
           phone: "",
           description: ""
-        }
+        },
+        reviewErrors: RestResultsStore.errors()
       })
 
     } else {
@@ -30,7 +31,8 @@ var RestDetails = React.createClass({
       return ({ restaurantDetails: restFromStore,
                 reviewModalOpen: false,
                 loginModalOpen: false,
-                editFormData: ""
+                editFormData: "",
+                reviewErrors: RestResultsStore.errors()
               });
     }
   },
@@ -137,11 +139,28 @@ var RestDetails = React.createClass({
     });
   },
 
-  
+
+
+
+  errors: function(){
+		if (!this.state.reviewErrors){
+			return;
+		}
+		var self = this;
+		return (<ul id="rev-errors">
+		{
+			Object.keys(this.state.reviewErrors).map(function(key, i){
+				return (<li key={i}>{self.state.reviewErrors[key]}</li>);
+			})
+		}
+		</ul>);
+	},
+
+
 
 
   render: function() {
-
+    console.log(RestResultsStore.errors());
     if (this.state.restaurantDetails === undefined) {
     } else
     if (this.state.restaurantDetails.reviews === undefined) {
@@ -251,6 +270,7 @@ var RestDetails = React.createClass({
             </section>
             <br />
             <div className="form-button" onClick={this.handleReviewSubmit}>Submit</div>
+            <div id="rev-errors">{this.errors()}</div>
         </form>
       )
     }
