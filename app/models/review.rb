@@ -13,7 +13,6 @@
 #
 
 class Review < ActiveRecord::Base
-  validates :rev_content, :yepp, presence: true
 
   belongs_to :restaurant
   belongs_to :user

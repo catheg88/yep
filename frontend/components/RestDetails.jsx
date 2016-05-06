@@ -23,7 +23,8 @@ var RestDetails = React.createClass({
           phone: "",
           description: ""
         },
-        reviewErrors: RestResultsStore.errors()
+        reviewErrors: RestResultsStore.errors(),
+        yepp: true
       })
 
     } else {
@@ -117,13 +118,26 @@ var RestDetails = React.createClass({
   handleReviewSubmit: function(e) {
     e.preventDefault();
     this.setState({ reviewModalOpen: false });
+    var revcont;
+    if (this.state.revContent === undefined) {
+      revcont = " "
+    } else {
+      revcont = this.state.revContent
+    }
+    var yeppval;
+    if (this.state.yepp === undefined) {
+      yeppval = true;
+    } else {
+      yeppval = this.state.yepp;
+    }
+    // debugger
     ClientRestActions.addReview({
-      rev_content: this.state.revContent,
-      yepp: this.state.yepp,
+      rev_content: revcont,
+      yepp: yeppval,
       username: this.state.currentUser.username,
       restaurant_id: parseInt(this.props.params.id)
     });
-    this.setState({revContent: ""})
+    this.setState({revContent: " "})
   },
 
   handleReviewEdit: function(e) { // TODO doesn't catch the errors
@@ -160,7 +174,8 @@ var RestDetails = React.createClass({
 
 
   render: function() {
-    console.log(RestResultsStore.errors());
+    // debugger
+    // console.log(RestResultsStore.errors());
     if (this.state.restaurantDetails === undefined) {
     } else
     if (this.state.restaurantDetails.reviews === undefined) {
@@ -259,7 +274,7 @@ var RestDetails = React.createClass({
             <section id="rev-yepp">
               <label>
 
-                <input type="Radio" name="yepp" value="true" onChange={this.setYeppPost}/>
+                <input type="Radio" name="yepp" value="true" onChange={this.setYeppPost} defaultChecked/>
                 &nbsp;Yepp!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </label>
               <label>

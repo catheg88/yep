@@ -64,7 +64,7 @@ RestResultsStore.find = function(id) {
 
 RestResultsStore.setErrors = function(errors) {
   _errors = errors;
-  console.log(_errors);
+  // console.log(_errors);
 };
 
 RestResultsStore.errors = function() {

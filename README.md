@@ -16,7 +16,7 @@ This web application is built with a single static page design.  All content is 
 
 Decisions about what React components to render are handled by the React router. It always serves up an `App` component, and changes to displayed content are achieved by rendering its children.
 
-"""
+```
 <Router history={hashHistory}>
   <Route path="/" component={App}>
     <IndexRoute component={RestResults} />
@@ -24,7 +24,7 @@ Decisions about what React components to render are handled by the React router.
     <Route path="restaurants/:id" component={RestDetails} />
   </Route>
 </Router>
-"""
+```
 
 YEPP utilizes a PostgreSQL database.  The Rails application has the following tables:
 

@@ -32,8 +32,9 @@ var ClientRestApiUtil = {
       },
       success: function (restaurant) {
         ServerRestActions.receiveRestaurant(restaurant);
-      },
-      error: ClientRestApiUtil.handleError
+      }
+      // ,
+      // error: ClientRestApiUtil.handleError
     });
   },
 

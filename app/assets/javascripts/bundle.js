@@ -34985,7 +34985,7 @@
 	
 	RestResultsStore.setErrors = function (errors) {
 	  _errors = errors;
-	  console.log(_errors);
+	  // console.log(_errors);
 	};
 	
 	RestResultsStore.errors = function () {
@@ -35086,7 +35086,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ClientRestApiUtil = __webpack_require__(279);
-	var Dispatcher = __webpack_require__(250);
+	// var Dispatcher = require('../dispatcher/dispatcher.js');
 	
 	var ClientRestActions = {
 	  fetchRestaurants: function () {
@@ -35117,7 +35117,7 @@
 	  },
 	
 	  handleError: function () {
-	    console.log("handleerrorhandleerrorhandleerrorhandleerrorhandleerrorhandleerror");
+	    // console.log("handleerrorhandleerrorhandleerrorhandleerrorhandleerrorhandleerror");
 	    // Dispatcher.dispatch({
 	    //   actionType: UserConstants.ERROR,
 	    //   errors: error.responseJSON.errors
@@ -35167,8 +35167,9 @@
 	      },
 	      success: function (restaurant) {
 	        ServerRestActions.receiveRestaurant(restaurant);
-	      },
-	      error: ClientRestApiUtil.handleError
+	      }
+	      // ,
+	      // error: ClientRestApiUtil.handleError
 	    });
 	  },
 	
@@ -35269,7 +35270,8 @@
 	          phone: "",
 	          description: ""
 	        },
-	        reviewErrors: RestResultsStore.errors()
+	        reviewErrors: RestResultsStore.errors(),
+	        yepp: true
 	      };
 	    } else {
 	      var restFromStore = RestResultsStore.find(parseInt(this.props.params.id));
@@ -35354,13 +35356,26 @@
 	  handleReviewSubmit: function (e) {
 	    e.preventDefault();
 	    this.setState({ reviewModalOpen: false });
+	    var revcont;
+	    if (this.state.revContent === undefined) {
+	      revcont = " ";
+	    } else {
+	      revcont = this.state.revContent;
+	    }
+	    var yeppval;
+	    if (this.state.yepp === undefined) {
+	      yeppval = true;
+	    } else {
+	      yeppval = this.state.yepp;
+	    }
+	    // debugger
 	    ClientRestActions.addReview({
-	      rev_content: this.state.revContent,
-	      yepp: this.state.yepp,
+	      rev_content: revcont,
+	      yepp: yeppval,
 	      username: this.state.currentUser.username,
 	      restaurant_id: parseInt(this.props.params.id)
 	    });
-	    this.setState({ revContent: "" });
+	    this.setState({ revContent: " " });
 	  },
 	
 	  handleReviewEdit: function (e) {
@@ -35396,7 +35411,8 @@
 	  },
 	
 	  render: function () {
-	    console.log(RestResultsStore.errors());
+	    // debugger
+	    // console.log(RestResultsStore.errors());
 	    if (this.state.restaurantDetails === undefined) {} else if (this.state.restaurantDetails.reviews === undefined) {
 	      var _reviews = [];
 	    } else {
@@ -35530,7 +35546,7 @@
 	          React.createElement(
 	            "label",
 	            null,
-	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppPost }),
+	            React.createElement("input", { type: "Radio", name: "yepp", value: "true", onChange: this.setYeppPost, defaultChecked: true }),
 	            " Yepp!     "
 	          ),
 	          React.createElement(
