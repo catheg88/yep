@@ -17,15 +17,26 @@ Restaurant.create!([
   {name: "Raja", cuisine: "Indian", address: "2 Folsom St., San Francisco, CA, 94116", phone: "415-452-2233", hours: "10am-8pm Daily", description: "All your Indian favorites."},
   {name: "Shining Time Station", cuisine: "Bars", address: "4658 Pine St., San Francisco, CA 94124", phone: "415-223-6441", hours: "12pm-2am Daily", description: "Train themed adult beverages, complete with the Trainwreck singature drink made with filtered charcoal."},
   {name: "Thai Land", cuisine: "Thai", address: "2238 Clement St., San Francisco, CA, 94118", phone: "415-916-7945", hours: "12pm-10pm Daily", description: "Contains nuts.  Lots of nuts!"},
-  {name: "Wok 'n' Roll", cuisine: "Chinese", address: "123 Grant St.", phone: "415-867-5309", hours: "9am - 8pm Daily", description: "Hello, welcome to Wok 'n' Roll!"}
+  {name: "Van's Pizza", cuisine: "Pizza", address: "1944 Dargum Ave.", phone: "415-334-3331", hours: "10am - 8pm Daily", description: "Try a piece and you'll see why we're "},
+  {name: "VietNom", cuisine: "Vietnamese", address: "220 Coastal Ave.", phone: "415-334-2545", hours: "10am - 8pm Daily", description: "Vietnam.  Nom.  VietNom!  nomnomnom"},
+  {name: "Wok 'n' Roll", cuisine: "Chinese", address: "123 Grant St.", phone: "415-867-5309", hours: "9am - 8pm Daily", description: "Hello, welcome to Wok 'n' Roll!"},
+  {name: "Yglesia's", cuisine: "LatinAmerican", address: "1833 Green Ave.", phone: "415-234-2516", hours: "10am - 8pm Daily", description: "Authentic Nicaraguan food.  Plantains!"},
+  {name: "WonderBread Bread Wonder", cuisine: "Sandwiches", address: "1833 Santiago St.", phone: "415-133-2234", hours: "10am - 8pm Daily", description: "Don't ask us for Dutch Crunch."},
+  {name: "Wynder's Thai", cuisine: "Thai", address: "1833 Cardenas St.", phone: "415-133-8888", hours: "10am - 8pm Daily", description: "I was born with an unusual name.  I make Thai food about it."},
+  {name: "Xtreme Seefood", cuisine: "Seafood", address: "1243 Main St.", phone: "415-133-5163", hours: "10am - 8pm Daily", description: "We see, we catch, you eat, you see.  You see sushi?  Not here - we cook things."},
+  {name: "X-Ram", cuisine: "Ramen", address: "1253 Main St.", phone: "415-234-4255", hours: "10am - 9pm Daily", description: "Fusion ramen, appetizers, and dishes that defy traditional genre."},
+  {name: "Xylophone", cuisine: "Sushi", address: "1253 Blake St.", phone: "415-153-4255", hours: "10am - 9pm Daily", description: "A sound choice for sushi!"},
+  {name: "Yum's", cuisine: "Korean", address: "1253 Carl St.", phone: "415-264-1822", hours: "10am - 9pm Daily", description: "Traditional small-dish Korean BBQ.  100% satisfaction guarantee."},
+  {name: "Zippy's", cuisine: "CoffeeandTea", address: "1253 Garrison St.", phone: "415-132-1544", hours: "6am - 6pm Daily", description: "Breakfast, dine-in or to-go.  We have reinvented the butter croissant!"},
+  {name: "Zee", cuisine: "Indian", address: "1253 Barbo St.", phone: "415-132-6658", hours: "6am - 6pm Daily", description: "Taste of Mumbai cooking, with home-style, authentic dishes prepared in the traditional way"}
 ])
 Review.create!([
-  {rev_content: "Ask for their secret Mongolian menu!", yepp: true, user_id: 2, restaurant_id: 19, username: "atheg"},
+  {rev_content: "Ask for their secret Mongolian menu!", yepp: true, user_id: 2, restaurant_id: 21, username: "atheg"},
   {rev_content: "oooo!", yepp: true, user_id: 2, restaurant_id: 1, username: "joe"},
   {rev_content: "They served me green breadsticks!", yepp: false, user_id: 2, restaurant_id: 1, username: "atheg"},
   {rev_content: "The best pizza in town.", yepp: true, user_id: 2, restaurant_id: 1, username: "Guest"},
   {rev_content: "I didn't like it that much.", yepp: false, user_id: 2, restaurant_id: 16, username: "joe"},
-  {rev_content: "The food wasn't very good and the owner was incredibly rude.", yepp: false, user_id: 3, restaurant_id: 19, username: "Guest"},
+  {rev_content: "The food wasn't very good and the owner was incredibly rude.", yepp: false, user_id: 3, restaurant_id: 21, username: "Guest"},
   {rev_content: "Yum!", yepp: true, user_id: 2, restaurant_id: 3, username: "atheg"},
   {rev_content: "Yuck!", yepp: false, user_id: 2, restaurant_id: 3, username: "Guest"},
   {rev_content: "BLARGLE!", yepp: false, user_id: 2, restaurant_id: 3, username: "joe"},
@@ -37,7 +48,7 @@ Review.create!([
   {rev_content: "This is old-timey deliciousness.", yepp: true, user_id: 4, restaurant_id: 3, username: "wendy"},
   {rev_content: "I never leave feeling like I had a bad time.", yepp: true, user_id: 4, restaurant_id: 14, username: "wendy"},
   {rev_content: "Naw, I'm just not that into trains.", yepp: false, user_id: 4, restaurant_id: 17, username: "wendy"},
-  {rev_content: "They have the best honey walnut prawns in town.", yepp: true, user_id: 4, restaurant_id: 19, username: "wendy"},
+  {rev_content: "They have the best honey walnut prawns in town.", yepp: true, user_id: 4, restaurant_id: 21, username: "wendy"},
   {rev_content: "I like their Jasmine latte!", yepp: true, user_id: 4, restaurant_id: 7, username: "wendy"},
   {rev_content: "Me and my roommate Tushar tried this place, but the delivery was late, and our order was cold by the time it arrived.", yepp: false, user_id: 4, restaurant_id: 16, username: "wendy"},
   {rev_content: "We got a bunch of things we didn't order...", yepp: false, user_id: 4, restaurant_id: 2, username: "wendy"},
@@ -51,11 +62,29 @@ Review.create!([
   {rev_content: "Awesome meatball sub.", yepp: true, user_id: 3, restaurant_id: 4, username: "joe"},
   {rev_content: "wendy, that's disgusting.  Who wants cold chili?", yepp: false, user_id: 3, restaurant_id: 6, username: "joe"},
   {rev_content: "I like the octuple espresso breakfast combo.", yepp: true, user_id: 3, restaurant_id: 7, username: "joe"},
-  {rev_content: "definitely had MSG.  I got a back cramp.  they're dishonest.  honestly, not sure how they stay in business if this is how they treat people.", yepp: false, user_id: 3, restaurant_id: 19, username: "joe"}
+  {rev_content: "definitely had MSG.  I got a back cramp.  they're dishonest.  honestly, not sure how they stay in business if this is how they treat people.", yepp: false, user_id: 3, restaurant_id: 21, username: "joe"},
+  {rev_content: "I love coffee!", yepp: true, user_id: 1, restaurant_id: 29, username: "Guest"},
+  {rev_content: " purdy good", yepp: true, user_id: 1, restaurant_id: 30, username: "Guest"},
+  {rev_content: "YAAAASSSSS", yepp: true, user_id: 1, restaurant_id: 28, username: "Guest"},
+  {rev_content: "Yglesia is just the nicest!", yepp: true, user_id: 1, restaurant_id: 22, username: "Guest"},
+  {rev_content: "Decent enough.  I guess I'll give it a yepp...", yepp: true, user_id: 1, restaurant_id: 19, username: "Guest"},
+  {rev_content: " no way jose", yepp: false, user_id: 4, restaurant_id: 19, username: "joe"},
+  {rev_content: "My favorite place. They use only the finest eggs", yepp: true, user_id: 5, restaurant_id: 26, username: "carl"},
+  {rev_content: "i wonder if they have dutch crunch...", yepp: true, user_id: 5, restaurant_id: 23, username: "carl"},
+  {rev_content: "i came here with my ex girlfriend becky.  The place WAS amazing, but we broke up and the restaurant chose Becky instead of me.  Now I can't come here.  i hope no one else does and you close!", yepp: false, user_id: 5, restaurant_id: 25, username: "carl"},
+  {rev_content: "i love music.  i love sushi.  i love.", yepp: true, user_id: 6, restaurant_id: 27, username: "karen"},
+  {rev_content: "what a strange name.  the owner's a little weird, but he sure does whip up some great thai!", yepp: true, user_id: 6, restaurant_id: 24, username: "karen"},
+  {rev_content: "nom", yepp: true, user_id: 6, restaurant_id: 20, username: "karen"},
+  {rev_content: " nomnom", yepp: true, user_id: 5, restaurant_id: 20, username: "carl"},
+  {rev_content: " nomnomnom", yepp: true, user_id: 4, restaurant_id: 20, username: "joe"},
+  {rev_content: " nomnomnomnomnomnomnomnomnomnomnomnomnom", yepp: true, user_id: 2, restaurant_id: 20, username: "atheg"},
+  {rev_content: " no", yepp: false, user_id: 1, restaurant_id: 20, username: "Guest"}
 ])
 User.create!([
-  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "+48S+2dnTIEVrj/WLLGDog=="},
-  {username: "atheg", password_digest: "$2a$10$v9ovc6j0qYw9mFMltJOCau5SSR2mBI1geQUpMBYTUa6s0iPjuhlLG", session_token: "KfkmfR45aZoGgKi8m3dy4w=="},
   {username: "wendy", password_digest: "$2a$10$pHBXBgkbgMR/doOs3ByltOhm7.YyTh8QGT/xfcMUlalkOsXeuqKyi", session_token: "dVO6UY6zjsOUM/J3bqrleQ=="},
-  {username: "joe", password_digest: "$2a$10$6hFB/kj3w9slUEaRMMYBUOAsRP1G4kmeCDNrtw5G6n4hDLGWdxBq2", session_token: "RoYDyilJbIKy0ANttNJXMA=="}
+  {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "wiuCGeC466y7UgPibNFcPA=="},
+  {username: "carl", password_digest: "$2a$10$weHpI/DzJgBGQ6z8dgBEAOBXfEGhx6BELBMh4gnKuJiqql8lb0ha6", session_token: "9nia/ky4aNnEjbSwi/DzvA=="},
+  {username: "joe", password_digest: "$2a$10$6hFB/kj3w9slUEaRMMYBUOAsRP1G4kmeCDNrtw5G6n4hDLGWdxBq2", session_token: "/Id0PeowqRJWkX/4TLNcvA=="},
+  {username: "atheg", password_digest: "$2a$10$v9ovc6j0qYw9mFMltJOCau5SSR2mBI1geQUpMBYTUa6s0iPjuhlLG", session_token: "nDvmBfQ8cKb8GaNvs/ul+A=="},
+  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "dck3sNnXwDutbpCaoYjzaw=="}
 ])
