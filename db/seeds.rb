@@ -70,7 +70,6 @@ Review.create!([
   {rev_content: "Decent enough.  I guess I'll give it a yepp...", yepp: true, user_id: 1, restaurant_id: 19, username: "Guest"},
   {rev_content: " no way jose", yepp: false, user_id: 4, restaurant_id: 19, username: "joe"},
   {rev_content: "My favorite place. They use only the finest eggs", yepp: true, user_id: 5, restaurant_id: 26, username: "carl"},
-  {rev_content: "i wonder if they have dutch crunch...", yepp: true, user_id: 5, restaurant_id: 23, username: "carl"},
   {rev_content: "i came here with my ex girlfriend becky.  The place WAS amazing, but we broke up and the restaurant chose Becky instead of me.  Now I can't come here.  i hope no one else does and you close!", yepp: false, user_id: 5, restaurant_id: 25, username: "carl"},
   {rev_content: "i love music.  i love sushi.  i love.", yepp: true, user_id: 6, restaurant_id: 27, username: "karen"},
   {rev_content: "what a strange name.  the owner's a little weird, but he sure does whip up some great thai!", yepp: true, user_id: 6, restaurant_id: 24, username: "karen"},
@@ -78,13 +77,17 @@ Review.create!([
   {rev_content: " nomnom", yepp: true, user_id: 5, restaurant_id: 20, username: "carl"},
   {rev_content: " nomnomnom", yepp: true, user_id: 4, restaurant_id: 20, username: "joe"},
   {rev_content: " nomnomnomnomnomnomnomnomnomnomnomnomnom", yepp: true, user_id: 2, restaurant_id: 20, username: "atheg"},
-  {rev_content: " no", yepp: false, user_id: 1, restaurant_id: 20, username: "Guest"}
+  {rev_content: " no", yepp: false, user_id: 1, restaurant_id: 20, username: "Guest"},
+  {rev_content: "wendy i'll get you for that one", yepp: true, user_id: 5, restaurant_id: 4, username: "carl"},
+  {rev_content: "this was a yummy sando fosho yo", yepp: true, user_id: 1, restaurant_id: 23, username: "Guest"},
+  {rev_content: " the food is terrible! the decor stinks. not enough seating.  abrasive lighting. they use safeway frozen fries.  have some self-respect!  the owner can't make a sandwich like master chef carl can! carl's deli is the only place i get my subs.  reccomend it to your family and friends!  and remember, carl loves you!", yepp: false, user_id: 5, restaurant_id: 23, username: "carl"},
+  {rev_content: "i wonder if they have dutch crunch...", yepp: true, user_id: 6, restaurant_id: 23, username: "karen"}
 ])
 User.create!([
   {username: "wendy", password_digest: "$2a$10$pHBXBgkbgMR/doOs3ByltOhm7.YyTh8QGT/xfcMUlalkOsXeuqKyi", session_token: "dVO6UY6zjsOUM/J3bqrleQ=="},
-  {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "wiuCGeC466y7UgPibNFcPA=="},
-  {username: "carl", password_digest: "$2a$10$weHpI/DzJgBGQ6z8dgBEAOBXfEGhx6BELBMh4gnKuJiqql8lb0ha6", session_token: "9nia/ky4aNnEjbSwi/DzvA=="},
   {username: "joe", password_digest: "$2a$10$6hFB/kj3w9slUEaRMMYBUOAsRP1G4kmeCDNrtw5G6n4hDLGWdxBq2", session_token: "/Id0PeowqRJWkX/4TLNcvA=="},
   {username: "atheg", password_digest: "$2a$10$v9ovc6j0qYw9mFMltJOCau5SSR2mBI1geQUpMBYTUa6s0iPjuhlLG", session_token: "nDvmBfQ8cKb8GaNvs/ul+A=="},
-  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "dck3sNnXwDutbpCaoYjzaw=="}
+  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "T4on5Unk4u1/SzX+zR4p1Q=="},
+  {username: "carl", password_digest: "$2a$10$weHpI/DzJgBGQ6z8dgBEAOBXfEGhx6BELBMh4gnKuJiqql8lb0ha6", session_token: "GrA47a7kiGFMJv0ltIieTg=="},
+  {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "msmiPzKJGkdCj1QiIypuVg=="}
 ])
