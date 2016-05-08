@@ -156,22 +156,66 @@ var RestDetails = React.createClass({
 
 
 
-  errors: function(){
-		if (!this.state.reviewErrors){
-			return;
-		}
-		var self = this;
-		return (<ul id="rev-errors">
-		{
-			Object.keys(this.state.reviewErrors).map(function(key, i){
-				return (<li key={i}>{self.state.reviewErrors[key]}</li>);
-			})
-		}
-		</ul>);
-	},
+  // errors: function(){
+	// 	if (!this.state.reviewErrors){
+	// 		return;
+	// 	}
+	// 	var self = this;
+	// 	return (<ul id="rev-errors">
+	// 	{
+	// 		Object.keys(this.state.reviewErrors).map(function(key, i){
+	// 			return (<li key={i}>{self.state.reviewErrors[key]}</li>);
+	// 		})
+	// 	}
+	// 	</ul>);
+	// },
 
-
-
+  getImageUrl: function() {
+    switch (this.state.restaurantDetails.cuisine) {
+    case "American":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462661170/american_y81leq.jpg" />);
+      break;
+    case "Bars":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/bars_b1tu4p.jpg" />);
+      break;
+    case "Chinese":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669715/chinese_cupue9.jpg" />);
+      break;
+    case "CoffeeandTea":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/coffee_xa2xf1.jpg" />);
+      break;
+    case "Indian":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/indian_le3kjf.png" />);
+      break;
+    case "Korean":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/korean_jwdwg5.jpg" />);
+      break;
+    case "LatinAmerican":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/latinamerican_jr9atw.jpg" />);
+      break;
+    case "Pizza":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/pizza_sxf50t.jpg" />);
+      break;
+    case "Ramen":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/ramen_trhmln.jpg" />);
+      break;
+    case "Sandwiches":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/sandwiches_pz3kmt.jpg" />);
+      break;
+    case "Seafood":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/seafood_dmpvbr.jpg" />);
+      break;
+    case "Sushi":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/sushi_h6bwvl.jpg" />);
+      break;
+    case "Thai":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/thai_cum8d4.jpg" />);
+      break;
+    case "Vietnamese":
+      return(<img src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/vietnamese_heestl.jpg" />);
+      break;
+    }
+  },
 
   render: function() {
     // debugger
@@ -183,7 +227,6 @@ var RestDetails = React.createClass({
     } else {
       _reviews = this.state.restaurantDetails.reviews;
     }
-
 
     var _myReview = undefined;
     var _currentUser = undefined;
@@ -297,26 +340,28 @@ var RestDetails = React.createClass({
         </header>
         <content id="rest-detail-content">
 
-
-
-          <div id="detail-hours">&nbsp;Hours:&nbsp;&nbsp;
-            {this.state.restaurantDetails.hours} <br />
+          <div id="image">
+            {this.getImageUrl()}
           </div>
 
+          <div id="rest-details-info">
+            <div id="detail-hours">Hours:&nbsp;&nbsp;
+              {this.state.restaurantDetails.hours} <br />
+            </div>
+            <div id="detail-cuisine">Cuisine:&nbsp;&nbsp;
+              {this.state.restaurantDetails.cuisine} <br />
+            </div>
+            <div id="detail-address">Address:&nbsp;&nbsp;
+              {this.state.restaurantDetails.address} <br />
+            </div>
+            <div id="detail-phone">Phone:&nbsp;&nbsp;
+              {this.state.restaurantDetails.phone} <br />
+            </div>
+            <p id="detail-description">Description:&nbsp;&nbsp;
+              {this.state.restaurantDetails.description} <br />
+          </p>
+          </div>
 
-
-          <div id="detail-cuisine">&nbsp;Cuisine:&nbsp;&nbsp;
-            {this.state.restaurantDetails.cuisine} <br />
-          </div>
-          <div id="detail-address">&nbsp;Address:&nbsp;&nbsp;
-            {this.state.restaurantDetails.address} <br />
-          </div>
-          <div id="detail-phone">&nbsp;Phone:&nbsp;&nbsp;
-            {this.state.restaurantDetails.phone} <br />
-          </div>
-          <div id="detail-description">&nbsp;Description:&nbsp;&nbsp;
-            {this.state.restaurantDetails.description} <br />
-          </div>
         </content>
         <div id="review-header">Reviews</div>
         <ul id="reviews-index">

@@ -34532,7 +34532,7 @@
 	var UserActions = __webpack_require__(246);
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
-	var LoginModalStyle = __webpack_require__(283);
+	var LoginModalStyle = __webpack_require__(273);
 	var LoginForm = __webpack_require__(245);
 	var UserStore = __webpack_require__(249);
 	
@@ -34633,7 +34633,44 @@
 	module.exports = NavBar;
 
 /***/ },
-/* 273 */,
+/* 273 */
+/***/ function(module, exports) {
+
+	var style = {
+	
+	  overlay: {
+	    position: 'fixed',
+	    top: 0,
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    color: 'white',
+	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+	    padding: 0,
+	    "zindex": 10
+	  },
+	  content: {
+	    position: 'absolute',
+	    top: '50%',
+	    left: '50%',
+	    transform: 'translate(-50%, -50%)',
+	
+	    height: '350px',
+	    width: '400px',
+	    border: '1px solid #ccc',
+	    display: 'flex',
+	    flexdirection: 'column',
+	    alignitems: 'center',
+	    justifycontent: 'center',
+	    padding: 0,
+	    "zindex": 10
+	  }
+	
+	};
+	
+	module.exports = style;
+
+/***/ },
 /* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35254,9 +35291,9 @@
 	var LoginForm = __webpack_require__(245);
 	var CurrentUserState = __webpack_require__(271);
 	var Modal = __webpack_require__(225);
-	var LoginModalStyle = __webpack_require__(283);
-	var ReviewModalStyle = __webpack_require__(284);
-	var EditModalStyle = __webpack_require__(285);
+	var LoginModalStyle = __webpack_require__(273);
+	var ReviewModalStyle = __webpack_require__(283);
+	var EditModalStyle = __webpack_require__(284);
 	var UserStore = __webpack_require__(249);
 	
 	var RestDetails = React.createClass({
@@ -35397,22 +35434,65 @@
 	    });
 	  },
 	
-	  errors: function () {
-	    if (!this.state.reviewErrors) {
-	      return;
+	  // errors: function(){
+	  // 	if (!this.state.reviewErrors){
+	  // 		return;
+	  // 	}
+	  // 	var self = this;
+	  // 	return (<ul id="rev-errors">
+	  // 	{
+	  // 		Object.keys(this.state.reviewErrors).map(function(key, i){
+	  // 			return (<li key={i}>{self.state.reviewErrors[key]}</li>);
+	  // 		})
+	  // 	}
+	  // 	</ul>);
+	  // },
+	
+	  getImageUrl: function () {
+	    switch (this.state.restaurantDetails.cuisine) {
+	      case "American":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462661170/american_y81leq.jpg" });
+	        break;
+	      case "Bars":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/bars_b1tu4p.jpg" });
+	        break;
+	      case "Chinese":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669715/chinese_cupue9.jpg" });
+	        break;
+	      case "CoffeeandTea":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/coffee_xa2xf1.jpg" });
+	        break;
+	      case "Indian":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/indian_le3kjf.png" });
+	        break;
+	      case "Korean":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/korean_jwdwg5.jpg" });
+	        break;
+	      case "LatinAmerican":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/latinamerican_jr9atw.jpg" });
+	        break;
+	      case "Pizza":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/pizza_sxf50t.jpg" });
+	        break;
+	      case "Ramen":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/ramen_trhmln.jpg" });
+	        break;
+	      case "Sandwiches":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/sandwiches_pz3kmt.jpg" });
+	        break;
+	      case "Seafood":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/seafood_dmpvbr.jpg" });
+	        break;
+	      case "Sushi":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/sushi_h6bwvl.jpg" });
+	        break;
+	      case "Thai":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/thai_cum8d4.jpg" });
+	        break;
+	      case "Vietnamese":
+	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/vietnamese_heestl.jpg" });
+	        break;
 	    }
-	    var self = this;
-	    return React.createElement(
-	      "ul",
-	      { id: "rev-errors" },
-	      Object.keys(this.state.reviewErrors).map(function (key, i) {
-	        return React.createElement(
-	          "li",
-	          { key: i },
-	          self.state.reviewErrors[key]
-	        );
-	      })
-	    );
 	  },
 	
 	  render: function () {
@@ -35589,43 +35669,52 @@
 	        { id: "rest-detail-content" },
 	        React.createElement(
 	          "div",
-	          { id: "detail-hours" },
-	          " Hours:  ",
-	          this.state.restaurantDetails.hours,
-	          " ",
-	          React.createElement("br", null)
+	          { id: "image" },
+	          this.getImageUrl()
 	        ),
 	        React.createElement(
 	          "div",
-	          { id: "detail-cuisine" },
-	          " Cuisine:  ",
-	          this.state.restaurantDetails.cuisine,
-	          " ",
-	          React.createElement("br", null)
-	        ),
-	        React.createElement(
-	          "div",
-	          { id: "detail-address" },
-	          " Address:  ",
-	          this.state.restaurantDetails.address,
-	          " ",
-	          React.createElement("br", null)
-	        ),
-	        React.createElement(
-	          "div",
-	          { id: "detail-phone" },
-	          " Phone:  ",
-	          this.state.restaurantDetails.phone,
-	          " ",
-	          React.createElement("br", null)
-	        ),
-	        React.createElement(
-	          "div",
-	          { id: "detail-description" },
-	          " Description:  ",
-	          this.state.restaurantDetails.description,
-	          " ",
-	          React.createElement("br", null)
+	          { id: "rest-details-info" },
+	          React.createElement(
+	            "div",
+	            { id: "detail-hours" },
+	            "Hours:  ",
+	            this.state.restaurantDetails.hours,
+	            " ",
+	            React.createElement("br", null)
+	          ),
+	          React.createElement(
+	            "div",
+	            { id: "detail-cuisine" },
+	            "Cuisine:  ",
+	            this.state.restaurantDetails.cuisine,
+	            " ",
+	            React.createElement("br", null)
+	          ),
+	          React.createElement(
+	            "div",
+	            { id: "detail-address" },
+	            "Address:  ",
+	            this.state.restaurantDetails.address,
+	            " ",
+	            React.createElement("br", null)
+	          ),
+	          React.createElement(
+	            "div",
+	            { id: "detail-phone" },
+	            "Phone:  ",
+	            this.state.restaurantDetails.phone,
+	            " ",
+	            React.createElement("br", null)
+	          ),
+	          React.createElement(
+	            "p",
+	            { id: "detail-description" },
+	            "Description:  ",
+	            this.state.restaurantDetails.description,
+	            " ",
+	            React.createElement("br", null)
+	          )
 	        )
 	      ),
 	      React.createElement(
@@ -35769,44 +35858,6 @@
 
 /***/ },
 /* 284 */
-/***/ function(module, exports) {
-
-	var style = {
-	
-	  overlay: {
-	    position: 'fixed',
-	    top: 0,
-	    left: 0,
-	    right: 0,
-	    bottom: 0,
-	    color: 'white',
-	    backgroundColor: 'rgba(255, 255, 255, 0.75)',
-	    padding: 0,
-	    "zindex": 10
-	  },
-	  content: {
-	    position: 'absolute',
-	    top: '50%',
-	    left: '50%',
-	    transform: 'translate(-50%, -50%)',
-	
-	    height: '350px',
-	    width: '400px',
-	    border: '1px solid #ccc',
-	    display: 'flex',
-	    flexdirection: 'column',
-	    alignitems: 'center',
-	    justifycontent: 'center',
-	    padding: 0,
-	    "zindex": 10
-	  }
-	
-	};
-	
-	module.exports = style;
-
-/***/ },
-/* 285 */
 /***/ function(module, exports) {
 
 	var style = {
