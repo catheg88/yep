@@ -35448,46 +35448,46 @@
 	  getImageUrl: function () {
 	    switch (this.state.restaurantDetails.cuisine) {
 	      case "American":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462661170/american_y81leq.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462661170/american_y81leq.jpg" });
 	        break;
 	      case "Bars":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/bars_b1tu4p.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/bars_b1tu4p.jpg" });
 	        break;
 	      case "Chinese":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669715/chinese_cupue9.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669715/chinese_cupue9.jpg" });
 	        break;
 	      case "CoffeeandTea":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/coffee_xa2xf1.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/coffee_xa2xf1.jpg" });
 	        break;
 	      case "Indian":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/indian_le3kjf.png" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/indian_le3kjf.png" });
 	        break;
 	      case "Korean":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/korean_jwdwg5.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/korean_jwdwg5.jpg" });
 	        break;
 	      case "LatinAmerican":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/latinamerican_jr9atw.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/latinamerican_jr9atw.jpg" });
 	        break;
 	      case "Pizza":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/pizza_sxf50t.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/pizza_sxf50t.jpg" });
 	        break;
 	      case "Ramen":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/ramen_trhmln.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/ramen_trhmln.jpg" });
 	        break;
 	      case "Sandwiches":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/sandwiches_pz3kmt.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/sandwiches_pz3kmt.jpg" });
 	        break;
 	      case "Seafood":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/seafood_dmpvbr.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669716/seafood_dmpvbr.jpg" });
 	        break;
 	      case "Sushi":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/sushi_h6bwvl.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/sushi_h6bwvl.jpg" });
 	        break;
 	      case "Thai":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/thai_cum8d4.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/thai_cum8d4.jpg" });
 	        break;
 	      case "Vietnamese":
-	        return React.createElement("img", { src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/vietnamese_heestl.jpg" });
+	        return React.createElement("img", { src: "https://res.cloudinary.com/dfthfd7v8/image/upload/v1462669721/vietnamese_heestl.jpg" });
 	        break;
 	    }
 	  },
