@@ -27534,16 +27534,13 @@
 			);
 		},
 	
+		// <div id="login-errors">{this.errors()}</div>
+	
 		render: function () {
 			return React.createElement(
 				"div",
 				{ id: "login-form" },
-				this.form(),
-				React.createElement(
-					"div",
-					{ id: "login-errors" },
-					this.errors()
-				)
+				this.form()
 			);
 		}
 	});
@@ -35495,6 +35492,8 @@
 	    }
 	  },
 	
+	  // <div id="rev-errors">{this.errors()}</div>
+	
 	  render: function () {
 	    // debugger
 	    // console.log(RestResultsStore.errors());
@@ -35647,11 +35646,6 @@
 	          "div",
 	          { className: "form-button", onClick: this.handleReviewSubmit },
 	          "Submit"
-	        ),
-	        React.createElement(
-	          "div",
-	          { id: "rev-errors" },
-	          this.errors()
 	        )
 	      );
 	    }

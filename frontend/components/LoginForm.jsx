@@ -47,7 +47,7 @@ var LoginForm = React.createClass({
 		}
 		</ul>);
 	},
-	
+
 	form: function(){
 		if (this.state.currentUser) {
 			return;
@@ -90,11 +90,13 @@ var LoginForm = React.createClass({
 		);
 	},
 
+				// <div id="login-errors">{this.errors()}</div>
+
 	render: function(){
 		return (
 			<div id="login-form">
 				{this.form()}
-				<div id="login-errors">{this.errors()}</div>
+
 			</div>
 		);
 	}

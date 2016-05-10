@@ -217,6 +217,9 @@ var RestDetails = React.createClass({
     }
   },
 
+  // <div id="rev-errors">{this.errors()}</div>
+
+
   render: function() {
     // debugger
     // console.log(RestResultsStore.errors());
@@ -328,7 +331,6 @@ var RestDetails = React.createClass({
             </section>
             <br />
             <div className="form-button" onClick={this.handleReviewSubmit}>Submit</div>
-            <div id="rev-errors">{this.errors()}</div>
         </form>
       )
     }
