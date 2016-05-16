@@ -81,7 +81,34 @@ Review.create!([
   {rev_content: "wendy i'll get you for that one", yepp: true, user_id: 5, restaurant_id: 4, username: "carl"},
   {rev_content: "this was a yummy sando fosho yo", yepp: true, user_id: 1, restaurant_id: 23, username: "Guest"},
   {rev_content: " the food is terrible! the decor stinks. not enough seating.  abrasive lighting. they use safeway frozen fries.  have some self-respect!  the owner can't make a sandwich like master chef carl can! carl's deli is the only place i get my subs.  reccomend it to your family and friends!  and remember, carl loves you!", yepp: false, user_id: 5, restaurant_id: 23, username: "carl"},
-  {rev_content: "i wonder if they have dutch crunch...", yepp: true, user_id: 6, restaurant_id: 23, username: "karen"}
+  {rev_content: "i wonder if they have dutch crunch...", yepp: true, user_id: 6, restaurant_id: 23, username: "karen"},
+  {rev_content: "I absolutely hated it.", yepp: false, user_id: 7, restaurant_id: 1, username: "susan"},
+  {rev_content: "Me and my friend Susan went to it and it was really good.", yepp: true, user_id: 7, restaurant_id: 2, username: "susan"},
+  {rev_content: "I ordered my burger well done and they brought it medium rare.", yepp: false, user_id: 7, restaurant_id: 3, username: "susan"},
+  {rev_content: "I ordered the herring plate and it was VERY SMALL.  Overpriced; not worth it.  The ambiance wasn't very good either.  Overally, I'd say you're better off just saving up for Red Lobster.", yepp: false, user_id: 7, restaurant_id: 5, username: "susan"},
+  {rev_content: "The reuben is to die for.", yepp: true, user_id: 7, restaurant_id: 4, username: "susan"},
+  {rev_content: "No, she's right!  I've always liked popsicles, but they just don't have that beef kick, ya know?  Well, no longer.  Goodby Welsh's grape flavored ice - these things pack a hearty punch!", yepp: true, user_id: 7, restaurant_id: 6, username: "susan"},
+  {rev_content: "eh, I could take it or leave it.  Depending on who's behind the counter, it can be a pleasant experience or just frustrating and rude.  I'd appreciate more consistency from the staff.", yepp: false, user_id: 7, restaurant_id: 7, username: "susan"},
+  {rev_content: "They have all the best spicy condiments.  For one, their spicy Chinese mustard is just the spiciest, tangiest one I've ever tried, and let me tell you I know Chinese food.  I taught English in Hong Kong for 2 months.\n\nThe chili garlic sauce is just how I like it - in a small plastic container with a very greasy tiny spoon.  They have bottles of sriracha on the tables.  The only problem is when it's right in the middle of the lazy susan then susan doesn't help you out much and you've got to do a full reach.\n\nFinally, their spicy oil is great on my Trader Joes' wontons.  In conclusion, I'd say this is a good, spicy place.  But don't take my word for it!", yepp: true, user_id: 7, restaurant_id: 8, username: "susan"},
+  {rev_content: "This picture looks like a pacman ghost.  That's fun!  I started with the Daikon salad, a crisp, refreshing little mound of happiness.", yepp: true, user_id: 7, restaurant_id: 9, username: "susan"},
+  {rev_content: "^^ Broth: Pork based broth, offered Hokkaido style or shiro miso style.", yepp: true, user_id: 7, restaurant_id: 26, username: "susan"},
+  {rev_content: "What a great place to host happy hour with friends or a birthday - I'm always thinking about this!", yepp: true, user_id: 7, restaurant_id: 10, username: "susan"},
+  {rev_content: "The lion king and seaweed salad were good but the chicken teriyaki wasn't so good the chicken was a hard texture like beef", yepp: true, user_id: 7, restaurant_id: 11, username: "susan"},
+  {rev_content: "i agree.  i remember when you could only get breakfast at breakfast!", yepp: false, user_id: 7, restaurant_id: 12, username: "susan"},
+  {rev_content: "EEEEK!", yepp: false, user_id: 7, restaurant_id: 13, username: "susan"},
+  {rev_content: "shubada du ma ma", yepp: true, user_id: 8, restaurant_id: 30, username: "stevemillerfan43"},
+  {rev_content: "Big old jet airliner, carry me to wynder's thai!", yepp: true, user_id: 8, restaurant_id: 24, username: "stevemillerfan43"},
+  {rev_content: "Go on, take the ramen and run!", yepp: true, user_id: 8, restaurant_id: 26, username: "stevemillerfan43"},
+  {rev_content: "What do I love?\n\nSushi, obviously!", yepp: true, user_id: 8, restaurant_id: 27, username: "stevemillerfan43"},
+  {rev_content: "Some people call me the gangster of bread.", yepp: false, user_id: 8, restaurant_id: 23, username: "stevemillerfan43"},
+  {rev_content: "oh waaaaah wah wah wah wah wah wah wah wah wah", yepp: true, user_id: 8, restaurant_id: 28, username: "stevemillerfan43"},
+  {rev_content: "they turned down my legend Steve Miller to do the music for the movie, you know.", yepp: false, user_id: 8, restaurant_id: 9, username: "stevemillerfan43"},
+  {rev_content: "no cornbread...", yepp: false, user_id: 9, restaurant_id: 20, username: "cornbreadeater"},
+  {rev_content: "cornbreadeater", yepp: false, user_id: 9, restaurant_id: 12, username: "cornbreadeater"},
+  {rev_content: "no cornbread...", yepp: false, user_id: 9, restaurant_id: 28, username: "cornbreadeater"},
+  {rev_content: "amazingly enough, there was cornbread!", yepp: true, user_id: 9, restaurant_id: 25, username: "cornbreadeater"},
+  {rev_content: "no cornbread", yepp: false, user_id: 9, restaurant_id: 14, username: "cornbreadeater"},
+  {rev_content: "agreed, def MSG in that chinese cornbread.  but I liked it a lot.", yepp: true, user_id: 9, restaurant_id: 21, username: "cornbreadeater"}
 ])
 User.create!([
   {username: "wendy", password_digest: "$2a$10$pHBXBgkbgMR/doOs3ByltOhm7.YyTh8QGT/xfcMUlalkOsXeuqKyi", session_token: "dVO6UY6zjsOUM/J3bqrleQ=="},
@@ -89,5 +116,8 @@ User.create!([
   {username: "atheg", password_digest: "$2a$10$v9ovc6j0qYw9mFMltJOCau5SSR2mBI1geQUpMBYTUa6s0iPjuhlLG", session_token: "nDvmBfQ8cKb8GaNvs/ul+A=="},
   {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "T4on5Unk4u1/SzX+zR4p1Q=="},
   {username: "carl", password_digest: "$2a$10$weHpI/DzJgBGQ6z8dgBEAOBXfEGhx6BELBMh4gnKuJiqql8lb0ha6", session_token: "GrA47a7kiGFMJv0ltIieTg=="},
-  {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "msmiPzKJGkdCj1QiIypuVg=="}
+  {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "msmiPzKJGkdCj1QiIypuVg=="},
+  {username: "susan", password_digest: "$2a$10$nmd.mV77iFWw5YqHb./StuzgbtCqmk9iLlOeIkMbFWyTWnjr3hcJe", session_token: "B7bqOifYMfWJAhOfd7eTtQ=="},
+  {username: "stevemillerfan43", password_digest: "$2a$10$oIxEeyyzV8IX9LHb3XH4EOGVERPSEAWsT2ZNK2OP0wdj1Fw7NyLGi", session_token: "WZBoEJVRLPNoFZ6KZcEgTg=="},
+  {username: "cornbreadeater", password_digest: "$2a$10$mcKq2ei4wtwBcdDjLFGnUuZvkKYtCUV6298t0LXNUDgqVDjGpsQHS", session_token: "LNECYPNxCq6EgjdmscyG9g=="}
 ])

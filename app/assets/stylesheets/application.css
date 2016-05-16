@@ -51,8 +51,8 @@ ul {
  padding: 0;
  background: #f00;
  color: #fff;
- border-top: 2px solid black;
- border-bottom: 2px solid black;
+ /*border-top: 2px solid black;
+ border-bottom: 2px solid black;*/
  display: flex;
  justify-content: space-between;
  width: 100%;
@@ -64,7 +64,7 @@ ul {
  display: flex;
  justify-content: center;
  align-items: center;
- border-right: 2px solid black;
+ border-right: 2px solid white;
  font-weight: 700;
  padding: 0px 20px 0px 20px;
 }
@@ -96,7 +96,7 @@ ul {
   align-items: center;
 
   height: 100%;
-  border-left: 2px solid black;
+  border-left: 2px solid white;
 }
 
 .sisuso:hover {
@@ -335,7 +335,7 @@ ul {
   background-color: rgba(255, 0, 0, .3);
   color: white;
   padding: 10px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin: 6px;
   cursor: pointer;
   border-radius: 8px;
@@ -506,6 +506,7 @@ ul {
 
 .form-button:hover {
   background-color: dodgerblue;
+  cursor: pointer;
 }
 
 #gh-link {

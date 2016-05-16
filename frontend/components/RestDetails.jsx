@@ -113,8 +113,6 @@ var RestDetails = React.createClass({
     this.setState({ yepp: e.currentTarget.value });
   },
 
-
-
   handleReviewSubmit: function(e) {
     e.preventDefault();
     this.setState({ reviewModalOpen: false });
