@@ -84,7 +84,9 @@ ul {
 }
 
 #gh-img {
-  margin: 5px;*/
+  margin: 10px;
+  width: 35px;
+  height: 31px;
 }
 
 #gh-img:hover {
@@ -96,7 +98,7 @@ ul {
  align-content: center;
  justify-content: flex-end;
  align-items: flex;
- height: 50px;
+ height: 51px;
  margin: 0;
 }
 
@@ -137,6 +139,11 @@ ul {
  padding: 0;
 }
 
+.input {
+  background-color: linen;
+  color: dodgerblue;
+}
+
 #review-form {
  height: 100%;
  width: 100%;
@@ -169,6 +176,8 @@ ul {
 
 #rev-textbox {
   height: 91px;
+  background-color: linen;
+  color: dodgerblue;
 }
 
 #rev-yepp {
@@ -479,10 +488,20 @@ ul {
 
 #positive {
   color: green;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 #negative {
   color: red;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 #my-review {
@@ -521,7 +540,7 @@ ul {
 .form-button {
   padding: 5px 0px;
   margin: 10px 30%;
-  background-color: white;
+  background-color: linen;
   border: 2px solid black;
   color: black;
   border-radius: 5px;

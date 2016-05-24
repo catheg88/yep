@@ -21,6 +21,16 @@ var LoginForm = React.createClass({
 		this.setState({ password: e.currentTarget.value });
 	},
 
+	handleGuestSubmit: function(e){
+		e.preventDefault();
+		this.setState({form: "guestLogin", username: "Guest", password: "password"}, function() {
+			UserActions[this.state.form]({
+				username: this.state.username,
+				password: this.state.password
+			});
+		});
+	},
+
 	handleSubmit: function(e){
 		e.preventDefault();
 		UserActions[this.state.form]({
@@ -57,12 +67,12 @@ var LoginForm = React.createClass({
 				<section>
 					<br />
 					<label id="un-field"> Username:&nbsp;&nbsp;&nbsp;<br />
-						<input type="text" value={this.state.username} onChange={this.usernameChange}/>
+						<input type="text" className="input" value={this.state.username} onChange={this.usernameChange}/>
 					</label>
 					<br />
 					<br />
 					<label id="pw-field"> Password:&nbsp;&nbsp;&nbsp;<br />
-						<input type="password" value={this.state.password} onChange={this.passwordChange}/>
+						<input type="password" className="input" value={this.state.password} onChange={this.passwordChange}/>
 					</label>
 					<br />
 					<br />
@@ -79,13 +89,10 @@ var LoginForm = React.createClass({
 						&nbsp;Sign Up&nbsp;&nbsp;
 					</label>
 					<br />
-					<label>
-						<input type="Radio" name="action" value="guestLogin" onChange={this.setForm}/>
-						&nbsp;Guest Login&nbsp;&nbsp;
-					</label>
 				</section>
 				<br />
 				<div className="form-button" onClick={this.handleSubmit}>Submit</div>
+				<div className="form-button" onClick={this.handleGuestSubmit}>Guest Login</div>
 			</form>
 		);
 	},

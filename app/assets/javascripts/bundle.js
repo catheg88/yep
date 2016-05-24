@@ -27435,6 +27435,16 @@
 			this.setState({ password: e.currentTarget.value });
 		},
 	
+		handleGuestSubmit: function (e) {
+			e.preventDefault();
+			this.setState({ form: "guestLogin", username: "Guest", password: "password" }, function () {
+				UserActions[this.state.form]({
+					username: this.state.username,
+					password: this.state.password
+				});
+			});
+		},
+	
 		handleSubmit: function (e) {
 			e.preventDefault();
 			UserActions[this.state.form]({
@@ -27482,7 +27492,7 @@
 						{ id: "un-field" },
 						" Username:   ",
 						React.createElement("br", null),
-						React.createElement("input", { type: "text", value: this.state.username, onChange: this.usernameChange })
+						React.createElement("input", { type: "text", className: "input", value: this.state.username, onChange: this.usernameChange })
 					),
 					React.createElement("br", null),
 					React.createElement("br", null),
@@ -27491,7 +27501,7 @@
 						{ id: "pw-field" },
 						" Password:   ",
 						React.createElement("br", null),
-						React.createElement("input", { type: "password", value: this.state.password, onChange: this.passwordChange })
+						React.createElement("input", { type: "password", className: "input", value: this.state.password, onChange: this.passwordChange })
 					),
 					React.createElement("br", null),
 					React.createElement("br", null)
@@ -27512,19 +27522,18 @@
 						React.createElement("input", { type: "Radio", name: "action", value: "signup", onChange: this.setForm }),
 						" Sign Up  "
 					),
-					React.createElement("br", null),
-					React.createElement(
-						"label",
-						null,
-						React.createElement("input", { type: "Radio", name: "action", value: "guestLogin", onChange: this.setForm }),
-						" Guest Login  "
-					)
+					React.createElement("br", null)
 				),
 				React.createElement("br", null),
 				React.createElement(
 					"div",
 					{ className: "form-button", onClick: this.handleSubmit },
 					"Submit"
+				),
+				React.createElement(
+					"div",
+					{ className: "form-button", onClick: this.handleGuestSubmit },
+					"Guest Login"
 				)
 			);
 		},
@@ -34603,7 +34612,7 @@
 	          { className: "header-logo", onClick: this.goHome },
 	          "YEPP"
 	        ),
-	        React.createElement("img", { id: "gh-img", src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1464125123/gh-logo_cbietc.png", onClick: this.handleGHClick })
+	        React.createElement("img", { id: "gh-img", src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1464129410/gh-logo_2_wim0h1.png", onClick: this.handleGHClick })
 	      ),
 	      React.createElement(
 	        "ul",
