@@ -22,7 +22,6 @@ var App = React.createClass({
       <div id="App">
         <NavBar />
         {this.props.children}
-        <a id="gh-link" href="https://github.com/catheg88/yep">Visit catheg88's GitHub</a>
       </div>
     );
   }

@@ -138,7 +138,7 @@ var RestDetails = React.createClass({
     this.setState({revContent: " "})
   },
 
-  handleReviewEdit: function(e) { // TODO doesn't catch the errors
+  handleReviewEdit: function(e) {
     e.preventDefault();
     this.setState({ editModalOpen: false });
     var restId = parseInt(this.props.params.id)

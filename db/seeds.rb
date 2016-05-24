@@ -108,16 +108,29 @@ Review.create!([
   {rev_content: "no cornbread...", yepp: false, user_id: 9, restaurant_id: 28, username: "cornbreadeater"},
   {rev_content: "amazingly enough, there was cornbread!", yepp: true, user_id: 9, restaurant_id: 25, username: "cornbreadeater"},
   {rev_content: "no cornbread", yepp: false, user_id: 9, restaurant_id: 14, username: "cornbreadeater"},
-  {rev_content: "agreed, def MSG in that chinese cornbread.  but I liked it a lot.", yepp: true, user_id: 9, restaurant_id: 21, username: "cornbreadeater"}
+  {rev_content: "agreed, def MSG in that chinese cornbread.  but I liked it a lot.", yepp: true, user_id: 9, restaurant_id: 21, username: "cornbreadeater"},
+  {rev_content: "Um, herring are quite small... I got a sailfish and it was too big for me to eat.  That's excellent!", yepp: true, user_id: 4, restaurant_id: 5, username: "Guest"},
+  {rev_content: "Thank goodness that we have an honest to goodness indian place that is reliable and absurdly delicious!  My favorite keema naan of all time, and their tikka masala can't be beat.  Call me if you want someone to go with - 415-444-1455.", yepp: true, user_id: 10, restaurant_id: 30, username: "slimpickins"},
+  {rev_content: "Can't believe I didn't know about this place for so long.  It's the real deal.  I counted no less than 27 tiny plates that came with our bibinbop.  I can't wait to get back.  If you want me to go with you, call me - 415-225-6039!\n\nPlease, someone call me...", yepp: true, user_id: 10, restaurant_id: 2, username: "slimpickins"},
+  {rev_content: "I just found out that the fish they use to make their filet-o-fish sandwiches is totally unsustainable, contrary to their claims.  I will be taking my money to other establishments where I still have faith in the sustainability of their product.  Tell everyone you know to pass it on.  And, if you need me to organize a rally, call me, at 415-990-2399.", yepp: false, user_id: 10, restaurant_id: 12, username: "slimpickins"},
+  {rev_content: "As a lifelong tea drinker, I've never tried Zippy's.  But since new things scare me, I'd give this scary place a resounding NOPE.  Call me if you want to talk about it - 415-399-1488", yepp: false, user_id: 10, restaurant_id: 29, username: "slimpickins"},
+  {rev_content: "There's nothing particularly bad about the design choices in this restaurant, but there's also nothing particularly good.  I guess it just feels a bit flat.  If I'm going to fork over $13 for a bowl of Ramen, I want my aesthetic sensibilities absolutely pampered.  The soup was good, though.  Call me - 415-866-1333", yepp: false, user_id: 10, restaurant_id: 26, username: "slimpickins"},
+  {rev_content: "There's nothing bad about the design choices in this restaurant - it's got such a cool vibe!  If I'm going to fork over $13 for a bowl of Ramen, I want my aesthetic sensibilities absolutely pampered - AND IT DID.  The soup was bad, though.  Call me - 415-866-1223", yepp: true, user_id: 10, restaurant_id: 9, username: "slimpickins"},
+  {rev_content: "Please call me - 415-902-9266", yepp: true, user_id: 10, restaurant_id: 24, username: "slimpickins"},
+  {rev_content: "Well i think it was just so-so.  The meatloaf was a bit on the dry side, kind of like my stepmom's.  It was much better than Hamburger Helper. though.", yepp: false, user_id: 11, restaurant_id: 10, username: "martin"},
+  {rev_content: "Indian food is great, but only when I can count on being the correct price.  I was charged an extra $2.50 \"service charge.\"  When i asked about it, the owner told me it was added gratuity.  I told him to take it off and he wouldn't.  How rude!", yepp: false, user_id: 11, restaurant_id: 30, username: "martin"},
+  {rev_content: "Martin!  Martin!  Martin!  I am Martin!  MARTIN!!!", yepp: true, user_id: 11, restaurant_id: 19, username: "martin"}
 ])
 User.create!([
   {username: "wendy", password_digest: "$2a$10$pHBXBgkbgMR/doOs3ByltOhm7.YyTh8QGT/xfcMUlalkOsXeuqKyi", session_token: "dVO6UY6zjsOUM/J3bqrleQ=="},
   {username: "joe", password_digest: "$2a$10$6hFB/kj3w9slUEaRMMYBUOAsRP1G4kmeCDNrtw5G6n4hDLGWdxBq2", session_token: "/Id0PeowqRJWkX/4TLNcvA=="},
   {username: "atheg", password_digest: "$2a$10$v9ovc6j0qYw9mFMltJOCau5SSR2mBI1geQUpMBYTUa6s0iPjuhlLG", session_token: "nDvmBfQ8cKb8GaNvs/ul+A=="},
-  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "T4on5Unk4u1/SzX+zR4p1Q=="},
   {username: "carl", password_digest: "$2a$10$weHpI/DzJgBGQ6z8dgBEAOBXfEGhx6BELBMh4gnKuJiqql8lb0ha6", session_token: "GrA47a7kiGFMJv0ltIieTg=="},
   {username: "karen", password_digest: "$2a$10$HtLdLLRr4OI4YQb3V9roW.lthLpGL9pufEe8xYP1V5FucKWuGrRHm", session_token: "msmiPzKJGkdCj1QiIypuVg=="},
   {username: "susan", password_digest: "$2a$10$nmd.mV77iFWw5YqHb./StuzgbtCqmk9iLlOeIkMbFWyTWnjr3hcJe", session_token: "B7bqOifYMfWJAhOfd7eTtQ=="},
   {username: "stevemillerfan43", password_digest: "$2a$10$oIxEeyyzV8IX9LHb3XH4EOGVERPSEAWsT2ZNK2OP0wdj1Fw7NyLGi", session_token: "WZBoEJVRLPNoFZ6KZcEgTg=="},
-  {username: "cornbreadeater", password_digest: "$2a$10$mcKq2ei4wtwBcdDjLFGnUuZvkKYtCUV6298t0LXNUDgqVDjGpsQHS", session_token: "LNECYPNxCq6EgjdmscyG9g=="}
+  {username: "cornbreadeater", password_digest: "$2a$10$mcKq2ei4wtwBcdDjLFGnUuZvkKYtCUV6298t0LXNUDgqVDjGpsQHS", session_token: "LNECYPNxCq6EgjdmscyG9g=="},
+  {username: "Guest", password_digest: "$2a$10$s9NQzgIoYfwTPlq6Y7rmN.n/A/3SEa1EOEG5plhD9XPNODQCOEZcO", session_token: "/Mc76lsfjLg0F9oKlJLf1g=="},
+  {username: "slimpickins", password_digest: "$2a$10$7b8qScOZDbVw8FqWY0nQS.OJkmaBXGeUUBAJEglHH4fWL8KvF4Bqe", session_token: "rcht5szu5tZD5GjMBiCCTw=="},
+  {username: "martin", password_digest: "$2a$10$F25v4Wi5NqPGslYePjZ82emS.Fmhw7ODwlYclIKfFhieMi5eHOgBq", session_token: "CiJiZw4gg0OuxyHhay48Og=="}
 ])

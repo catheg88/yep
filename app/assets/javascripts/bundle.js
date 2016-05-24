@@ -70,12 +70,7 @@
 	      'div',
 	      { id: 'App' },
 	      React.createElement(NavBar, null),
-	      this.props.children,
-	      React.createElement(
-	        'a',
-	        { id: 'gh-link', href: 'https://github.com/catheg88/yep' },
-	        'Visit catheg88\'s GitHub'
-	      )
+	      this.props.children
 	    );
 	  }
 	});
@@ -34575,6 +34570,10 @@
 	    hashHistory.push("/");
 	  },
 	
+	  handleGHClick: function () {
+	    window.location.replace("https://github.com/catheg88");
+	  },
+	
 	  render: function () {
 	
 	    if (this.state.currentUser === undefined) {
@@ -34598,8 +34597,13 @@
 	      { className: "header" },
 	      React.createElement(
 	        "div",
-	        { className: "header-logo", onClick: this.goHome },
-	        "YEPP"
+	        { id: "header-left-side" },
+	        React.createElement(
+	          "div",
+	          { className: "header-logo", onClick: this.goHome },
+	          "YEPP"
+	        ),
+	        React.createElement("img", { id: "gh-img", src: "http://res.cloudinary.com/dfthfd7v8/image/upload/v1464125123/gh-logo_cbietc.png", onClick: this.handleGHClick })
 	      ),
 	      React.createElement(
 	        "ul",
@@ -35418,7 +35422,6 @@
 	  },
 	
 	  handleReviewEdit: function (e) {
-	    // TODO doesn't catch the errors
 	    e.preventDefault();
 	    this.setState({ editModalOpen: false });
 	    var restId = parseInt(this.props.params.id);
@@ -35775,8 +35778,10 @@
 	  render: function () {
 	    if (this.props.review.yepp === true) {
 	      var _yepp = "Yepp!";
+	      var yepp_id_name = "positive";
 	    } else {
 	      _yepp = "Nope!";
+	      var yepp_id_name = "negative";
 	    }
 	
 	    if (this.state.currentUser !== undefined) {
@@ -35803,7 +35808,7 @@
 	      ),
 	      React.createElement(
 	        "div",
-	        { id: "review-yepp" },
+	        { className: "review-yepp", id: yepp_id_name },
 	        _yepp
 	      )
 	    );

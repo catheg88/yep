@@ -60,6 +60,10 @@ ul {
  top: 0px;
 }
 
+#header-left-side {
+  display: flex;
+}
+
 .header-logo {
  display: flex;
  justify-content: center;
@@ -77,6 +81,14 @@ ul {
 #logo-link {
   text-decoration: none;
   color: white;
+}
+
+#gh-img {
+  margin: 5px;*/
+}
+
+#gh-img:hover {
+  cursor: pointer;
 }
 
 .header-list {
@@ -247,12 +259,14 @@ ul {
 #yepp-info-logo {
   font-size: 50px;
   font-weight: 700;
+  font-family: "Candal";
 }
 
 .subtitle {
   text-align: center;
   font-size: 25px;
   font-weight: 700;
+  font-family: "Candal";
 }
 
 #form-holder {
@@ -324,6 +338,7 @@ ul {
  display: flex;
  justify-content: center;
  font-size: x-large;
+ font-family: "Candal";
 }
 
 #results-index {
@@ -397,6 +412,7 @@ ul {
  display: flex;
  justify-content: center;
  font-size: x-large;
+ font-family: "Candal";
 }
 
 
@@ -452,12 +468,21 @@ ul {
   width: 50%
 }
 
-#review-yepp {
+.review-yepp {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   width: 7%;
+  font-family: "Candal"
+}
+
+#positive {
+  color: green;
+}
+
+#negative {
+  color: red;
 }
 
 #my-review {
@@ -473,6 +498,7 @@ ul {
   padding: 10px 60px 10px 0px;
   display: flex;
   justify-content: center;
+  font-family: "Candal";
 }
 
 #review-button {

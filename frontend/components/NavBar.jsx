@@ -48,6 +48,10 @@ var NavBar = React.createClass({
 		hashHistory.push("/");
 	},
 
+	handleGHClick: function() {
+		window.location.replace("https://github.com/catheg88");
+	},
+
   render: function() {
 
     if (this.state.currentUser === undefined) {
@@ -60,8 +64,11 @@ var NavBar = React.createClass({
 
     return (
       <header className="header">
-				<div className="header-logo" onClick={this.goHome}>
-					YEPP
+				<div id="header-left-side">
+					<div className="header-logo" onClick={this.goHome}>
+						YEPP
+					</div>
+					<img id="gh-img" src="http://res.cloudinary.com/dfthfd7v8/image/upload/v1464125123/gh-logo_cbietc.png" onClick={this.handleGHClick} />
 				</div>
 
         <ul className="header-list">
