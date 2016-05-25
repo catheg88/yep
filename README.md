@@ -6,6 +6,8 @@
 
 YEPP is a web application inspired by Yelp, using Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.
 
+![ScreenShot](yepp.png)
+
 ## Features & Implementation
 
 ### Single-Page Design
