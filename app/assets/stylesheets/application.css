@@ -33,7 +33,7 @@ html {
  /*background-position: center;*/
  /*background-size: cover;
  background-attachment: fixed;*/
- font-family: 'Open Sans', sans-serif;
+ font-family: 'Ubuntu', sans-serif;
 }
 
 ul {
@@ -71,6 +71,7 @@ ul {
  border-right: 2px solid white;
  font-weight: 700;
  padding: 0px 20px 0px 20px;
+ font-family: "Sigmar One"
 }
 
 .header-logo:hover {
@@ -268,14 +269,14 @@ ul {
 #yepp-info-logo {
   font-size: 50px;
   font-weight: 700;
-  font-family: "Candal";
+  font-family: "Sigmar One";
 }
 
 .subtitle {
   text-align: center;
   font-size: 25px;
   font-weight: 700;
-  font-family: "Candal";
+  font-family: "Ubuntu";
 }
 
 #form-holder {
@@ -347,7 +348,7 @@ ul {
  display: flex;
  justify-content: center;
  font-size: x-large;
- font-family: "Candal";
+ font-family: "Sigmar One";
 }
 
 #results-index {
@@ -421,7 +422,7 @@ ul {
  display: flex;
  justify-content: center;
  font-size: x-large;
- font-family: "Candal";
+ font-family: "Sigmar One";
 }
 
 
@@ -483,29 +484,23 @@ ul {
   justify-content: center;
   align-content: center;
   width: 7%;
-  font-family: "Candal"
+  font-family: "Sigmar One"
 }
 
 #positive {
   color: green;
-  text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
 }
 
 #negative {
   color: red;
-  text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
 }
 
 #my-review {
   background-color: rgba(255, 0, 0, 0.6);
+}
+
+#my-review > #negative {
+  color: white;
 }
 
 #review-header {
@@ -517,7 +512,7 @@ ul {
   padding: 10px 60px 10px 0px;
   display: flex;
   justify-content: center;
-  font-family: "Candal";
+  font-family: "Sigmar One";
 }
 
 #review-button {
